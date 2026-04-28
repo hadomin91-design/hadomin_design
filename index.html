@@ -116,53 +116,8 @@
             }
         }
 
-        /* ===== Moon Effect ===== */
-        .moon {
-            position: fixed;
-            top: 60px;
-            right: 80px;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle at 35% 35%, #fff9e6, #fffacd);
-            border-radius: 50%;
-            box-shadow: 0 0 40px rgba(255, 250, 205, 0.4), inset -20px -20px 40px rgba(0, 0, 0, 0.2);
-            z-index: 2;
-            animation: moonGlow 4s ease-in-out infinite;
-        }
-
-        .moon::before {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            top: 40px;
-            left: 35px;
-        }
-
-        .moon::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(0, 0, 0, 0.08);
-            border-radius: 50%;
-            top: 70px;
-            left: 60px;
-        }
-
-        @keyframes moonGlow {
-            0%, 100% {
-                box-shadow: 0 0 40px rgba(255, 250, 205, 0.4), inset -20px -20px 40px rgba(0, 0, 0, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 60px rgba(255, 250, 205, 0.6), inset -20px -20px 40px rgba(0, 0, 0, 0.2);
-            }
-        }
-
-        /* ===== Snow Effect ===== */
-        .snow-container {
+        /* ===== Falling Stars Effect ===== */
+        .stars-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -173,22 +128,38 @@
             overflow: hidden;
         }
 
-        .snowflake {
+        .star {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 2px;
+            height: 2px;
             background: white;
             border-radius: 50%;
-            opacity: 0.7;
-            animation: snowFall linear infinite;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            opacity: 0.8;
+            box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+            animation: fall linear infinite;
         }
 
-        @keyframes snowFall {
+        .star::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: inherit;
+            box-shadow: inherit;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes fall {
             to {
                 transform: translateY(100vh) translateX(var(--tx));
                 opacity: 0;
             }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
 
         /* ===== Custom Cursor ===== */
@@ -270,10 +241,31 @@
             gap: 15px;
         }
 
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-color);
+            transition: 0.3s;
+        }
+
+        .logo-placeholder:hover {
+            background: rgba(255, 117, 140, 0.15);
+            border-color: var(--primary-color);
+            transform: scale(1.15) rotate(8deg);
+            box-shadow: 0 0 20px rgba(255, 117, 140, 0.4);
+        }
+
         .logo {
             font-family: 'Caveat', cursive;
             font-weight: 700;
-            font-size: 40px;
+            font-size: 32px;
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -353,7 +345,7 @@
 
         .hero h1 {
             font-family: 'Caveat', cursive;
-            font-size: clamp(4rem, 14vw, 10rem);
+            font-size: clamp(3.5rem, 12vw, 9rem);
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.1;
@@ -369,7 +361,7 @@
         }
 
         .hero p {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            font-size: clamp(0.95rem, 3vw, 1.15rem);
             color: #cbd5e1;
             max-width: 600px;
             margin-bottom: 30px;
@@ -409,7 +401,7 @@
 
         .section-title {
             font-family: 'Caveat', cursive;
-            font-size: clamp(3.2rem, 9vw, 5.5rem);
+            font-size: clamp(2.8rem, 8vw, 5rem);
             margin-bottom: 50px;
             position: relative;
             display: inline-block;
@@ -460,6 +452,16 @@
             align-items: center;
         }
 
+        .about-text p {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            margin-bottom: 25px;
+            color: #cbd5e1;
+            font-family: 'Nanum Pen Script', 'Comfortaa', sans-serif;
+            font-weight: 400;
+            line-height: 2;
+            letter-spacing: 0.3px;
+        }
+
         .about-image {
             position: relative;
             border-radius: 50% 60% 55% 45% / 45% 50% 60% 55%;
@@ -493,16 +495,6 @@
         .about-image:hover img {
             filter: grayscale(0%);
             transform: scale(1.05);
-        }
-
-        .about-text p {
-            font-size: clamp(1.05rem, 2.5vw, 1.3rem);
-            margin-bottom: 25px;
-            color: #cbd5e1;
-            font-family: 'Nanum Pen Script', 'Comfortaa', sans-serif;
-            font-weight: 400;
-            line-height: 2;
-            letter-spacing: 0.3px;
         }
 
         /* ===== Skills Section ===== */
@@ -622,7 +614,7 @@
         }
 
         .skill-name {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            font-size: clamp(1rem, 2vw, 1.3rem);
             font-weight: 400;
             font-family: 'Nanum Pen Script', 'Comfortaa', sans-serif;
             letter-spacing: 0.5px;
@@ -656,7 +648,7 @@
         }
 
         .skill-percentage {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
             color: #94a3b8;
             font-weight: 600;
             min-height: 28px;
@@ -741,7 +733,7 @@
         }
 
         .work-info h3 {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
             margin-bottom: 5px;
             font-family: 'Caveat', cursive;
             font-weight: 700;
@@ -749,7 +741,7 @@
         }
 
         .work-info p {
-            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            font-size: clamp(0.85rem, 2vw, 1rem);
             color: #94a3b8;
             margin-bottom: 15px;
             font-family: 'Nanum Pen Script', 'Comfortaa', sans-serif;
@@ -762,7 +754,7 @@
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            font-size: clamp(0.85rem, 2vw, 1rem);
             font-family: 'Nanum Pen Script', 'Comfortaa', sans-serif;
             transition: 0.3s;
         }
@@ -797,7 +789,7 @@
         }
 
         .contact-container p {
-            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: #cbd5e1;
             font-family: 'Nanum Pen Script', 'Comfortaa', sans-serif;
             font-weight: 400;
@@ -814,7 +806,7 @@
         }
 
         .contact-item {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
             color: #cbd5e1;
             text-decoration: none;
             transition: 0.3s;
@@ -844,7 +836,7 @@
             text-align: center;
             border-top: 1px solid var(--glass-border);
             color: #64748b;
-            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            font-size: clamp(0.85rem, 2vw, 1rem);
             font-family: 'Nanum Pen Script', 'Comfortaa', sans-serif;
             position: relative;
             z-index: 2;
@@ -873,13 +865,6 @@
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 20px;
             }
-
-            .moon {
-                width: 100px;
-                height: 100px;
-                top: 50px;
-                right: 60px;
-            }
         }
 
         /* ===== Mobile Responsive ===== */
@@ -893,8 +878,18 @@
                 padding: 12px 20px;
             }
 
+            .logo-area {
+                gap: 10px;
+            }
+
+            .logo-placeholder {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
             .logo {
-                font-size: 28px;
+                font-size: 24px;
             }
 
             .menu-toggle {
@@ -919,8 +914,6 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-
-
 
             .skills-container {
                 grid-template-columns: 1fr;
@@ -969,13 +962,6 @@
             .scroll-indicator {
                 display: none;
             }
-
-            .moon {
-                width: 80px;
-                height: 80px;
-                top: 40px;
-                right: 40px;
-            }
         }
 
         /* ===== Small Mobile Responsive ===== */
@@ -984,8 +970,14 @@
                 padding: 12px 15px;
             }
 
+            .logo-placeholder {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
             .logo {
-                font-size: 22px;
+                font-size: 20px;
             }
 
             .hero {
@@ -993,12 +985,12 @@
             }
 
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
                 margin-bottom: 15px;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 padding: 0 10px;
             }
 
@@ -1008,7 +1000,7 @@
             }
 
             .about-text p {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 margin-bottom: 15px;
             }
 
@@ -1032,7 +1024,7 @@
             }
 
             .skill-name {
-                font-size: 1.05rem;
+                font-size: 1rem;
             }
 
             .works-gallery {
@@ -1045,11 +1037,11 @@
             }
 
             .work-info h3 {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .work-info p {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 margin-bottom: 10px;
             }
 
@@ -1062,7 +1054,7 @@
             }
 
             .contact-item {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 padding: 10px 18px;
             }
 
@@ -1072,14 +1064,7 @@
 
             footer {
                 padding: 20px 15px;
-                font-size: 0.95rem;
-            }
-
-            .moon {
-                width: 70px;
-                height: 70px;
-                top: 30px;
-                right: 30px;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -1094,11 +1079,8 @@
         <div class="blob blob-4"></div>
     </div>
 
-    <!-- Moon -->
-    <div class="moon"></div>
-
-    <!-- Snow Effect -->
-    <div class="snow-container" id="snowContainer"></div>
+    <!-- Falling Stars Effect -->
+    <div class="stars-container" id="starsContainer"></div>
 
     <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
@@ -1107,6 +1089,9 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="logo-area">
+            <div class="logo-placeholder" id="logoPlaceholder">
+                <i class="fas fa-image"></i>
+            </div>
             <div class="logo">HADO</div>
         </div>
         <button class="menu-toggle" id="menuToggle">
@@ -1314,33 +1299,33 @@
             once: true
         });
 
-        // ===== Create Snow Effect =====
-        function createSnow() {
-            const snowContainer = document.getElementById('snowContainer');
-            if (!snowContainer) return;
+        // ===== Create Falling Stars =====
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            if (!starsContainer) return;
 
-            const snowCount = 100;
+            const starCount = 80;
 
-            for (let i = 0; i < snowCount; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.className = 'snowflake';
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
                 
                 const x = Math.random() * 100;
                 const y = Math.random() * -100;
-                const duration = Math.random() * 8 + 8;
-                const tx = (Math.random() - 0.5) * 200;
+                const duration = Math.random() * 4 + 3;
+                const tx = (Math.random() - 0.5) * 150;
                 
-                snowflake.style.left = x + '%';
-                snowflake.style.top = y + '%';
-                snowflake.style.animationDuration = duration + 's';
-                snowflake.style.setProperty('--tx', tx + 'px');
-                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                star.style.left = x + '%';
+                star.style.top = y + '%';
+                star.style.animationDuration = duration + 's';
+                star.style.setProperty('--tx', tx + 'px');
+                star.style.animationDelay = Math.random() * 3 + 's';
                 
-                snowContainer.appendChild(snowflake);
+                starsContainer.appendChild(star);
             }
         }
 
-        createSnow();
+        createStars();
 
         // ===== Counting Animation for Skills =====
         function animateCounters() {
@@ -1413,7 +1398,7 @@
                 outline.style.top = `${posY}px`;
             });
 
-            const hoverElements = document.querySelectorAll('a, button, .work-item, .skill-item, .contact-item');
+            const hoverElements = document.querySelectorAll('a, button, .work-item, .skill-item, .logo-placeholder, .contact-item');
             hoverElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     document.body.classList.add('cursor-hover');
