@@ -1,282 +1,647 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hado Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hado Portfolio | Creative Frontend Developer</title>
+    
+    <!-- Fonts - Handwriting & Beautiful Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Nanum+Pen+Script&family=Caveat:wght@400;700&family=Indie+Flower&family=Pacifico&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff758c;
+            --secondary-color: #ff7eb3;
+            --accent-color: #764ba2;
+            --bg-dark: #0f172a;
+            --text-light: #f8fafc;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Hide default cursor */
+        }
 
-body {
-    font-family: 'Pretendard', sans-serif;
-    scroll-behavior: smooth;
-    color: #333;
-}
+        body {
+            font-family: 'Fredoka', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
 
-/* ===== NAV ===== */
-.nav {
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-    background: rgba(0,0,0,0.5);
-}
+        /* ===== Custom Cursor ===== */
+        .cursor-dot,
+        .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            transition: transform 0.1s ease-out, opacity 0.3s ease-in-out;
+        }
 
-.nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 15px;
-}
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
 
-.nav li {
-    margin: 0 10px;
-}
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+        }
 
-.nav button {
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: none;
-    background: linear-gradient(45deg,#ff9a9e,#fad0c4);
-    cursor: pointer;
-    font-weight: 600;
-    transition: .3s;
-}
+        .cursor-hover .cursor-dot {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
 
-.nav button:hover {
-    transform: translateY(-3px);
-    background: white;
-}
+        .cursor-hover .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 117, 140, 0.2);
+            border-color: #fff;
+        }
 
-/* ===== SECTION ===== */
-section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.5s;
+        }
 
-/* 배경 */
-#home { background: linear-gradient(135deg,#667eea,#764ba2); color:white;}
-#about { background: #f9f9f9;}
-#skills { background: #fff;}
-#works { background: #f1f3f5;}
-#contact { background: #222; color:white;}
+        .nav.scrolled {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 15px 50px;
+            border-bottom: 1px solid var(--glass-border);
+        }
 
-.container {
-    max-width: 1000px;
-    text-align: center;
-    padding: 40px;
-}
+        .logo {
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+            font-size: 32px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
 
-/* ===== TEXT ===== */
-h1 {
-    font-size: 50px;
-    margin-bottom: 10px;
-}
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-}
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 14px;
+            font-family: 'Fredoka', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            position: relative;
+        }
 
-p {
-    font-size: 18px;
-    line-height: 1.6;
-}
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: 0.3s;
+        }
 
-/* ===== ANIMATION ===== */
-.fade {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 0.7s;
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-.fade.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+        /* ===== Hero Section ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-/* ===== SKILLS ===== */
-.skills-box {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.05;
+            animation: rotate 100s linear infinite;
+        }
 
-.skill {
-    width: 120px;
-    padding: 20px;
-    border-radius: 15px;
-    background: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-/* ===== WORKS ===== */
-.works-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-    margin-top: 30px;
-}
+        .hero h1 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(4rem, 10vw, 7rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            z-index: 1;
+            letter-spacing: 3px;
+        }
 
-.work {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    transition: .3s;
-    cursor: pointer;
-}
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(to right, #fff, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.work:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+        .hero p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin-bottom: 30px;
+            z-index: 1;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
 
-/* ===== CONTACT ===== */
-.contact a {
-    color: #ff9a9e;
-    text-decoration: none;
-}
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
 
-/* ===== TOP BUTTON ===== */
-.top-btn {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: none;
-    background: #ff758c;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    opacity: 0;
-    transition: .3s;
-}
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
 
-.top-btn.show {
-    opacity: 1;
-}
+        /* ===== Section Common ===== */
+        section {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.top-btn:hover {
-    transform: scale(1.1);
-}
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
 
-</style>
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+
+        /* ===== About Section ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            color: #cbd5e1;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 300;
+            line-height: 1.9;
+            letter-spacing: 0.3px;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+            filter: grayscale(30%);
+            transition: 0.5s;
+        }
+
+        .about-image:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        /* ===== Skills Section ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 117, 140, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Fredoka', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== Works Gallery Section ===== */
+        .works-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .work-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: #1e293b;
+        }
+
+        .work-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .work-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .work-item:hover .work-overlay {
+            opacity: 1;
+        }
+
+        .work-item:hover .work-img {
+            transform: scale(1.1);
+        }
+
+        .work-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .work-info p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 300;
+        }
+
+        .work-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* ===== Contact Section ===== */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-container p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 500;
+        }
+
+        .contact-item:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            color: #64748b;
+            font-size: 0.9rem;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav { padding: 20px; }
+            .nav-links { display: none; }
+            .about-content { grid-template-columns: 1fr; }
+            section { padding: 80px 5%; }
+            .hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.5rem; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-    <ul>
-        <li><button data-link="#home">Home</button></li>
-        <li><button data-link="#about">About</button></li>
-        <li><button data-link="#skills">Skills</button></li>
-        <li><button data-link="#works">Works</button></li>
-        <li><button data-link="#contact">Contact</button></li>
-    </ul>
-</nav>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
 
-<!-- HOME -->
-<section id="home">
-    <div class="container fade">
-        <h1>하도의 Portfolio</h1>
-        <h2>Frontend Developer</h2>
-        <p>감각적인 UI와 인터랙션을 만드는 것을 좋아합니다.</p>
-    </div>
-</section>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo">HADO</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#works">Works</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<!-- ABOUT -->
-<section id="about">
-    <div class="container fade">
-        <h1>About Me</h1>
-        <p>사용자 경험을 중요하게 생각하는 프론트엔드 개발자입니다.</p>
-    </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-    <div class="container fade">
-        <h1>Skills</h1>
-        <div class="skills-box">
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">JavaScript</div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1 data-aos="fade-up">
+            <span>Creative</span>
+            <span>Developer</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="200">감각적인 UI와 인터랙션을 통해 사용자에게 특별한 경험을 선사하는 프론트엔드 개발자 하도입니다.</p>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- WORKS -->
-<section id="works">
-    <div class="container fade">
-        <h1>Works</h1>
-        <div class="works-grid">
-            <div class="work">Project 1</div>
-            <div class="work">Project 2</div>
-            <div class="work">Project 3</div>
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title" data-aos="fade-right">About Me</h2>
+        <div class="about-content">
+            <div class="about-text" data-aos="fade-up">
+                <p>안녕하세요! 저는 코드로 디자인을 구현하는 것을 즐기는 개발자입니다. 단순히 기능하는 웹사이트를 넘어, 사용자의 시선을 사로잡는 아름다운 인터페이스를 지향합니다.</p>
+                <p>최신 트렌드를 연구하고 이를 프로젝트에 녹여내는 과정에서 큰 보람을 느낍니다. 하도의 포트폴리오에 오신 것을 환영합니다!</p>
+            </div>
+            <div class="about-image" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Coding">
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- CONTACT -->
-<section id="contact">
-    <div class="container fade contact">
-        <h1>Contact</h1>
-        <p>Email: example@email.com</p>
-    </div>
-</section>
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title" data-aos="fade-right">My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card" data-aos="flip-left" data-aos-delay="100">
+                <i class="fab fa-html5"></i>
+                <h3>HTML5</h3>
+            </div>
+            <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS3</h3>
+            </div>
+            <div class="skill-card" data-aos="flip-left" data-aos-delay="300">
+                <i class="fab fa-js"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card" data-aos="flip-left" data-aos-delay="400">
+                <i class="fab fa-react"></i>
+                <h3>React</h3>
+            </div>
+            <div class="skill-card" data-aos="flip-left" data-aos-delay="500">
+                <i class="fab fa-figma"></i>
+                <h3>Figma</h3>
+            </div>
+        </div>
+    </section>
 
-<!-- TOP BUTTON -->
-<button class="top-btn">↑</button>
+    <!-- Works Section -->
+    <section id="works">
+        <h2 class="section-title" data-aos="fade-right">My Works</h2>
+        <div class="works-gallery">
+            <!-- Work 1 -->
+            <div class="work-item" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Project 1" class="work-img">
+                <div class="work-overlay">
+                    <div class="work-info">
+                        <h3>E-Commerce Redesign</h3>
+                        <p>쇼핑몰 웹사이트의 UI/UX를 현대적으로 재해석한 프로젝트입니다.</p>
+                        <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Work 2 -->
+            <div class="work-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Project 2" class="work-img">
+                <div class="work-overlay">
+                    <div class="work-info">
+                        <h3>Dashboard UI Kit</h3>
+                        <p>데이터 시각화에 최적화된 관리자 대시보드 템플릿입니다.</p>
+                        <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Work 3 -->
+            <div class="work-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Project 3" class="work-img">
+                <div class="work-overlay">
+                    <div class="work-info">
+                        <h3>Mobile App Design</h3>
+                        <p>사용자 편의성을 극대화한 모바일 애플리케이션 디자인입니다.</p>
+                        <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Work 4 -->
+            <div class="work-item" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80" alt="Project 4" class="work-img">
+                <div class="work-overlay">
+                    <div class="work-info">
+                        <h3>Brand Identity</h3>
+                        <p>스타트업을 위한 로고 및 브랜드 가이드라인 제작 프로젝트입니다.</p>
+                        <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            <p data-aos="fade-up" data-aos-delay="100">새로운 프로젝트나 협업 제안은 언제나 환영합니다.<br>아래 채널을 통해 연락주세요!</p>
+            <div class="contact-info" data-aos="fade-up" data-aos-delay="200">
+                <a href="mailto:example@email.com" class="contact-item"><i class="fas fa-envelope"></i> example@email.com</a>
+                <a href="#" class="contact-item"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#" class="contact-item"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </section>
 
-/* 스크롤 애니메이션 */
-const fades = document.querySelectorAll('.fade');
+    <footer>
+        <p>&copy; 2026 Hado Portfolio. All rights reserved.</p>
+    </footer>
 
-window.addEventListener('scroll', () => {
-    fades.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-            el.classList.add('show');
-        }
-    });
-});
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
 
-/* 메뉴 이동 */
-document.querySelectorAll('[data-link]').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelector(btn.dataset.link)
-        .scrollIntoView({behavior:'smooth'});
-    });
-});
+        // Custom Cursor Logic
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
 
-/* 탑 버튼 */
-const topBtn = document.querySelector('.top-btn');
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        topBtn.classList.add('show');
-    } else {
-        topBtn.classList.remove('show');
-    }
-});
+            dot.style.left = `${posX}px`;
+            dot.style.top = `${posY}px`;
 
-topBtn.addEventListener('click', () => {
-    window.scrollTo({top:0, behavior:'smooth'});
-});
+            // Outline follows with a slight delay for smooth effect
+            outline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
 
-</script>
+        // Cursor Hover Effect
+        const hoverElements = document.querySelectorAll('a, button, .work-item, .skill-card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
 
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scrolling for Nav Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
