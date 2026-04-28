@@ -33,10 +33,64 @@
 
         body {
             font-family: 'Nanum Pen Script', 'Comfortaa', 'Noto Sans KR', sans-serif;
-            background-color: var(--bg-dark);
+            background: linear-gradient(135deg, #0a0e27 0%, #1a2d5c 25%, #0f1a3a 50%, #1a2d5c 75%, #0a0e27 100%);
+            background-attachment: fixed;
             color: var(--text-light);
             overflow-x: hidden;
             line-height: 1.8;
+            position: relative;
+        }
+
+        /* ===== Animated Background Blobs ===== */
+        .blob-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            opacity: 0.05;
+            filter: blur(40px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, #ff758c, transparent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle at 40% 40%, #ff7eb3, transparent);
+            top: 50%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .blob-3 {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle at 50% 50%, #764ba2, transparent);
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
         }
 
         /* ===== Falling Stars Effect ===== */
@@ -162,7 +216,7 @@
         .logo-placeholder:hover {
             background: rgba(255, 117, 140, 0.1);
             border-color: var(--primary-color);
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(5deg);
         }
 
         .logo {
@@ -241,25 +295,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(135deg, rgba(26, 45, 92, 1) 0%, rgba(10, 14, 39, 0.9) 50%, rgba(30, 41, 59, 0.8) 100%);
             position: relative;
             overflow: hidden;
             padding: 20px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            background: url('https://www.transparenttextures.com/patterns/cubes.png');
-            opacity: 0.02;
-            animation: rotate 100s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            z-index: 2;
         }
 
         .hero h1 {
@@ -316,22 +355,6 @@
             justify-content: center;
             position: relative;
             z-index: 2;
-        }
-
-        #about {
-            background: linear-gradient(135deg, rgba(26, 45, 92, 1) 0%, rgba(10, 14, 39, 0.8) 50%, rgba(30, 41, 59, 0.6) 100%);
-        }
-
-        #skills {
-            background: linear-gradient(135deg, rgba(26, 45, 92, 1) 0%, rgba(10, 14, 39, 0.9) 50%, rgba(30, 41, 59, 0.7) 100%);
-        }
-
-        #works {
-            background: linear-gradient(135deg, rgba(26, 45, 92, 1) 0%, rgba(10, 14, 39, 0.8) 50%, rgba(30, 41, 59, 0.6) 100%);
-        }
-
-        #contact {
-            background: linear-gradient(135deg, rgba(26, 45, 92, 1) 0%, rgba(10, 14, 39, 0.9) 50%, rgba(30, 41, 59, 0.8) 100%);
         }
 
         .section-title {
@@ -400,10 +423,25 @@
 
         .about-image {
             position: relative;
-            border-radius: 50px;
+            border-radius: 50% 60% 55% 45% / 45% 50% 60% 55%;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transform: rotate(-2deg);
+            box-shadow: 0 20px 50px rgba(255, 117, 140, 0.2);
+            animation: morphing 8s ease-in-out infinite;
+        }
+
+        @keyframes morphing {
+            0%, 100% {
+                border-radius: 50% 60% 55% 45% / 45% 50% 60% 55%;
+            }
+            25% {
+                border-radius: 60% 50% 45% 55% / 55% 45% 50% 60%;
+            }
+            50% {
+                border-radius: 45% 55% 60% 50% / 50% 60% 45% 55%;
+            }
+            75% {
+                border-radius: 55% 45% 50% 60% / 60% 55% 45% 50%;
+            }
         }
 
         .about-image img {
@@ -415,7 +453,7 @@
 
         .about-image:hover img {
             filter: grayscale(0%);
-            transform: scale(1.05) rotate(2deg);
+            transform: scale(1.05);
         }
 
         /* ===== Skills Section ===== */
@@ -428,12 +466,57 @@
         .skill-item {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            padding: 30px;
-            border-radius: 40px;
+            padding: 40px 30px;
+            border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%;
             backdrop-filter: blur(10px);
             transition: 0.3s;
             position: relative;
             overflow: hidden;
+            animation: blobFloat 8s ease-in-out infinite;
+        }
+
+        .skill-item:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .skill-item:nth-child(2) {
+            animation-delay: 1s;
+            border-radius: 50% 60% 45% 55% / 55% 45% 60% 50%;
+        }
+
+        .skill-item:nth-child(3) {
+            animation-delay: 2s;
+            border-radius: 45% 55% 60% 40% / 40% 60% 55% 45%;
+        }
+
+        .skill-item:nth-child(4) {
+            animation-delay: 3s;
+            border-radius: 55% 45% 55% 45% / 45% 55% 45% 55%;
+        }
+
+        .skill-item:nth-child(5) {
+            animation-delay: 4s;
+            border-radius: 40% 60% 50% 50% / 50% 50% 60% 40%;
+        }
+
+        .skill-item:nth-child(6) {
+            animation-delay: 5s;
+            border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
+        }
+
+        @keyframes blobFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+            }
+            25% {
+                transform: translateY(-15px) translateX(10px);
+            }
+            50% {
+                transform: translateY(-25px) translateX(-10px);
+            }
+            75% {
+                transform: translateY(-15px) translateX(5px);
+            }
         }
 
         .skill-item::before {
@@ -451,7 +534,7 @@
         .skill-item:hover {
             background: rgba(255, 117, 140, 0.1);
             border-color: var(--primary-color);
-            transform: translateY(-8px) rotate(1deg);
+            transform: scale(1.05);
         }
 
         .skill-item:hover::before {
@@ -536,20 +619,40 @@
 
         .work-item {
             position: relative;
-            border-radius: 40px;
+            border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
             overflow: hidden;
             aspect-ratio: 16/10;
             background: #1e293b;
             transition: 0.3s;
-            transform: rotate(-1deg);
+            animation: workFloat 7s ease-in-out infinite;
         }
 
-        .work-item:nth-child(even) {
-            transform: rotate(1deg);
+        .work-item:nth-child(2) {
+            animation-delay: 1.5s;
+            border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%;
+        }
+
+        .work-item:nth-child(3) {
+            animation-delay: 3s;
+            border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%;
+        }
+
+        .work-item:nth-child(4) {
+            animation-delay: 4.5s;
+            border-radius: 45% 55% 60% 40% / 40% 60% 55% 45%;
+        }
+
+        @keyframes workFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         .work-item:hover {
-            transform: scale(1.05) rotate(0deg);
+            transform: scale(1.05) translateY(-20px);
         }
 
         .work-img {
@@ -621,9 +724,21 @@
             width: 100%;
             background: rgba(255, 117, 140, 0.05);
             padding: 60px 40px;
-            border-radius: 50px;
+            border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
             border: 1px solid rgba(255, 117, 140, 0.1);
             backdrop-filter: blur(10px);
+            animation: contactFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes contactFloat {
+            0%, 100% {
+                transform: translateY(0px);
+                border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
+            }
+            50% {
+                transform: translateY(-20px);
+                border-radius: 45% 55% 50% 50% / 50% 50% 45% 55%;
+            }
         }
 
         .contact-container p {
@@ -652,7 +767,7 @@
             font-weight: 400;
             padding: 12px 24px;
             background: rgba(255, 117, 140, 0.1);
-            border-radius: 30px;
+            border-radius: 50px;
             border: 1px solid rgba(255, 117, 140, 0.2);
         }
 
@@ -675,7 +790,8 @@
             color: #64748b;
             font-size: clamp(0.85rem, 2vw, 1rem);
             font-family: 'Nanum Pen Script', 'Comfortaa', sans-serif;
-            background: linear-gradient(135deg, rgba(26, 45, 92, 1) 0%, rgba(10, 14, 39, 0.8) 100%);
+            position: relative;
+            z-index: 2;
         }
 
         /* ===== Tablet Responsive ===== */
@@ -751,14 +867,6 @@
                 gap: 30px;
             }
 
-            .about-image {
-                transform: rotate(0deg);
-            }
-
-            .about-image:hover img {
-                transform: scale(1.05) rotate(0deg);
-            }
-
             .skills-container {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -782,11 +890,6 @@
 
             .work-item {
                 aspect-ratio: 16/12;
-                transform: rotate(0deg);
-            }
-
-            .work-item:nth-child(even) {
-                transform: rotate(0deg);
             }
 
             .contact-container {
@@ -859,8 +962,7 @@
             }
 
             .skill-item {
-                padding: 20px;
-                border-radius: 30px;
+                padding: 30px 20px;
             }
 
             .skill-header {
@@ -897,7 +999,6 @@
 
             .contact-container {
                 padding: 30px 20px;
-                border-radius: 30px;
             }
 
             .contact-info {
@@ -921,6 +1022,13 @@
     </style>
 </head>
 <body>
+
+    <!-- Animated Background Blobs -->
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
     <!-- Falling Stars Effect -->
     <div class="stars-container" id="starsContainer"></div>
@@ -1282,3 +1390,4 @@
     </script>
 </body>
 </html>
+
