@@ -139,6 +139,31 @@
             border-bottom: 1px solid var(--glass-border);
         }
 
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-color);
+            transition: 0.3s;
+        }
+
+        .logo-placeholder:hover {
+            background: rgba(255, 117, 140, 0.1);
+            border-color: var(--primary-color);
+        }
+
         .logo {
             font-family: 'Caveat', cursive;
             font-weight: 700;
@@ -450,7 +475,7 @@
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             border-radius: 10px;
             width: 0;
-            animation: fillProgress 2s ease-out forwards;
+            animation: fillProgress 2.5s ease-out forwards;
         }
 
         @keyframes fillProgress {
@@ -463,6 +488,7 @@
             font-size: 0.9rem;
             color: #94a3b8;
             font-weight: 600;
+            min-height: 24px;
         }
 
         /* ===== Works Gallery Section ===== */
@@ -624,6 +650,16 @@
                 padding: 12px 20px;
             }
 
+            .logo-area {
+                gap: 10px;
+            }
+
+            .logo-placeholder {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
             .logo {
                 font-size: 24px;
             }
@@ -700,6 +736,12 @@
         @media (max-width: 480px) {
             .nav {
                 padding: 12px 15px;
+            }
+
+            .logo-placeholder {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
             }
 
             .logo {
@@ -801,7 +843,13 @@
 
     <!-- Navigation -->
     <nav class="nav">
-        <div class="logo">HADO</div>
+        <div class="logo-area">
+            <!-- 로고 자리: 여기에 로고 이미지나 아이콘을 넣으세요 -->
+            <div class="logo-placeholder" id="logoPlaceholder">
+                <i class="fas fa-image"></i>
+            </div>
+            <div class="logo">HADO</div>
+        </div>
         <button class="menu-toggle" id="menuToggle">
             <i class="fas fa-bars"></i>
         </button>
@@ -855,7 +903,7 @@
                 <div class="skill-bar">
                     <div class="skill-progress" style="--progress: 95%"></div>
                 </div>
-                <div class="skill-percentage">95%</div>
+                <div class="skill-percentage"><span class="counter" data-target="95">0</span>%</div>
             </div>
 
             <!-- Illustrator -->
@@ -869,7 +917,7 @@
                 <div class="skill-bar">
                     <div class="skill-progress" style="--progress: 90%"></div>
                 </div>
-                <div class="skill-percentage">90%</div>
+                <div class="skill-percentage"><span class="counter" data-target="90">0</span>%</div>
             </div>
 
             <!-- Premiere Pro -->
@@ -883,7 +931,7 @@
                 <div class="skill-bar">
                     <div class="skill-progress" style="--progress: 85%"></div>
                 </div>
-                <div class="skill-percentage">85%</div>
+                <div class="skill-percentage"><span class="counter" data-target="85">0</span>%</div>
             </div>
 
             <!-- After Effects -->
@@ -897,7 +945,7 @@
                 <div class="skill-bar">
                     <div class="skill-progress" style="--progress: 88%"></div>
                 </div>
-                <div class="skill-percentage">88%</div>
+                <div class="skill-percentage"><span class="counter" data-target="88">0</span>%</div>
             </div>
 
             <!-- Blender -->
@@ -911,7 +959,7 @@
                 <div class="skill-bar">
                     <div class="skill-progress" style="--progress: 80%"></div>
                 </div>
-                <div class="skill-percentage">80%</div>
+                <div class="skill-percentage"><span class="counter" data-target="80">0</span>%</div>
             </div>
 
             <!-- Logo Design -->
@@ -925,7 +973,7 @@
                 <div class="skill-bar">
                     <div class="skill-progress" style="--progress: 92%"></div>
                 </div>
-                <div class="skill-percentage">92%</div>
+                <div class="skill-percentage"><span class="counter" data-target="92">0</span>%</div>
             </div>
         </div>
     </section>
@@ -1033,6 +1081,41 @@
 
         createStars();
 
+        // ===== Counting Animation for Skills =====
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2500; // 2.5초
+                const increment = target / (duration / 50);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        setTimeout(updateCounter, 50);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when skills section is visible
+        const skillsSection = document.getElementById('skills');
+        let hasAnimated = false;
+
+        window.addEventListener('scroll', () => {
+            if (!hasAnimated && skillsSection.getBoundingClientRect().top < window.innerHeight) {
+                animateCounters();
+                hasAnimated = true;
+            }
+        });
+
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
@@ -1071,7 +1154,7 @@
         });
 
         // Cursor Hover Effect
-        const hoverElements = document.querySelectorAll('a, button, .work-item, .skill-item');
+        const hoverElements = document.querySelectorAll('a, button, .work-item, .skill-item, .logo-placeholder');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 document.body.classList.add('cursor-hover');
