@@ -1211,17 +1211,55 @@
     </div>
 </section>
 
-    <!-- Works Section -->
-    <section id="works">
-        <h2 class="section-title" data-aos="fade-right">My Works</h2>
+
+<!-- Works Section -->
+<section id="works">
+    <h2 class="section-title" data-aos="fade-right">My Works</h2>
+
+    <div class="works-gallery">
+
+        <!-- Work 1 -->
+        <div class="work-item" data-img="images/work1.jpg">
+            <img src="images/work1.jpg" class="work-img">
+        </div>
+
+        <!-- Work 2 -->
+        <div class="work-item" data-img="images/work2.jpg">
+            <img src="images/work2.jpg" class="work-img">
+        </div>
+
+        <!-- Work 3 -->
+        <div class="work-item" data-img="images/work3.jpg">
+            <img src="images/work3.jpg" class="work-img">
+        </div>
+
+        <!-- Work 4 -->
+        <div class="work-item" data-img="images/work4.jpg">
+            <img src="images/work4.jpg" class="work-img">
+        </div>
+
+        <!-- Work 5 -->
+        <div class="work-item" data-img="images/work5.jpg">
+            <img src="images/work5.jpg" class="work-img">
+        </div>
+
+    </div>
+</section>
+
+<!-- 이미지 확대 모달 -->
+<div id="imageModal" class="image-modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+        
         <div class="works-gallery">
             <!-- Work 1 -->
             <div class="work-item" data-aos="fade-up">
                 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Project 1" class="work-img">
                 <div class="work-overlay">
                     <div class="work-info">
-                        <h3>E-Commerce Redesign</h3>
-                        <p>쇼핑몰 웹사이트의 UI/UX를 현대적으로 재해석한 프로젝트입니다.</p>
+                        <h3>Poster Redesign</h3>
+                        <p>의정부 음악 축제 포스터의 리디자인입니다</p>
                         <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -1231,8 +1269,8 @@
                 <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Project 2" class="work-img">
                 <div class="work-overlay">
                     <div class="work-info">
-                        <h3>Dashboard UI Kit</h3>
-                        <p>데이터 시각화에 최적화된 관리자 대시보드 템플릿입니다.</p>
+                        <h3>Company CI</h3>
+                        <p>저만의 ai 꽃 쇼핑몰 기업 'flowny' 입니다 </p>
                         <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -1242,8 +1280,8 @@
                 <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Project 3" class="work-img">
                 <div class="work-overlay">
                     <div class="work-info">
-                        <h3>Mobile App Design</h3>
-                        <p>사용자 편의성을 극대화한 모바일 애플리케이션 디자인입니다.</p>
+                        <h3>LOGO Redesign</h3>
+                        <p>이즈니 버터 로고 리디자인입니다</p>
                         <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                     
@@ -1254,22 +1292,14 @@
     <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=80" alt="Project 4" class="work-img">
     <div class="work-overlay">
         <div class="work-info">
-            <h3>Brand Identity</h3>
-            <p>브랜드 아이덴티티와 로고 디자인 프로젝트입니다.</p>
+            <h3>Poster</h3>
+            <p>꽃 포스터입니다</p>
             <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
 </div>
 
-<!-- Work 5 -->
-<div class="work-item" data-aos="fade-up" data-aos-delay="400">
-    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80" alt="Project 5" class="work-img">
-    <div class="work-overlay">
-        <div class="work-info">
-            <h3>Web Landing Page</h3>
-            <p>감각적인 랜딩 페이지 UI 디자인 프로젝트입니다.</p>
-            <a href="#" class="work-link">View Project <i class="fas fa-arrow-right"></i></a>
-        </div>
+
     </div>
 </div>
         </div>
@@ -1436,5 +1466,62 @@
             });
         });
     </script>
+
+    /* ===== Image Modal ===== */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 20px;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.image-modal .close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+    // ===== Image Modal =====
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const closeBtn = document.querySelector(".image-modal .close");
+
+document.querySelectorAll(".work-item").forEach(item => {
+    item.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.src = item.getAttribute("data-img");
+    });
+});
+
+closeBtn.onclick = () => {
+    modal.style.display = "none";
+};
+
+modal.onclick = (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+};
 </body>
 </html>
