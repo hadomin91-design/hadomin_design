@@ -5,10 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio</title>
 
+<!-- 폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Gaegu', cursive; /* 👈 손글씨 */
+    background: white;
 }
 
 section {
@@ -19,8 +23,9 @@ section {
     justify-content: center;
 }
 
+/* 👇 기존 하늘색 → 핑크 */
 section:nth-child(odd) {
-    background: #eefaff;
+    background: #ffeef3;
 }
 
 .wrapper {
@@ -30,7 +35,7 @@ section:nth-child(odd) {
 
 h1 {
     font-size: 48px;
-    color: skyblue;
+    color: #ff7aa2; /* 👈 핑크 포인트 */
 }
 
 h2 {
@@ -53,7 +58,7 @@ h2 {
     cursor: pointer;
 }
 
-/* 메뉴 */
+/* 메뉴 (고딕 적용) */
 .btns {
     position: fixed;
     top: 0;
@@ -61,17 +66,23 @@ h2 {
 }
 
 .container {
-    background: #333;
+    background: #222;
     padding: 15px;
-    text-align: center;
+    text-align: right; /* 👉 오른쪽 정렬 */
+    font-family: 'Noto Sans KR', sans-serif; /* 👈 고딕 */
 }
 
 .btn {
     margin: 5px;
     padding: 10px 20px;
-    background: #9ad2d9;
+    background: #ff9bb3;
     border: none;
     cursor: pointer;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: white;
 }
 
 /* 위 버튼 */
@@ -82,7 +93,7 @@ h2 {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: skyblue;
+    background: #ff7aa2;
     color: white;
     font-size: 24px;
     border: none;
@@ -94,7 +105,7 @@ h2 {
     opacity: 1;
 }
 
-/* 🔥 모달 */
+/* 모달 */
 .modal {
     position: fixed;
     top: 0;
@@ -155,7 +166,7 @@ h2 {
         <h1>About</h1>
         <h2>나에 대한 소개</h2>
         <div class="content">
-            <img src="images/프로필.jpg">
+            <img src="images/profile.jpg">
             <img src="images/about2.jpg">
         </div>
     </div>
@@ -197,7 +208,7 @@ h2 {
     </div>
 </section>
 
-<!-- 🔥 모달 -->
+<!-- 모달 -->
 <div class="modal">
     <img src="" id="modal-img">
 </div>
@@ -225,7 +236,7 @@ function scrollTo(id) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
 }
 
-/* 🔥 모달 기능 */
+/* 모달 */
 const modal = document.querySelector('.modal');
 const modalImg = document.querySelector('#modal-img');
 const worksImgs = document.querySelectorAll('.works-imgs img');
@@ -237,12 +248,10 @@ worksImgs.forEach(img => {
     });
 });
 
-// 바깥 클릭 시 닫기
 modal.addEventListener('click', () => {
     modal.classList.remove('show');
 });
 
-// ESC로 닫기
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         modal.classList.remove('show');
