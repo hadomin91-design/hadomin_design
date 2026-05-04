@@ -118,7 +118,7 @@
         .skill-item { background: rgba(255, 255, 255, 0.8); padding: 35px; border-radius: 30px; transition: var(--transition); box-shadow: 0 15px 30px rgba(0,0,0,0.03); border: 1px solid rgba(255, 255, 255, 0.5); text-align: left; }
         .skill-item:hover { transform: translateY(-10px); background: white; box-shadow: 0 20px 40px rgba(255, 122, 162, 0.2); }
         .skill-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .skill-header i { font-size: 2.5rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
+        .skill-header img { width: 50px; height: 50px; object-fit: contain; }
         .skill-header span { font-weight: 700; font-family: 'Poppins', sans-serif; font-size: 1.2rem; color: var(--text-dark); }
         .progress-container { height: 12px; background: #eee; border-radius: 10px; overflow: hidden; position: relative; }
         .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary-color)); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.1, 0, 0.2, 1); }
@@ -223,23 +223,42 @@
             <h1 class="section-title">My Skills</h1>
             <p class="section-subtitle">제가 가진 도구들을 소개합니다.</p>
             <div class="skills-grid">
+                <!-- Photoshop -->
                 <div class="skill-item">
-                    <div class="skill-header"><i class="fas fa-image" style="color: #31A8FF;"></i><span>Photoshop</span></div>
+                    <div class="skill-header">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/포토샵로고.png" alt="Photoshop">
+                        <span>Photoshop</span>
+                    </div>
                     <div class="progress-container"><div class="progress-bar" data-width="95"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
+
+                <!-- Illustrator -->
                 <div class="skill-item">
-                    <div class="skill-header"><i class="fas fa-pen-nib" style="color: #FF9A00;"></i><span>Illustrator</span></div>
+                    <div class="skill-header">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/일러스트로고.png" alt="Illustrator">
+                        <span>Illustrator</span>
+                    </div>
                     <div class="progress-container"><div class="progress-bar" data-width="90"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
+
+                <!-- Premiere Pro -->
                 <div class="skill-item">
-                    <div class="skill-header"><i class="fas fa-video" style="color: #EA77FF;"></i><span>Premiere Pro</span></div>
+                    <div class="skill-header">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/프리미어로고.png" alt="Premiere Pro">
+                        <span>Premiere Pro</span>
+                    </div>
                     <div class="progress-container"><div class="progress-bar" data-width="85"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
+
+                <!-- After Effects -->
                 <div class="skill-item">
-                    <div class="skill-header"><i class="fas fa-magic" style="color: #CF96FD;"></i><span>After Effects</span></div>
+                    <div class="skill-header">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/애팩로고.png" alt="After Effects">
+                        <span>After Effects</span>
+                    </div>
                     <div class="progress-container"><div class="progress-bar" data-width="80"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
