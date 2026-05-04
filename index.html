@@ -21,15 +21,10 @@
             --text-dark: #2d3436;
             --text-light: #636e72;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.7);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
@@ -39,27 +34,19 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Gaegu', cursive;
-            color: var(--primary-color);
-        }
+        h1, h2, h3, h4 { font-family: 'Gaegu', cursive; color: var(--primary-color); }
 
         /* --- Background Decoration --- */
         .bg-decor {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
             background: linear-gradient(135deg, #fff5f8 0%, #ffffff 100%);
         }
 
         .blob {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 500px; height: 500px;
             background: var(--secondary-color);
             filter: blur(80px);
             border-radius: 50%;
@@ -70,7 +57,6 @@
 
         .blob-1 { top: -100px; right: -100px; background: #ffdae9; }
         .blob-2 { bottom: -150px; left: -100px; background: #ffeef3; animation-delay: -5s; }
-        .blob-3 { top: 40%; left: 30%; width: 300px; height: 300px; background: #fff0f5; animation-delay: -10s; }
 
         @keyframes move {
             from { transform: translate(0, 0) scale(1); }
@@ -80,414 +66,108 @@
         /* --- Navigation --- */
         nav {
             position: fixed;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 25px; left: 50%; transform: translateX(-50%);
             z-index: 1000;
             background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             padding: 12px 35px;
             border-radius: 50px;
             box-shadow: 0 10px 30px rgba(255, 122, 162, 0.15);
-            display: flex;
-            gap: 25px;
+            display: flex; gap: 25px;
             border: 1px solid rgba(255, 255, 255, 0.4);
-            transition: var(--transition);
         }
 
         nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 0.95rem;
+            text-decoration: none; color: var(--text-dark);
+            font-weight: 600; font-size: 0.95rem;
             transition: var(--transition);
-            padding: 6px 14px;
-            border-radius: 20px;
+            padding: 6px 14px; border-radius: 20px;
             font-family: 'Poppins', sans-serif;
         }
 
-        nav a:hover {
-            color: var(--white);
-            background: var(--primary-color);
-            transform: translateY(-2px);
-        }
+        nav a:hover { color: var(--white); background: var(--primary-color); transform: translateY(-2px); }
 
         /* --- Sections --- */
-        section {
-            padding: 120px 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            text-align: center;
-        }
-
+        section { padding: 120px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+        .container { max-width: 1200px; width: 100%; text-align: center; }
         .section-title {
-            font-size: 4.5rem;
-            margin-bottom: 15px;
+            font-size: 4.5rem; margin-bottom: 15px;
             background: linear-gradient(45deg, var(--primary-color), #ff4d80);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            filter: drop-shadow(0 5px 15px rgba(255, 122, 162, 0.2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            display: inline-block; filter: drop-shadow(0 5px 15px rgba(255, 122, 162, 0.2));
         }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 60px;
-            font-weight: 300;
-        }
+        .section-subtitle { font-size: 1.3rem; color: var(--text-light); margin-bottom: 60px; font-weight: 300; }
 
         /* --- Home Section --- */
-        #home .hero-content h1 {
-            font-size: 6rem;
-            margin-bottom: 10px;
-            letter-spacing: -2px;
-        }
-
-        #home .hero-content p {
-            font-size: 1.8rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            color: var(--text-light);
-            margin-bottom: 40px;
-        }
-
-        .hero-images {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .hero-img-card {
-            width: 320px;
-            height: 420px;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(255, 122, 162, 0.25);
-            transition: var(--transition);
-            border: 8px solid white;
-            background: white;
-        }
-
-        .hero-img-card:hover {
-            transform: translateY(-20px) rotate(3deg) scale(1.05);
-            box-shadow: 0 40px 80px rgba(255, 122, 162, 0.35);
-        }
-
-        .hero-img-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        #home .hero-content h1 { font-size: 6rem; margin-bottom: 10px; letter-spacing: -2px; }
+        #home .hero-content p { font-size: 1.8rem; font-family: 'Poppins', sans-serif; font-weight: 300; color: var(--text-light); margin-bottom: 40px; }
+        .hero-images { display: flex; justify-content: center; gap: 40px; margin-top: 60px; }
+        .hero-img-card { width: 320px; height: 420px; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(255, 122, 162, 0.25); transition: var(--transition); border: 8px solid white; background: white; }
+        .hero-img-card:hover { transform: translateY(-20px) rotate(3deg) scale(1.05); }
+        .hero-img-card img { width: 100%; height: 100%; object-fit: cover; }
 
         /* --- About Section --- */
-        .about-flex {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 80px;
-            text-align: left;
-            flex-wrap: wrap;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-
-        .profile-img-container {
-            width: 350px;
-            height: 350px;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            overflow: hidden;
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
-            box-shadow: 0 25px 50px rgba(255, 122, 162, 0.3);
-            animation: morph 8s ease-in-out infinite;
-            border: 10px solid white;
-        }
-
-        .profile-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .about-text h3 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 25px;
-            word-break: keep-all;
-        }
+        .about-flex { display: flex; align-items: center; justify-content: center; gap: 80px; text-align: left; flex-wrap: wrap; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); padding: 50px; border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .profile-img-container { width: 350px; height: 350px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; overflow: hidden; background: linear-gradient(45deg, var(--primary-color), var(--primary-light)); box-shadow: 0 25px 50px rgba(255, 122, 162, 0.3); animation: morph 8s ease-in-out infinite; border: 10px solid white; }
+        .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .about-text h3 { font-size: 2.8rem; margin-bottom: 20px; }
+        .about-text p { font-size: 1.2rem; color: var(--text-light); margin-bottom: 25px; word-break: keep-all; }
 
         /* --- Skills Section --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 35px;
-        }
-
-        .skill-item {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 40px 20px;
-            border-radius: 30px;
-            transition: var(--transition);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-15px);
-            background: white;
-            box-shadow: 0 20px 40px rgba(255, 122, 162, 0.2);
-        }
-
-        .skill-item img, .skill-item i {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 20px;
-            object-fit: contain;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .skill-item span {
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
-            color: var(--text-dark);
-        }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; }
+        .skill-item { background: rgba(255, 255, 255, 0.8); padding: 35px; border-radius: 30px; transition: var(--transition); box-shadow: 0 15px 30px rgba(0,0,0,0.03); border: 1px solid rgba(255, 255, 255, 0.5); text-align: left; }
+        .skill-item:hover { transform: translateY(-10px); background: white; box-shadow: 0 20px 40px rgba(255, 122, 162, 0.2); }
+        .skill-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .skill-header i { font-size: 2.5rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
+        .skill-header span { font-weight: 700; font-family: 'Poppins', sans-serif; font-size: 1.2rem; color: var(--text-dark); }
+        .progress-container { height: 12px; background: #eee; border-radius: 10px; overflow: hidden; position: relative; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-light), var(--primary-color)); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.1, 0, 0.2, 1); }
+        .progress-text { display: flex; justify-content: flex-end; margin-top: 8px; font-size: 1rem; font-weight: 700; color: var(--primary-color); font-family: 'Poppins', sans-serif; }
 
         /* --- Works Section --- */
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            width: 100%;
-        }
-
-        .work-card {
-            position: relative;
-            border-radius: 30px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            background: white;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .work-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .work-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(255, 122, 162, 0), rgba(255, 77, 128, 0.95));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            opacity: 0;
-            transition: all 0.5s ease;
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .work-card:hover img {
-            transform: scale(1.15);
-        }
-
-        .work-card:hover .work-overlay {
-            opacity: 1;
-        }
-
-        .work-overlay h4 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-            color: white;
-            transform: translateY(20px);
-            transition: transform 0.5s ease;
-        }
-
-        .work-overlay p {
-            font-size: 1.1rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            transform: translateY(20px);
-            transition: transform 0.5s ease 0.1s;
-        }
-
-        .work-card:hover .work-overlay h4,
-        .work-card:hover .work-overlay p {
-            transform: translateY(0);
-        }
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
+        .work-card { position: relative; border-radius: 30px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; box-shadow: 0 15px 35px rgba(0,0,0,0.08); background: white; border: 1px solid rgba(0,0,0,0.05); }
+        .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1); }
+        .work-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(255, 122, 162, 0), rgba(255, 77, 128, 0.95)); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; opacity: 0; transition: all 0.5s ease; color: white; padding: 40px; text-align: center; }
+        .work-card:hover img { transform: scale(1.15); }
+        .work-card:hover .work-overlay { opacity: 1; }
+        .work-overlay h4 { font-size: 2.2rem; margin-bottom: 8px; color: white; transform: translateY(20px); transition: transform 0.5s ease; }
+        .work-overlay p { font-size: 1.1rem; font-family: 'Poppins', sans-serif; font-weight: 300; transform: translateY(20px); transition: transform 0.5s ease 0.1s; }
+        .work-card:hover .work-overlay h4, .work-card:hover .work-overlay p { transform: translateY(0); }
 
         /* --- Contact Section --- */
-        .contact-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
-            padding: 60px;
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 30px 60px rgba(255, 122, 162, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-info p {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
-
-        .social-btn {
-            width: 70px;
-            height: 70px;
-            border-radius: 22px;
-            background: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            box-shadow: 0 15px 30px rgba(255, 122, 162, 0.15);
-            transition: var(--transition);
-        }
-
-        .social-btn:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            transform: translateY(-10px) rotate(8deg);
-            box-shadow: 0 20px 40px rgba(255, 122, 162, 0.3);
-        }
+        .contact-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(15px); padding: 60px; border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 30px 60px rgba(255, 122, 162, 0.1); max-width: 800px; margin: 0 auto; }
+        .contact-info p { font-size: 1.8rem; font-weight: 600; margin-bottom: 40px; color: var(--primary-color); }
+        .social-links { display: flex; justify-content: center; gap: 25px; }
+        .social-btn { width: 70px; height: 70px; border-radius: 22px; background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--primary-color); text-decoration: none; box-shadow: 0 15px 30px rgba(255, 122, 162, 0.15); transition: var(--transition); }
+        .social-btn:hover { background: var(--primary-color); color: var(--white); transform: translateY(-10px) rotate(8deg); }
 
         /* --- Modal --- */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 238, 243, 0.95);
-            backdrop-filter: blur(10px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 40px;
-        }
-
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 238, 243, 0.95); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 40px; }
         .modal.active { display: flex; animation: fadeIn 0.4s ease; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 85vh;
-            position: relative;
-            background: white;
-            padding: 15px;
-            border-radius: 30px;
-            box-shadow: 0 40px 100px rgba(255, 122, 162, 0.3);
-        }
-
-        .modal-content img {
-            max-width: 100%;
-            max-height: 75vh;
-            object-fit: contain;
-            border-radius: 20px;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover { transform: rotate(90deg); color: var(--primary-dark); }
+        .modal-content { max-width: 90%; max-height: 85vh; position: relative; background: white; padding: 15px; border-radius: 30px; box-shadow: 0 40px 100px rgba(255, 122, 162, 0.3); }
+        .modal-content img { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 20px; }
+        .close-modal { position: absolute; top: -50px; right: 0; color: var(--primary-color); font-size: 2.5rem; cursor: pointer; }
 
         /* --- Scroll to top --- */
-        .scroll-top {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 1000;
-            box-shadow: 0 15px 30px rgba(255, 122, 162, 0.3);
-        }
-
+        .scroll-top { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; background: var(--primary-color); color: white; border-radius: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 1000; }
         .scroll-top.show { opacity: 1; visibility: visible; }
-        .scroll-top:hover { transform: translateY(-5px); background: var(--primary-dark); }
 
-        /* --- Animations --- */
         @keyframes morph {
             0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
             50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
             100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- Responsive --- */
         @media (max-width: 768px) {
             .section-title { font-size: 3rem; }
             #home .hero-content h1 { font-size: 3.8rem; }
             .hero-images { flex-direction: column; align-items: center; }
-            .hero-img-card { width: 100%; max-width: 300px; height: 380px; }
             .about-flex { padding: 30px; gap: 40px; }
             .profile-img-container { width: 280px; height: 280px; }
             nav { width: 92%; padding: 10px 15px; font-size: 0.85rem; gap: 10px; }
-            .contact-card { padding: 40px 20px; }
+            .skills-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -496,7 +176,6 @@
     <div class="bg-decor">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
     </div>
 
     <nav>
@@ -517,12 +196,8 @@
             <h1>Hadomin Design</h1>
             <p>Creative Designer & Storyteller</p>
             <div class="hero-images">
-                <div class="hero-img-card">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster">
-                </div>
-                <div class="hero-img-card">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/의정부.png" alt="Uijeongbu Project">
-                </div>
+                <div class="hero-img-card"><img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster"></div>
+                <div class="hero-img-card"><img src="https://hadomin91-design.github.io/hadomin_design/의정부.png" alt="Uijeongbu Project"></div>
             </div>
         </div>
     </section>
@@ -532,15 +207,11 @@
         <div class="container">
             <h1 class="section-title">About Me</h1>
             <p class="section-subtitle">디자인을 통해 세상을 더 아름답게 만듭니다.</p>
-            
             <div class="about-flex">
-                <div class="profile-img-container">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/프로필.jpg" alt="Profile">
-                </div>
+                <div class="profile-img-container"><img src="https://hadomin91-design.github.io/hadomin_design/프로필.jpg" alt="Profile"></div>
                 <div class="about-text">
                     <h3>안녕하세요, 하도민입니다.</h3>
                     <p>사용자의 마음을 움직이는 디자인을 추구합니다. 포토샵과 일러스트레이터를 활용한 그래픽 디자인부터, 웹 인터페이스까지 다양한 영역에서 활동하고 있습니다.</p>
-                    <p>항상 새로운 영감을 찾고, 그것을 결과물로 만들어내는 과정을 즐깁니다.</p>
                 </div>
             </div>
         </div>
@@ -551,23 +222,26 @@
         <div class="container">
             <h1 class="section-title">My Skills</h1>
             <p class="section-subtitle">제가 가진 도구들을 소개합니다.</p>
-            
             <div class="skills-grid">
                 <div class="skill-item">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/포토샵로고.png" alt="Photoshop">
-                    <span>Photoshop</span>
+                    <div class="skill-header"><i class="fas fa-image" style="color: #31A8FF;"></i><span>Photoshop</span></div>
+                    <div class="progress-container"><div class="progress-bar" data-width="95"></div></div>
+                    <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
                 <div class="skill-item">
-                    <i class="fab fa-html5" style="font-size: 60px; color: #E34F26;"></i>
-                    <span>HTML5</span>
+                    <div class="skill-header"><i class="fas fa-pen-nib" style="color: #FF9A00;"></i><span>Illustrator</span></div>
+                    <div class="progress-container"><div class="progress-bar" data-width="90"></div></div>
+                    <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
                 <div class="skill-item">
-                    <i class="fab fa-css3-alt" style="font-size: 60px; color: #1572B6;"></i>
-                    <span>CSS3</span>
+                    <div class="skill-header"><i class="fas fa-video" style="color: #EA77FF;"></i><span>Premiere Pro</span></div>
+                    <div class="progress-container"><div class="progress-bar" data-width="85"></div></div>
+                    <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
                 <div class="skill-item">
-                    <i class="fas fa-pen-nib" style="font-size: 60px; color: #FF9A00;"></i>
-                    <span>Illustration</span>
+                    <div class="skill-header"><i class="fas fa-magic" style="color: #CF96FD;"></i><span>After Effects</span></div>
+                    <div class="progress-container"><div class="progress-bar" data-width="80"></div></div>
+                    <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
             </div>
         </div>
@@ -578,44 +252,12 @@
         <div class="container">
             <h1 class="section-title">Recent Works</h1>
             <p class="section-subtitle">최근에 진행한 프로젝트들입니다.</p>
-            
             <div class="works-grid">
-                <div class="work-card" onclick="openModal(this)">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster">
-                    <div class="work-overlay">
-                        <h4>Flower Poster</h4>
-                        <p>Graphic Design</p>
-                    </div>
-                </div>
-                <div class="work-card" onclick="openModal(this)">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster">
-                    <div class="work-overlay">
-                        <h4>Fruit Poster</h4>
-                        <p>Graphic Design</p>
-                    </div>
-                </div>
-                <div class="work-card" onclick="openModal(this)">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/의정부.png" alt="Uijeongbu Project">
-                    <div class="work-overlay">
-                        <h4>Uijeongbu Project</h4>
-                        <p>Branding</p>
-                    </div>
-                </div>
-                <div class="work-card" onclick="openModal(this)">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/이즈니.png" alt="Isigny Project">
-                    <div class="work-overlay">
-                        <h4>Isigny Project</h4>
-                        <p>Package Design</p>
-                    </div>
-                </div>
-                <div class="work-card" onclick="openModal(this)">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/로고디자인.png" alt="Logo Design">
-                    <div class="work-overlay">
-                        <h4>Logo Package</h4>
-                        <p>Logo Design</p>
-                    </div>
-                </div>
-
+                <div class="work-card" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster"><div class="work-overlay"><h4>Flower Poster</h4><p>Graphic Design</p></div></div>
+                <div class="work-card" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster"><div class="work-overlay"><h4>Fruit Poster</h4><p>Graphic Design</p></div></div>
+                <div class="work-card" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/의정부.png" alt="Uijeongbu Project"><div class="work-overlay"><h4>Uijeongbu Project</h4><p>Branding</p></div></div>
+                <div class="work-card" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/이즈니.png" alt="Isigny Project"><div class="work-overlay"><h4>Isigny Project</h4><p>Package Design</p></div></div>
+                <div class="work-card" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/로고디자인.png" alt="Logo Design"><div class="work-overlay"><h4>Logo Package</h4><p>Logo Design</p></div></div>
             </div>
         </div>
     </section>
@@ -624,15 +266,12 @@
     <section id="contact">
         <div class="container">
             <h1 class="section-title">Get In Touch</h1>
-            <p class="section-subtitle">함께 멋진 작업을 만들어봐요!</p>
-            
             <div class="contact-card">
                 <div class="contact-info">
                     <p><i class="fas fa-envelope"></i> hadomin91@gmail.com</p>
                     <div class="social-links">
                         <a href="https://github.com/hadomin91-design" class="social-btn" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-btn"><i class="fab fa-behance"></i></a>
                     </div>
                 </div>
             </div>
@@ -641,10 +280,7 @@
 
     <!-- Modal -->
     <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <img id="modalImg" src="" alt="Full Image">
-        </div>
+        <div class="modal-content"><span class="close-modal" onclick="closeModal()">&times;</span><img id="modalImg" src="" alt="Full Image"></div>
     </div>
 
     <script>
@@ -652,71 +288,84 @@
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
 
-        // Scroll to top visibility
+        // Scroll to top
         const scrollTop = document.getElementById('scrollTop');
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('show');
-            } else {
-                scrollTop.classList.remove('show');
-            }
+            if (window.pageYOffset > 300) scrollTop.classList.add('show');
+            else scrollTop.classList.remove('show');
         });
+        scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Modal functionality
+        // Modal
         const modal = document.getElementById('modal');
         const modalImg = document.getElementById('modalImg');
-
         function openModal(element) {
-            const img = element.querySelector('img');
             modal.classList.add('active');
-            modalImg.src = img.src;
+            modalImg.src = element.querySelector('img').src;
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-        // Close modal on outside click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
+        // Skill Animation Logic
+        const skillSection = document.getElementById('skills');
+        const progressBars = document.querySelectorAll('.progress-bar');
+        const counters = document.querySelectorAll('.count');
+        let animated = false;
 
-        // Close modal on Escape key
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // Intersection Observer for fade-in effect
-        const observerOptions = {
-            threshold: 0.1
-        };
+        function animateSkills() {
+            progressBars.forEach((bar, index) => {
+                const target = parseInt(bar.getAttribute('data-width'));
+                bar.style.width = target + '%';
+                
+                let count = 0;
+                const updateCount = () => {
+                    const speed = target / 50;
+                    if (count < target) {
+                        count += speed;
+                        counters[index].innerText = Math.ceil(count);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counters[index].innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
 
         const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animated) {
+                    animateSkills();
+                    animated = true;
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(skillSection);
+
+        // Section Fade-in
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('section > div').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.8s ease-out';
-            observer.observe(el);
+            sectionObserver.observe(el);
         });
     </script>
 </body>
