@@ -64,7 +64,7 @@
             to { transform: translate(80px, 80px) scale(1.1); }
         }
 
-        /* --- [맨 위 여백 감소] Main Visual Section 스타일 --- */
+        /* --- Main Visual Section 스타일 --- */
         .visual {
             width: 100%;
             min-height: 90vh;
@@ -75,17 +75,15 @@
             align-items: center;
             justify-content: center;
             padding: 20px 40px 40px 40px;
-            /* ★ 스크롤 내릴 때 상단 헤드 전체가 부드럽게 Fade Out 되도록 트랜지션 추가 */
             transition: opacity 0.7s ease-out, transform 0.7s ease-out;
             opacity: 1;
             transform: scale(1);
         }
 
-        /* ★ 스크롤 내리면 상단 비주얼 영역 전체가 감쪽같이 사라짐 */
         .visual.fade-out-scroll {
             opacity: 0;
             transform: scale(0.96);
-            pointer-events: none; /* 사라졌을 때 클릭 방지 */
+            pointer-events: none;
         }
 
         .visual .inner {
@@ -282,10 +280,9 @@
         .scroll-top.show { opacity: 1; visibility: visible; }
 
         /* -------------------------------------------------- */
-        /* ★ Back to Position 애니메이션 (내리면 나타나고 위로 올리면 사라짐 완벽대응) */
+        /* ★ Back to Position 애니메이션 */
         .back-to-position {
             opacity: 0;
-            /* 들어올 때와 나갈 때 모두 자연스럽도록 트랜지션 세팅 */
             transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.9s ease-out;
         }
         /* 각 방향별 대기 상태 */
@@ -299,8 +296,7 @@
             transform: translate(0);
         }
 
-        /* 순차적 등장 딜레이 (.show 가 활성화되어 있을 때만 딜레이 부여) */
-        /* 위로 올릴 때는 딜레이 없이 동시에 슥 사라져서 답답하지 않고 기민하게 움직입니다. */
+        /* 순차적 등장 딜레이 */
         .show .back-to-position.delay-0 { transition-delay: 0s; }
         .show .back-to-position.delay-1 { transition-delay: 0.15s; }
         .show .back-to-position.delay-2 { transition-delay: 0.3s; }
@@ -430,6 +426,10 @@
                 <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/이즈니.png" alt="Isigny Project"><div class="work-overlay"><h4>Isigny Project</h4><p>Package Design</p></div></div>
                 <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/로고디자인.png" alt="Logo Design"><div class="work-overlay"><h4>Logo Package</h4><p>Logo Design</p></div></div>
                 <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/문구작업2.png" alt="Calligraphy"><div class="work-overlay"><h4>Calligraphy</h4><p>Letters</p></div></div>
+                
+                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/travel_redesign_1.png" alt="Travel Redesign 1"><div class="work-overlay"><h4>Travel Redesign 1</h4><p>UI/UX Design</p></div></div>
+                <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/travel_redesign_2.png" alt="Travel Redesign 2"><div class="work-overlay"><h4>Travel Redesign 2</h4><p>UI/UX Design</p></div></div>
+                <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/company_ci.png" alt="Company CI"><div class="work-overlay"><h4>Company CI</h4><p>CI/BI Design</p></div></div>
             </div>
         </div>
     </section>
@@ -472,32 +472,31 @@
         const visualEl = document.querySelector('.visual');
         new ScrollMagic.Scene({
             triggerElement: visualEl,
-            triggerHook: 0,          // 화면 최상단에 고정 시점 시작
-            duration: '80%'          // 비주얼 영역의 80%만큼 내리는 동안 서서히 투명화
+            triggerHook: 0,          
+            duration: '80%'          
         })
         .setClassToggle(visualEl, 'fade-out-scroll')
         .addTo(controller);
 
-        // 4. 하단 모든 콘텐츠 섹션(.scroll-spy) 등장 및 완전 퇴장(역방향 스크롤 사라짐) 자동화
+        // 4. 하단 모든 콘텐츠 섹션(.scroll-spy) 등장 및 완전 퇴장 자동화
         const spyEls = document.querySelectorAll('section.scroll-spy');
         
         spyEls.forEach(function (spyEl) {
             const scene = new ScrollMagic.Scene({
                 triggerElement: spyEl,
-                triggerHook: 0.75     // 감시선 위치 (화면 아래에서 25% 지점 통과 시 작동)
+                triggerHook: 0.75     
             })
-            .setClassToggle(spyEl, 'show') // 닿으면 .show 추가, 위로 올려 감시선 밖으로 나가면 .show 삭제(사라짐 구현!)
+            .setClassToggle(spyEl, 'show') 
             .addTo(controller);
 
-            // ★ [특별 케이스] 스킬 바 세션 초기화 연동 제어
+            // ★ 스킬 바 세션 초기화 연동 제어
             if (spyEl.id === 'skills') {
                 const progressBars = spyEl.querySelectorAll('.progress-bar');
                 const counters = spyEl.querySelectorAll('.count');
-                let timers = []; // 진행 타이머 배열 관리
+                let timers = []; 
 
-                // 스크롤 내려서 스킬 섹션에 들어왔을 때 (게이지 업)
                 scene.on('enter', () => {
-                    timers.forEach(t => clearInterval(t)); // 기존 작동 중인 타이머가 있다면 초기화
+                    timers.forEach(t => clearInterval(t)); 
                     timers = [];
 
                     progressBars.forEach((bar, index) => {
@@ -519,13 +518,12 @@
                     });
                 });
 
-             
                 scene.on('leave', (event) => {
                     if (event.scrollDirection === "REVERSE") {
-                        timers.forEach(t => clearInterval(t)); // 작동 타이머 파괴
+                        timers.forEach(t => clearInterval(t)); 
                         progressBars.forEach((bar, index) => {
-                            bar.style.width = '0%'; // 바 상태 리셋
-                            counters[index].innerText = '0'; // 텍스트 리셋
+                            bar.style.width = '0%'; 
+                            counters[index].innerText = '0'; 
                         });
                     }
                 });
@@ -555,4 +553,5 @@
     </script>
 </body>
 </html>
+
 
