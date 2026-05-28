@@ -7,7 +7,7 @@
         
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
         
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         
@@ -24,238 +24,308 @@
             --text-dark: #2d3436;
             --text-light: #636e72;
             --white: #ffffff;
-            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --gold: #d4af37;
             --rose: #f472b6;
             --purple: #a855f7;
-            --contact-bg: linear-gradient(135deg, #22143b 0%, #431d4a 100%);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html, body {
-            cursor: none;
-            background-color: #fcfbfc;
-        }
-        a, button, .work-card, .skill-item, .social-btn, .close-modal, .scroll-top {
-            cursor: none !important;
-        }
-
-        /* [반영] 개구(Gaegu) 손글씨 폰트 스타일 강제 및 디테일 최적화 */
-        body, input, textarea, button, span, h1, h2, h3, h4, p, div, li, a {
-            font-family: 'Gaegu', cursive, sans-serif !important;
-            font-size: 1.35rem;
-            font-weight: 400;
-            line-height: 1.4;
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
             color: var(--text-dark);
-            letter-spacing: -0.3px;
+            background-color: #fff;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ff7aa2;stop-opacity:1" /><stop offset="100%" style="stop-color:%23f472b6;stop-opacity:0.3" /></radialGradient></defs><circle cx="20" cy="20" r="12" fill="url(%23grad1)" opacity="0.8"/><circle cx="20" cy="20" r="8" fill="%23ff7aa2" opacity="0.9"/><circle cx="20" cy="20" r="4" fill="%23ffffff" opacity="0.7"/></svg>') 20 20, auto;
         }
-
-        h1, h2, h3, h4 { font-weight: 700 !important; color: var(--primary-color); }
-
-        .cursor-dot {
-            width: 8px; height: 8px;
-            background-color: var(--primary-color);
-            position: fixed; top: 0; left: 0;
-            border-radius: 50%; pointer-events: none;
-            z-index: 10000; transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        .cursor-outline {
-            width: 44px; height: 44px;
-            border: 2px solid var(--primary-light);
-            background: rgba(255, 122, 162, 0.05);
-            position: fixed; top: 0; left: 0;
-            border-radius: 50%; pointer-events: none;
-            z-index: 9999; transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out, width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
-        }
-        body.cursor-hover .cursor-dot {
-            width: 12px; height: 12px;
-            background-color: var(--purple);
-        }
-        body.cursor-hover .cursor-outline {
-            width: 65px; height: 65px;
-            background: rgba(168, 85, 247, 0.15);
-            border-color: var(--purple);
-        }
+        h1, h2, h3, h4 { font-family: 'Gaegu', cursive; color: var(--primary-color); }
         
+        /* --- Background Decoration --- */
         .bg-decor {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; overflow: hidden;
-            background: linear-gradient(135deg, #fffcfd 0%, #f9f6f7 100%);
+            background: linear-gradient(135deg, #fff5f8 0%, #fffbfc 50%, #ffffff 100%);
         }
         .blob {
-            position: absolute; width: 600px; height: 600px;
-            filter: blur(120px); border-radius: 50%;
-            z-index: -1; animation: move 20s infinite alternate; opacity: 0.45;
+            position: absolute;
+            width: 500px; height: 500px;
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: move 25s infinite alternate;
+            opacity: 0.5;
         }
-        .blob-1 { top: -150px; right: -100px; background: linear-gradient(135deg, #ffdae9 0%, #ffb3c6 100%); }
-        .blob-2 { bottom: -200px; left: -150px; background: linear-gradient(45deg, #ffeef3 0%, #d8b4fe 100%); animation-delay: -4s; }
-        .blob-3 { top: 40%; left: 35%; width: 400px; height: 400px; background: rgba(255, 122, 162, 0.08); animation-delay: -8s; }
+        .blob-1 { top: -100px; right: -100px; background: linear-gradient(135deg, #ffdae9 0%, #ffb3c6 100%); }
+        .blob-2 { bottom: -150px; left: -100px; background: linear-gradient(45deg, #ffeef3 0%, #ffb3c6 100%); animation-delay: -5s; }
+        .blob-3 { top: 50%; left: 50%; width: 300px; height: 300px; background: linear-gradient(225deg, rgba(255, 122, 162, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%); animation-delay: -10s; }
         @keyframes move {
             from { transform: translate(0, 0) scale(1); }
-            to { transform: translate(100px, 60px) scale(1.15); }
+            to { transform: translate(80px, 80px) scale(1.1); }
         }
 
+        /* --- Main Visual Section 스타일 --- */
         .visual {
-            width: 100%; min-height: 95vh;
-            background: transparent; position: relative;
-            display: flex; align-items: center; justify-content: center;
-            padding: 40px 60px;
+            width: 100%;
+            min-height: 90vh;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 40px 40px 40px;
             transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+            opacity: 1;
+            transform: scale(1);
         }
-        .visual.fade-out-scroll { opacity: 0; transform: scale(0.96); pointer-events: none; }
-        .visual .inner {
-            width: 100%; max-width: 1400px;
-            display: flex; align-items: center; justify-content: space-between; gap: 40px;
-        }
-        .visual-left { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        .visual-tag { font-size: 1.8rem !important; font-weight: 700 !important; color: var(--text-light); margin-bottom: 5px; letter-spacing: 1px; }
-        .visual-title {
-            font-size: 8rem !important; font-weight: 700 !important;
-            background: linear-gradient(135deg, #ff5388 0%, #ff8ab2 40%, #a855f7 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            line-height: 1.05; letter-spacing: -1px; opacity: 0;
-            transform: translateX(-100px); filter: drop-shadow(0 15px 30px rgba(255, 122, 162, 0.15));
-        }
-        .visual-subtext { font-size: 1.4rem !important; font-weight: 700 !important; color: var(--text-light); margin-top: 30px; letter-spacing: 1px; text-transform: uppercase; }
 
-        .visual-right { flex: 1.4; display: flex; justify-content: flex-end; align-items: flex-end; gap: 30px; }
-        .poster-showcase { display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateY(100px); }
-        .poster-showcase.fruit { width: 250px; }
-        .poster-showcase.flower { width: 280px; margin-bottom: 50px; }
-        .poster-showcase.uijeongbu { width: 250px; }
-        
-        .poster-frame {
-            width: 100%; background: transparent; padding: 0;
-            border-radius: 0; box-shadow: none;
+        .visual.fade-out-scroll {
+            opacity: 0;
+            transform: scale(0.96);
+            pointer-events: none;
+        }
+
+        .visual .inner {
+            width: 100%;
+            max-width: 1400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .visual-left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .visual-title {
+            font-family: 'Gaegu', cursive;
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+            letter-spacing: -3px;
+            opacity: 0;
+            transform: translateX(-150px);
+            text-shadow: 0 15px 40px rgba(255, 122, 162, 0.2);
+        }
+        .visual-right {
+            flex: 1.5;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 40px;
+            height: auto;
+            max-height: 620px;
+        }
+        .poster-showcase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .poster-showcase.fruit { width: 260px; }
+        .poster-showcase.flower { width: 280px; margin-bottom: 40px; }
+        .poster-showcase.uijeongbu { width: 260px; }
+        .poster-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 30px 60px rgba(255, 122, 162, 0.3);
+            object-fit: contain;
             transition: var(--transition);
         }
-        .poster-image { 
-            width: 100%; height: auto; object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(255, 122, 162, 0.3));
+        .poster-image:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 50px 100px rgba(255, 122, 162, 0.4);
         }
-        .poster-name { margin-top: 15px; font-size: 1.5rem !important; font-weight: 700 !important; color: var(--primary-color); text-align: center; }
-        .poster-frame:hover {
-            transform: translateY(-25px) scale(1.05) rotate(2deg);
+        .poster-name {
+            margin-top: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            font-family: 'Gaegu', cursive;
         }
 
-        section { padding: 140px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
-        .container { max-width: 1200px; width: 100%; text-align: center; z-index: 1; }
+        /* --- Sections 기본 --- */
+        section { 
+             padding: 120px 20px; 
+             min-height: 100vh; 
+             display: flex; 
+             flex-direction: column; 
+             align-items: center; 
+             justify-content: center; 
+             position: relative;
+             overflow: hidden;
+        }
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 122, 162, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .container { 
+             max-width: 1200px; 
+             width: 100%; 
+             text-align: center;
+             position: relative;
+             z-index: 1;
+        }
         .section-title {
-            font-size: 5.5rem !important; margin-bottom: 15px;
+            font-size: 4.5rem; 
+            margin-bottom: 20px;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--rose) 50%, var(--purple) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            display: inline-block; filter: drop-shadow(0 8px 15px rgba(255, 122, 162, 0.15));
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block; 
+            filter: drop-shadow(0 8px 20px rgba(255, 122, 162, 0.25));
         }
-        .section-subtitle { font-size: 1.6rem !important; color: var(--text-light); margin-bottom: 70px; font-weight: 400; }
+        .section-subtitle { 
+             font-size: 1.4rem; 
+             color: var(--text-light); 
+             margin-bottom: 60px; 
+             font-weight: 300;
+        }
 
+        /* --- About Section --- */
         .about-flex { 
-             display: flex; align-items: center; justify-content: center; gap: 80px; text-align: left; flex-wrap: wrap; 
-             background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(20px); 
-             padding: 60px; border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.8);
-             box-shadow: 0 30px 60px rgba(255, 122, 162, 0.05);
+             display: flex; 
+             align-items: center; 
+             justify-content: center; 
+             gap: 100px; 
+             text-align: left; 
+             flex-wrap: wrap; 
+             background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 238, 243, 0.4) 100%);
+             backdrop-filter: blur(15px); 
+             padding: 70px; 
+             border-radius: 45px; 
+             border: 2px solid rgba(255, 255, 255, 0.7);
+             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
         }
         .profile-img-container { 
-             width: 320px; height: 320px; border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%; overflow: hidden; 
-             background: linear-gradient(135deg, var(--primary-color), var(--purple)); 
-             box-shadow: 0 30px 60px rgba(255, 122, 162, 0.35); animation: morph 7s ease-in-out infinite;
-             border: 10px solid white;
+             width: 380px; 
+             height: 380px; 
+             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; 
+             overflow: hidden; 
+             background: linear-gradient(135deg, var(--primary-color), var(--rose)); 
+             box-shadow: 0 35px 70px rgba(255, 122, 162, 0.4); 
+             animation: morph 8s ease-in-out infinite;
+             border: 12px solid white;
+             position: relative;
         }
         .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
         .about-text h3 { 
-             font-size: 3rem !important; margin-bottom: 20px; font-weight: 700 !important;
-             background: linear-gradient(135deg, #ff4d80, var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+             font-size: 2.8rem; 
+             margin-bottom: 25px;
+             background: linear-gradient(135deg, var(--primary-color), var(--rose));
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;
         }
-        .about-text p { font-size: 1.4rem !important; color: var(--text-light); margin-bottom: 20px; word-break: keep-all; line-height: 1.7; }
-        .about-text ul { list-style: none; margin-top: 15px; }
-        .about-text ul li { font-size: 1.3rem !important; color: var(--text-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-        .about-text ul li i { color: var(--primary-color); }
+        .about-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 30px; word-break: keep-all; line-height: 1.8; }
         @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%; }
-            50% { border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%; }
-            100% { border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%; }
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
 
-        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .skill-item { background: #ffffff; padding: 55px 50px; border-radius: 35px; transition: var(--transition); box-shadow: 0 20px 45px rgba(0, 0, 0, 0.04); border: 1px solid rgba(255, 122, 162, 0.08); text-align: left; }
-        .skill-item:hover { transform: translateY(-15px); box-shadow: 0 35px 70px rgba(255, 122, 162, 0.22); border-color: rgba(255, 122, 162, 0.3); }
-        .skill-header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
-        .skill-header img { width: 56px; height: 56px; object-fit: contain; } 
-        .skill-header span { font-size: 1.8rem !important; font-weight: 700 !important; color: var(--text-dark); }
-        .progress-container { width: 100%; height: 14px; background: #f3f4f6; border-radius: 20px; overflow: hidden; margin-bottom: 15px; } 
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-color) 0%, var(--purple) 100%); width: 0; transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 20px; }
-        .progress-text { font-size: 1.4rem !important; font-weight: 700 !important; color: var(--primary-color); text-align: right; }
+        /* --- Skills Section --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
+        .skill-item { background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 238, 243, 0.5) 100%); padding: 45px; border-radius: 35px; transition: var(--transition); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); border: 2px solid rgba(255, 255, 255, 0.6); text-align: left; position: relative; overflow: hidden; }
+        .skill-item:hover { transform: translateY(-15px); background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 238, 243, 0.8) 100%); box-shadow: 0 30px 60px rgba(255, 122, 162, 0.25); border-color: rgba(255, 122, 162, 0.3); }
+        .skill-header { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
+        .skill-header img { width: 45px; height: 45px; object-fit: contain; }
+        .skill-header span { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); }
+        .progress-container { width: 100%; height: 12px; background: rgba(255, 122, 162, 0.1); border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--rose)); width: 0; transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 10px; }
+        .progress-text { font-size: 1.1rem; font-weight: 600; color: var(--primary-color); text-align: right; }
 
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 35px; width: 100%; }
-        .work-card { position: relative; border-radius: 32px; overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06); transition: var(--transition); border: 1px solid #fff; }
-        .work-card:hover { transform: translateY(-12px) scale(1.01); box-shadow: 0 40px 70px rgba(255, 122, 162, 0.22); }
-        .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
-        .work-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(34, 20, 59, 0.85) 0%, rgba(255, 122, 162, 0.2) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 35px; color: white; opacity: 0; transition: opacity 0.4s ease; }
+        /* --- Works Section --- */
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
+        .work-card { position: relative; border-radius: 40px; overflow: hidden; aspect-ratio: 4/5; cursor: pointer; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); transition: var(--transition); border: 2px solid white; }
+        .work-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 40px 80px rgba(255, 122, 162, 0.3); }
+        .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .work-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(255, 122, 162, 0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; color: white; opacity: 0; transition: opacity 0.4s ease; }
         .work-card:hover .work-overlay { opacity: 1; }
-        .work-overlay h4 { font-size: 2.5rem !important; margin-bottom: 8px; color: white !important; transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); font-weight: 700 !important; }
-        .work-overlay p { font-size: 1.3rem !important; font-weight: 400 !important; color: white !important; opacity: 0.9; transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.05s; }
+        .work-overlay h4 { font-size: 2.5rem; margin-bottom: 12px; color: white; transform: translateY(30px); transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); font-weight: 800; }
+        .work-overlay p { font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 300; transform: translateY(30px); transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.1s; }
         .work-card:hover .work-overlay h4, .work-card:hover .work-overlay p { transform: translateY(0); }
 
-        .contact-card { background: var(--contact-bg); padding: 90px 40px; border-radius: 40px; box-shadow: 0 40px 90px rgba(34, 20, 59, 0.4); max-width: 850px; margin: 0 auto; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
-        .contact-card h2 { font-weight: 700 !important; font-size: 3rem !important; color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
-        .contact-info p { font-size: 2.2rem !important; font-weight: 700 !important; margin-bottom: 45px; color: var(--primary-light); letter-spacing: 0.5px; }
-        .social-links { display: flex; justify-content: center; gap: 30px; }
-        .social-btn { width: 75px; height: 75px; border-radius: 50%; background: rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: center; font-size: 1.8rem !important; color: #fff; text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: var(--transition); border: 1px solid rgba(255,255,255,0.1); }
-        .social-btn:hover { background: #ffffff; color: var(--contact-bg); transform: translateY(-10px) scale(1.08); box-shadow: 0 20px 40px rgba(255, 122, 162, 0.3); }
+        /* --- Contact Section --- */
+        .contact-card { background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 238, 243, 0.5) 100%); backdrop-filter: blur(20px); padding: 80px; border-radius: 45px; border: 2px solid rgba(255, 255, 255, 0.7); box-shadow: 0 40px 80px rgba(255, 122, 162, 0.15); max-width: 900px; margin: 0 auto; padding: 120px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(255, 122, 162, 0.03) 0%, transparent 70%); pointer-events: none; max-width: 1200px; width: 100%; text-align: center; position: relative; z-index: 1; font-size: 4.5rem; margin-bottom: 20px; background: linear-gradient(135deg, var(--primary-color) 0%, var(--rose) 50%, var(--purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; filter: drop-shadow(0 8px 20px rgba(255, 122, 162, 0.25)); font-size: 1.4rem; color: var(--text-light); margin-bottom: 60px; font-weight: 300; display: flex; align-items: center; justify-content: center; gap: 100px; text-align: left; flex-wrap: wrap; background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 238, 243, 0.4) 100%); backdrop-filter: blur(15px); padding: 70px; border-radius: 45px; border: 2px solid rgba(255, 255, 255, 0.7); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08); width: 380px; height: 380px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; overflow: hidden; background: linear-gradient(135deg, var(--primary-color), var(--rose)); box-shadow: 0 35px 70px rgba(255, 122, 162, 0.4); animation: morph 8s ease-in-out infinite; border: 12px solid white; position: relative; width: 100%; height: 100%; object-fit: cover; font-size: 2.8rem; margin-bottom: 25px; background: linear-gradient(135deg, var(--primary-color), var(--rose)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.25rem; color: var(--text-light); margin-bottom: 30px; word-break: keep-all; line-height: 1.8; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 238, 243, 0.5) 100%); padding: 45px; border-radius: 35px; transition: var(--transition); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); border: 2px solid rgba(255, 255, 255, 0.6); text-align: left; position: relative; overflow: hidden; transform: translateY(-15px); background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 238, 243, 0.8) 100%); box-shadow: 0 30px 60px rgba(255, 122, 162, 0.25); border-color: rgba(255, 122, 162, 0.3); display: flex; align-items: center; gap: 18px; margin-bottom: 25px; width: 45px; height: 45px; object-fit: contain; font-size: 1.4rem; font-weight: 700; color: var(--text-dark); width: 100%; height: 12px; background: rgba(255, 122, 162, 0.1); border-radius: 10px; overflow: hidden; margin-bottom: 15px; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--rose)); width: 0; transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 10px; font-size: 1.1rem; font-weight: 600; color: var(--primary-color); text-align: right; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; position: relative; border-radius: 40px; overflow: hidden; aspect-ratio: 4/5; cursor: pointer; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); transition: var(--transition); border: 2px solid white; transform: translateY(-15px) scale(1.02); box-shadow: 0 40px 80px rgba(255, 122, 162, 0.3); width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(255, 122, 162, 0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; color: white; opacity: 0; transition: opacity 0.4s ease; opacity: 1; font-size: 2.5rem; margin-bottom: 12px; color: white; transform: translateY(30px); transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); font-weight: 800; font-size: 1.2rem; font-family: 'Poppins', sans-serif; font-weight: 300; transform: translateY(30px); transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.1s; transform: translateY(0); background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 238, 243, 0.5) 100%); backdrop-filter: blur(20px); padding: 80px; border-radius: 45px; border: 2px solid rgba(255, 255, 255, 0.7); box-shadow: 0 40px 80px rgba(255, 122, 162, 0.15); max-width: 900px; margin: 0 auto; }
+        .contact-info p { font-size: 2rem; font-weight: 700; margin-bottom: 50px; color: var(--primary-color); }
+        .social-links { display: flex; justify-content: center; gap: 35px; flex-wrap: wrap; }
+        .social-btn { width: 85px; height: 85px; border-radius: 28px; background: linear-gradient(135deg, var(--white), rgba(255, 255, 255, 0.8)); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--primary-color); text-decoration: none; box-shadow: 0 20px 40px rgba(255, 122, 162, 0.2); transition: var(--transition); border: 2px solid rgba(255, 255, 255, 0.1); }
+        .social-btn:hover { background: linear-gradient(135deg, var(--primary-color), var(--rose)); color: var(--white); transform: translateY(-15px) rotate(10deg) scale(1.1); box-shadow: 0 30px 60px rgba(255, 122, 162, 0.4); border-color: var(--primary-color); }
 
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 10, 25, 0.95); backdrop-filter: blur(15px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 40px; animation: fadeIn 0.4s ease; }
+        /* --- Modal --- */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 238, 243, 0.98); backdrop-filter: blur(15px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 40px; animation: fadeIn 0.4s ease; }
         .modal.active { display: flex; }
-        .modal-content { max-width: 90%; max-height: 85vh; position: relative; background: transparent; padding: 10px; animation: slideUp 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
-        .modal-content img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 16px; box-shadow: 0 30px 65px rgba(0,0,0,0.5); }
-        .close-modal { position: absolute; top: -55px; right: 0; color: #fff; font-size: 3.5rem !important; cursor: pointer; transition: var(--transition); font-weight: 300; }
-        .close-modal:hover { color: var(--primary-color); transform: scale(1.1); }
+        .modal-content { max-width: 90%; max-height: 85vh; position: relative; background: white; padding: 20px; border-radius: 40px; box-shadow: 0 50px 120px rgba(255, 122, 162, 0.4); animation: slideUp 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
+        .modal-content img { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 30px; }
+        .close-modal { position: absolute; top: -50px; right: 0; color: var(--primary-color); font-size: 3rem; cursor: pointer; transition: var(--transition); font-weight: 300; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        .scroll-top { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--purple)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 1000; box-shadow: 0 15px 35px rgba(255, 122, 162, 0.3); font-size: 1.3rem !important; border: 1px solid rgba(255,255,255,0.2); }
+        /* --- Scroll to top --- */
+        .scroll-top { position: fixed; bottom: 50px; right: 50px; width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary-color), var(--rose)); color: white; border-radius: 25px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 1000; box-shadow: 0 15px 40px rgba(255, 122, 162, 0.3); border: 2px solid rgba(255, 255, 255, 0.3); font-size: 1.5rem; }
         .scroll-top.show { opacity: 1; visibility: visible; }
-        .scroll-top:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 20px 45px rgba(168, 85, 247, 0.4); }
 
-        .back-to-position { opacity: 0; transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1), opacity 1s ease-out; }
-        .back-to-position.to-right { transform: translateX(-80px); }
-        .back-to-position.to-left  { transform: translateX(80px); }
-        .back-to-position.to-up    { transform: translateY(60px); }
-        .show .back-to-position { opacity: 1; transform: translate(0); }
+        /* -------------------------------------------------- */
+        /* ★ Back to Position 애니메이션 (내리면 나타나고 위로 올리면 사라짐 완벽대응) */
+        .back-to-position {
+            opacity: 0;
+            /* 들어올 때와 나갈 때 모두 자연스럽도록 트랜지션 세팅 */
+            transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.9s ease-out;
+        }
+        /* 각 방향별 대기 상태 */
+        .back-to-position.to-right { transform: translateX(-100px); }
+        .back-to-position.to-left  { transform: translateX(100px); }
+        .back-to-position.to-up    { transform: translateY(80px); }
+
+        /* .show가 붙으면 원래 위치 복귀 및 투명도 해제 */
+        .show .back-to-position {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* 순차적 등장 딜레이 (.show 가 활성화되어 있을 때만 딜레이 부여) */
+        /* 위로 올릴 때는 딜레이 없이 동시에 슥 사라져서 답답하지 않고 기민하게 움직입니다. */
         .show .back-to-position.delay-0 { transition-delay: 0s; }
-        .show .back-to-position.delay-1 { transition-delay: 0.12s; }
-        .show .back-to-position.delay-2 { transition-delay: 0.24s; }
-        .show .back-to-position.delay-3 { transition-delay: 0.36s; }
-        .show .back-to-position.delay-4 { transition-delay: 0.48s; }
-        .show .back-to-position.delay-5 { transition-delay: 0.6s; }
+        .show .back-to-position.delay-1 { transition-delay: 0.15s; }
+        .show .back-to-position.delay-2 { transition-delay: 0.3s; }
+        .show .back-to-position.delay-3 { transition-delay: 0.45s; }
+        .show .back-to-position.delay-4 { transition-delay: 0.6s; }
+        .show .back-to-position.delay-5 { transition-delay: 0.75s; }
 
-        @media (max-width: 1100px) {
-            .visual .inner { flex-direction: column; text-align: center; gap: 60px; }
-            .visual-left { align-items: center; text-align: center; }
-            .visual-title { font-size: 6rem !important; transform: translateX(0); }
-            .visual-right { width: 100%; justify-content: center; align-items: center; gap: 20px; }
-            .poster-showcase { width: 200px !important; margin-bottom: 0 !important; transform: translateY(0); }
-            .about-flex { padding: 40px; gap: 40px; flex-direction: column; }
+        /* -------------------------------------------------- */
+        @media (max-width: 1024px) {
+            .visual .inner { flex-direction: column; gap: 40px; }
+            .visual-left { text-align: center; }
+            .visual-title { font-size: 5rem; transform: translateX(0); }
+            .visual-right { width: 100%; justify-content: center; height: auto; gap: 20px; }
+            .poster-showcase { width: 180px !important; margin-bottom: 0 !important; transform: translateX(0); }
+            .about-flex { padding: 40px; gap: 50px; flex-direction: column; }
+            .profile-img-container { width: 300px; height: 300px; }
         }
         @media (max-width: 768px) {
-            .visual-title { font-size: 4.5rem !important; }
-            .visual-right { flex-direction: column; gap: 30px; }
-            .poster-showcase { width: 240px !important; }
-            .section-title { font-size: 4rem !important; }
-            .skills-grid { grid-template-columns: 1fr; gap: 25px; }
-            .skill-item { padding: 40px 30px; }
-            .contact-card { padding: 60px 20px; }
-            .contact-info p { font-size: 1.5rem !important; }
-            .cursor-dot, .cursor-outline { display: none; } 
-            html, body { cursor: auto; }
+            .visual-title { font-size: 3.5rem; }
+            .visual-right { flex-direction: column; align-items: center; }
+            .poster-showcase { width: 220px !important; }
+            .section-title { font-size: 3.5rem; }
+            .contact-card { padding: 50px 30px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
 
     <div class="bg-decor">
         <div class="blob blob-1"></div>
@@ -266,27 +336,19 @@
     <section class="visual">
         <div class="inner">
             <div class="visual-left">
-                <span class="visual-tag">Visual Portfolio</span>
                 <h1 class="visual-title">Hadomin<br>Design</h1>
-                <p class="visual-subtext">Creative & Innovative Web / Graphic Designer</p>
             </div>
             <div class="visual-right">
                 <div class="poster-showcase fruit">
-                    <div class="poster-frame">
-                        <img src="./fruit_poster_nobg.png" alt="Fruit Poster" class="poster-image">
-                    </div>
+                    <img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster" class="poster-image">
                     <p class="poster-name">Fruit Poster</p>
                 </div>
                 <div class="poster-showcase flower">
-                    <div class="poster-frame">
-                        <img src="./flower_poster_nobg.png" alt="Flower Poster" class="poster-image">
-                    </div>
+                    <img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster" class="poster-image">
                     <p class="poster-name">Flower Poster</p>
                 </div>
                 <div class="poster-showcase uijeongbu">
-                    <div class="poster-frame">
-                        <img src="./uijeongbu_nobg.png" alt="Uijeongbu" class="poster-image">
-                    </div>
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="Uijeongbu" class="poster-image">
                     <p class="poster-name">의정부</p>
                 </div>
             </div>
@@ -296,19 +358,14 @@
     <section id="about" class="scroll-spy">
         <div class="container">
             <h1 class="section-title back-to-position to-up delay-0">About Me</h1>
-            <p class="section-subtitle back-to-position to-up delay-1">디자인을 통해 일상의 모든 순간을 아름답게 물들입니다.</p>
+            <p class="section-subtitle back-to-position to-up delay-1">디자인을 통해 세상을 더 아름답게 만듭니다.</p>
             <div class="about-flex">
                 <div class="profile-img-container back-to-position to-right delay-2">
-                    <img src="./profile.jpg" alt="Profile">
+                    <img src="https://hadomin91-design.github.io/hadomin_design/프로필.jpg" alt="Profile">
                 </div>
                 <div class="about-text back-to-position to-left delay-3">
                     <h3>안녕하세요, 민하도입니다.</h3>
-                    <p>정형화된 디자인 틀에서 벗어나 사람들의 마음과 감성을 자극하는 비주얼을 연구합니다. 포토샵과 일러스트레이터를 깊게 다루는 그래픽 아트웍부터 영상 크리에이티브 솔루션까지 유연하고 확장성 있는 디자인 가치를 만들어가고 있습니다.</p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> 끊임없이 고민하는 완벽주의 디테일 감성</li>
-                        <li><i class="fas fa-check-circle"></i> 프리미어 & 애프터 이펙트 영상 모션 감각</li>
-                        <li><i class="fas fa-check-circle"></i> 브랜딩 트렌드를 이끄는 아이덴티티 구축 기획</li>
-                    </ul>
+                    <p>사용자의 마음을 움직이는 디자인을 추구합니다. 포토샵과 일러스트레이터를 활용한 그래픽 디자인부터, 웹 인터페이스까지 다양한 영역에서 활동하고 있습니다.</p>
                 </div>
             </div>
         </div>
@@ -317,40 +374,45 @@
     <section id="skills" class="scroll-spy">
         <div class="container">
             <h1 class="section-title back-to-position to-up delay-0">My Skills</h1>
-            <p class="section-subtitle back-to-position to-up delay-1">전문성을 증명하는 유연한 기술 스택들입니다.</p>
+            <p class="section-subtitle back-to-position to-up delay-1">제가 가진 도구들을 소개합니다.</p>
             <div class="skills-grid">
-                <div class="skill-item back-to-position to-right delay-2">
+                
+                <div class="skill-item back-to-position to-up delay-2">
                     <div class="skill-header">
-                        <img src="./photoshop_logo.png" alt="Photoshop">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/포토샵로고.png" alt="Photoshop">
                         <span>Photoshop</span>
                     </div>
                     <div class="progress-container"><div class="progress-bar" data-width="95"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
-                <div class="skill-item back-to-position to-left delay-3">
+
+                <div class="skill-item back-to-position to-up delay-3">
                     <div class="skill-header">
-                        <img src="./illust_logo.png" alt="Illustrator">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/일러스트로고.png" alt="Illustrator">
                         <span>Illustrator</span>
                     </div>
                     <div class="progress-container"><div class="progress-bar" data-width="90"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
-                <div class="skill-item back-to-position to-right delay-4">
+
+                <div class="skill-item back-to-position to-up delay-4">
                     <div class="skill-header">
-                        <img src="./premiere_logo.png" alt="Premiere Pro">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/프리미어로고.png" alt="Premiere Pro">
                         <span>Premiere Pro</span>
                     </div>
                     <div class="progress-container"><div class="progress-bar" data-width="80"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
-                <div class="skill-item back-to-position to-left delay-5">
+
+                <div class="skill-item back-to-position to-up delay-5">
                     <div class="skill-header">
-                        <img src="./aftereffects_logo.png" alt="After Effects">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/애프터이펙트%20로고.png" alt="After Effects">
                         <span>After Effects</span>
                     </div>
                     <div class="progress-container"><div class="progress-bar" data-width="75"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -358,14 +420,18 @@
     <section id="works" class="scroll-spy">
         <div class="container">
             <h1 class="section-title back-to-position to-up delay-0">Recent Works</h1>
-            <p class="section-subtitle back-to-position to-up delay-1">최근에 진행한 독창적인 프로젝트 히스토리입니다.</p>
+            <p class="section-subtitle back-to-position to-up delay-1">최근에 진행한 프로젝트들입니다.</p>
             <div class="works-grid">
-                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="./flower_poster.png" alt="Flower Poster"><div class="work-overlay"><h4>Flower Poster</h4><p>Graphic Design</p></div></div>
-                <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="./fruit_poster.png" alt="Fruit Poster"><div class="work-overlay"><h4>Fruit Poster</h4><p>Graphic Design</p></div></div>
-                <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="./uijeongbu.png" alt="Uijeongbu Project"><div class="work-overlay"><h4>Uijeongbu Project</h4><p>Poster Art</p></div></div>
-                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="./isigny.png" alt="Isigny Project"><div class="work-overlay"><h4>Isigny Project</h4><p>Package Design</p></div></div>
-                <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="./logo_design.png" alt="Logo Design"><div class="work-overlay"><h4>Logo Package</h4><p>Brand Identity</p></div></div>
-                <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="./typography_2.png" alt="Calligraphy"><div class="work-overlay"><h4>Calligraphy</h4><p>Typography Art</p></div></div>
+                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster"><div class="work-overlay"><h4>Flower Poster</h4><p>Graphic Design</p></div></div>
+                <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster"><div class="work-overlay"><h4>Fruit Poster</h4><p>Graphic Design</p></div></div>
+                <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="Uijeongbu Project"><div class="work-overlay"><h4>Uijeongbu Project</h4><p>Poster</p></div></div>
+                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/이즈니.png" alt="Isigny Project"><div class="work-overlay"><h4>Isigny Project</h4><p>Package Design</p></div></div>
+                <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/로고디자인.png" alt="Logo Design"><div class="work-overlay"><h4>Logo Package</h4><p>Logo Design</p></div></div>
+                <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/문구작업2.png" alt="Calligraphy"><div class="work-overlay"><h4>Calligraphy</h4><p>Letters</p></div></div>
+                
+                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster"><div class="work-overlay"><h4>Fruit Poster</h4><p>Graphic Design</p></div></div>
+                <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster"><div class="work-overlay"><h4>Flower Poster</h4><p>Graphic Design</p></div></div>
+                <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="Uijeongbu Project"><div class="work-overlay"><h4>Uijeongbu Project</h4><p>Poster</p></div></div>
             </div>
         </div>
     </section>
@@ -374,7 +440,6 @@
         <div class="container">
             <h1 class="section-title back-to-position to-up delay-0">Get In Touch</h1>
             <div class="contact-card back-to-position to-up delay-2">
-                <h2>GET IN TOUCH</h2>
                 <div class="contact-info">
                     <p><i class="fas fa-envelope"></i> hadomin91@gmail.com</p>
                     <div class="social-links">
@@ -395,67 +460,81 @@
     </div>
 
     <script>
-        const dot = document.querySelector('.cursor-dot');
-        const outline = document.querySelector('.cursor-outline');
-
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            dot.style.left = posX + 'px';
-            dot.style.top = posY + 'px';
-            outline.animate({ left: posX + 'px', top: posY + 'px' }, { duration: 400, fill: "forwards" });
-        });
-
-        const hoverInteractiveEls = document.querySelectorAll('a, .work-card, .skill-item, .social-btn, .close-modal, .scroll-top');
-        hoverInteractiveEls.forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-        });
-
+        // 1. 페이지 로드 시 메인 비주얼 최초 타이틀 애니메이션 (GSAP)
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
             tl.to('.visual-title', { opacity: 1, x: 0, duration: 1.5, ease: "power3.out" });
-            tl.to('.poster-showcase', { opacity: 1, y: 0, duration: 1.2, stagger: 0.25, ease: "power2.out" }, "-=1");
+            tl.to('.poster-showcase', { opacity: 1, x: 0, duration: 1.2, stagger: 0.3, ease: "power2.out" }, "-=1");
         });
 
+        // 2. ScrollMagic 메인 컨트롤러 정의
         const controller = new ScrollMagic.Controller();
+
+        // 3. 메인 비주얼 영역 (.visual) 스크롤 시 Fade Out / 위로 올리면 다시 Fade In 연동
         const visualEl = document.querySelector('.visual');
-        new ScrollMagic.Scene({ triggerElement: visualEl, triggerHook: 0, duration: '80%' })
-        .setClassToggle(visualEl, 'fade-out-scroll').addTo(controller);
+        new ScrollMagic.Scene({
+            triggerElement: visualEl,
+            triggerHook: 0,          // 화면 최상단에 고정 시점 시작
+            duration: '80%'          // 비주얼 영역의 80%만큼 내리는 동안 서서히 투명화
+        })
+        .setClassToggle(visualEl, 'fade-out-scroll')
+        .addTo(controller);
 
+        // 4. 하단 모든 콘텐츠 섹션(.scroll-spy) 등장 및 완전 퇴장(역방향 스크롤 사라짐) 자동화
         const spyEls = document.querySelectorAll('section.scroll-spy');
+        
         spyEls.forEach(function (spyEl) {
-            const scene = new ScrollMagic.Scene({ triggerElement: spyEl, triggerHook: 0.75 })
-            .setClassToggle(spyEl, 'show').addTo(controller);
+            const scene = new ScrollMagic.Scene({
+                triggerElement: spyEl,
+                triggerHook: 0.75     // 감시선 위치 (화면 아래에서 25% 지점 통과 시 작동)
+            })
+            .setClassToggle(spyEl, 'show') // 닿으면 .show 추가, 위로 올려 감시선 밖으로 나가면 .show 삭제(사라짐 구현!)
+            .addTo(controller);
 
+            // ★ [특별 케이스] 스킬 바 세션 초기화 연동 제어
             if (spyEl.id === 'skills') {
                 const progressBars = spyEl.querySelectorAll('.progress-bar');
                 const counters = spyEl.querySelectorAll('.count');
-                let timers = []; 
+                let timers = []; // 진행 타이머 배열 관리
 
+                // 스크롤 내려서 스킬 섹션에 들어왔을 때 (게이지 업)
                 scene.on('enter', () => {
-                    timers.forEach(t => clearInterval(t)); timers = [];
+                    timers.forEach(t => clearInterval(t)); // 기존 작동 중인 타이머가 있다면 초기화
+                    timers = [];
+
                     progressBars.forEach((bar, index) => {
                         const width = bar.getAttribute('data-width');
                         bar.style.width = width + '%';
-                        let count = 0; const target = parseInt(width);
+                        
+                        let count = 0;
+                        const target = parseInt(width);
                         const timer = setInterval(() => {
                             count++;
-                            if (count >= target) { counters[index].innerText = target; clearInterval(timer); }
-                            else { counters[index].innerText = count; }
+                            if (count >= target) {
+                                counters[index].innerText = target;
+                                clearInterval(timer);
+                            } else {
+                                counters[index].innerText = count;
+                            }
                         }, 1200 / target);
                         timers.push(timer);
                     });
                 });
+
+             
                 scene.on('leave', (event) => {
                     if (event.scrollDirection === "REVERSE") {
-                        timers.forEach(t => clearInterval(t)); 
-                        progressBars.forEach((bar, index) => { bar.style.width = '0%'; counters[index].innerText = '0'; });
+                        timers.forEach(t => clearInterval(t)); // 작동 타이머 파괴
+                        progressBars.forEach((bar, index) => {
+                            bar.style.width = '0%'; // 바 상태 리셋
+                            counters[index].innerText = '0'; // 텍스트 리셋
+                        });
                     }
                 });
             }
         });
 
+        // 5. Scroll to top 버튼 컨트롤
         const scrollTop = document.getElementById('scrollTop');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) scrollTop.classList.add('show');
