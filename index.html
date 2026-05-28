@@ -40,17 +40,16 @@
             cursor: none !important;
         }
 
-        /* ★ 전체 텍스트를 'Gaegu' 손글씨체로 강제 통일 */
-        body, input, textarea, button, span, h1, h2, h3, h4, p {
+        /* ★ 개구(Gaegu) 폰트 전체 요소에 강력 적용 */
+        body, input, textarea, button, span, h1, h2, h3, h4, p, div, li, a {
             font-family: 'Gaegu', cursive, sans-serif !important;
             font-size: 1.3rem;
             font-weight: 400;
             line-height: 1.5;
             color: var(--text-dark);
-            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 { font-weight: 700; color: var(--primary-color); }
+        h1, h2, h3, h4 { font-weight: 700 !important; color: var(--primary-color); }
 
         /* 커스텀 매끄러운 커서 그래픽 효과 */
         .cursor-dot {
@@ -114,15 +113,15 @@
             display: flex; align-items: center; justify-content: space-between; gap: 40px;
         }
         .visual-left { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-        .visual-tag { font-size: 1.8rem; font-weight: 700; color: var(--text-light); margin-bottom: 5px; letter-spacing: 1px; }
+        .visual-tag { font-size: 1.8rem !important; font-weight: 700 !important; color: var(--text-light); margin-bottom: 5px; letter-spacing: 1px; }
         .visual-title {
-            font-size: 8rem; font-weight: 700;
+            font-size: 8rem !important; font-weight: 700 !important;
             background: linear-gradient(135deg, #ff5388 0%, #ff8ab2 40%, #a855f7 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             line-height: 1.05; letter-spacing: -1px; opacity: 0;
             transform: translateX(-100px); filter: drop-shadow(0 15px 30px rgba(255, 122, 162, 0.15));
         }
-        .visual-subtext { font-size: 1.4rem; font-weight: 700; color: var(--text-light); margin-top: 30px; letter-spacing: 1px; text-transform: uppercase; }
+        .visual-subtext { font-size: 1.4rem !important; font-weight: 700 !important; color: var(--text-light); margin-top: 30px; letter-spacing: 1px; text-transform: uppercase; }
 
         .visual-right { flex: 1.4; display: flex; justify-content: flex-end; align-items: flex-end; gap: 30px; }
         .poster-showcase { display: flex; flex-direction: column; align-items: center; opacity: 0; transform: translateY(100px); }
@@ -131,27 +130,29 @@
         .poster-showcase.uijeongbu { width: 250px; }
         
         .poster-frame {
-            width: 100%; background: #ffffff; padding: 14px 14px 24px 14px;
-            border-radius: 4px; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.06);
-            transition: var(--transition); border: 1px solid rgba(0,0,0,0.03);
+            width: 100%; background: transparent; padding: 0;
+            border-radius: 0; box-shadow: none;
+            transition: var(--transition);
         }
-        .poster-image { width: 100%; height: auto; object-fit: contain; }
-        .poster-name { margin-top: 15px; font-size: 1.5rem; font-weight: 700; color: #4b5563; text-align: center; }
+        .poster-image { 
+            width: 100%; height: auto; object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(255, 122, 162, 0.3));
+        }
+        .poster-name { margin-top: 15px; font-size: 1.5rem !important; font-weight: 700 !important; color: var(--primary-color); text-align: center; }
         .poster-frame:hover {
-            transform: translateY(-25px) scale(1.03) rotate(1deg);
-            box-shadow: 0 50px 90px rgba(255, 122, 162, 0.25);
+            transform: translateY(-25px) scale(1.05) rotate(2deg);
         }
 
         /* Sections 기본 */
         section { padding: 140px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
         .container { max-width: 1200px; width: 100%; text-align: center; z-index: 1; }
         .section-title {
-            font-size: 5.5rem; margin-bottom: 15px;
+            font-size: 5.5rem !important; margin-bottom: 15px;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--rose) 50%, var(--purple) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             display: inline-block; filter: drop-shadow(0 8px 15px rgba(255, 122, 162, 0.15));
         }
-        .section-subtitle { font-size: 1.6rem; color: var(--text-light); margin-bottom: 70px; font-weight: 400; }
+        .section-subtitle { font-size: 1.6rem !important; color: var(--text-light); margin-bottom: 70px; font-weight: 400; }
 
         /* About Section */
         .about-flex { 
@@ -168,12 +169,12 @@
         }
         .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
         .about-text h3 { 
-             font-size: 3rem; margin-bottom: 20px; font-weight: 700;
+             font-size: 3rem !important; margin-bottom: 20px; font-weight: 700 !important;
              background: linear-gradient(135deg, #ff4d80, var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .about-text p { font-size: 1.4rem; color: var(--text-light); margin-bottom: 20px; word-break: keep-all; line-height: 1.7; }
+        .about-text p { font-size: 1.4rem !important; color: var(--text-light); margin-bottom: 20px; word-break: keep-all; line-height: 1.7; }
         .about-text ul { list-style: none; margin-top: 15px; }
-        .about-text ul li { font-size: 1.3rem; color: var(--text-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .about-text ul li { font-size: 1.3rem !important; color: var(--text-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
         .about-text ul li i { color: var(--primary-color); }
         @keyframes morph {
             0% { border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%; }
@@ -181,7 +182,7 @@
             100% { border-radius: 30% 70% 70% 30% / 40% 40% 60% 60%; }
         }
 
-        /* ★ Skills Section (요청하신 완벽한 2x2 거대 사각형 구조 고정) */
+        /* Skills Section (2x2 구조 고정) */
         .skills-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -205,10 +206,10 @@
         }
         .skill-header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
         .skill-header img { width: 56px; height: 56px; object-fit: contain; } 
-        .skill-header span { font-size: 1.8rem; font-weight: 700; color: var(--text-dark); }
+        .skill-header span { font-size: 1.8rem !important; font-weight: 700 !important; color: var(--text-dark); }
         .progress-container { width: 100%; height: 14px; background: #f3f4f6; border-radius: 20px; overflow: hidden; margin-bottom: 15px; } 
         .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-color) 0%, var(--purple) 100%); width: 0; transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 20px; }
-        .progress-text { font-size: 1.4rem; font-weight: 700; color: var(--primary-color); text-align: right; }
+        .progress-text { font-size: 1.4rem !important; font-weight: 700 !important; color: var(--primary-color); text-align: right; }
 
         /* Works Section */
         .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 35px; width: 100%; }
@@ -216,16 +217,19 @@
             position: relative; border-radius: 32px; overflow: hidden; aspect-ratio: 4/5; 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06); transition: var(--transition); border: 1px solid #fff; 
         }
+        .work-card.nobg-card { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(5px); }
         .work-card:hover { transform: translateY(-12px) scale(1.01); box-shadow: 0 40px 70px rgba(255, 122, 162, 0.22); }
         .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+        .work-card.nobg-card img { object-fit: contain; padding: 25px; }
+        
         .work-overlay { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             background: linear-gradient(to top, rgba(34, 20, 59, 0.85) 0%, rgba(255, 122, 162, 0.2) 100%); 
             display: flex; flex-direction: column; justify-content: flex-end; padding: 35px; color: white; opacity: 0; transition: opacity 0.4s ease; 
         }
         .work-card:hover .work-overlay { opacity: 1; }
-        .work-overlay h4 { font-size: 2.5rem; margin-bottom: 8px; color: white; transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); font-weight: 700; }
-        .work-overlay p { font-size: 1.3rem; font-weight: 400; opacity: 0.9; transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.05s; }
+        .work-overlay h4 { font-size: 2.5rem !important; margin-bottom: 8px; color: white !important; transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); font-weight: 700 !important; }
+        .work-overlay p { font-size: 1.3rem !important; font-weight: 400 !important; color: white !important; opacity: 0.9; transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.05s; }
         .work-card:hover .work-overlay h4, .work-card:hover .work-overlay p { transform: translateY(0); }
 
         /* Contact Section */
@@ -234,12 +238,12 @@
             box-shadow: 0 40px 90px rgba(34, 20, 59, 0.4); max-width: 850px; margin: 0 auto; position: relative; overflow: hidden;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .contact-card h2 { font-weight: 700; font-size: 3rem; color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
-        .contact-info p { font-size: 2.2rem; font-weight: 700; margin-bottom: 45px; color: var(--primary-light); letter-spacing: 0.5px; }
+        .contact-card h2 { font-weight: 700 !important; font-size: 3rem !important; color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
+        .contact-info p { font-size: 2.2rem !important; font-weight: 700 !important; margin-bottom: 45px; color: var(--primary-light); letter-spacing: 0.5px; }
         .social-links { display: flex; justify-content: center; gap: 30px; }
         .social-btn { 
             width: 75px; height: 75px; border-radius: 50%; background: rgba(255, 255, 255, 0.06); 
-            display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #fff; 
+            display: flex; align-items: center; justify-content: center; font-size: 1.8rem !important; color: #fff; 
             text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: var(--transition); 
             border: 1px solid rgba(255,255,255,0.1); 
         }
@@ -253,17 +257,17 @@
         .modal.active { display: flex; }
         .modal-content { max-width: 90%; max-height: 85vh; position: relative; background: transparent; padding: 10px; animation: slideUp 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
         .modal-content img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 16px; box-shadow: 0 30px 65px rgba(0,0,0,0.5); }
-        .close-modal { position: absolute; top: -55px; right: 0; color: #fff; font-size: 3.5rem; cursor: pointer; transition: var(--transition); font-weight: 300; }
+        .close-modal { position: absolute; top: -55px; right: 0; color: #fff; font-size: 3.5rem !important; cursor: pointer; transition: var(--transition); font-weight: 300; }
         .close-modal:hover { color: var(--primary-color); transform: scale(1.1); }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         /* Scroll to top */
-        .scroll-top { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--purple)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 1000; box-shadow: 0 15px 35px rgba(255, 122, 162, 0.3); font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.2); }
+        .scroll-top { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-color), var(--purple)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 1000; box-shadow: 0 15px 35px rgba(255, 122, 162, 0.3); font-size: 1.3rem !important; border: 1px solid rgba(255,255,255,0.2); }
         .scroll-top.show { opacity: 1; visibility: visible; }
         .scroll-top:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 20px 45px rgba(168, 85, 247, 0.4); }
 
-        /* Scroll Spying Animation Classes */
+        /* Animation Classes */
         .back-to-position { opacity: 0; transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1), opacity 1s ease-out; }
         .back-to-position.to-right { transform: translateX(-80px); }
         .back-to-position.to-left  { transform: translateX(80px); }
@@ -276,26 +280,23 @@
         .show .back-to-position.delay-4 { transition-delay: 0.48s; }
         .show .back-to-position.delay-5 { transition-delay: 0.6s; }
 
-        /* Responsive Style */
         @media (max-width: 1100px) {
             .visual .inner { flex-direction: column; text-align: center; gap: 60px; }
             .visual-left { align-items: center; text-align: center; }
-            .visual-title { font-size: 6rem; transform: translateX(0); }
+            .visual-title { font-size: 6rem !important; transform: translateX(0); }
             .visual-right { width: 100%; justify-content: center; align-items: center; gap: 20px; }
             .poster-showcase { width: 200px !important; margin-bottom: 0 !important; transform: translateY(0); }
             .about-flex { padding: 40px; gap: 40px; flex-direction: column; }
         }
         @media (max-width: 768px) {
-            .visual-title { font-size: 4.5rem; }
+            .visual-title { font-size: 4.5rem !important; }
             .visual-right { flex-direction: column; gap: 30px; }
             .poster-showcase { width: 240px !important; }
-            .section-title { font-size: 4rem; }
-            
+            .section-title { font-size: 4rem !important; }
             .skills-grid { grid-template-columns: 1fr; gap: 25px; }
             .skill-item { padding: 40px 30px; }
-            
             .contact-card { padding: 60px 20px; }
-            .contact-info p { font-size: 1.5rem; }
+            .contact-info p { font-size: 1.5rem !important; }
             .cursor-dot, .cursor-outline { display: none; } 
             html, body { cursor: auto; }
         }
@@ -322,19 +323,19 @@
             <div class="visual-right">
                 <div class="poster-showcase fruit">
                     <div class="poster-frame">
-                        <img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster" class="poster-image">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster_nobg.png" alt="Fruit Poster" class="poster-image">
                     </div>
                     <p class="poster-name">Fruit Poster</p>
                 </div>
                 <div class="poster-showcase flower">
                     <div class="poster-frame">
-                        <img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster" class="poster-image">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/flower_poster_nobg.png" alt="Flower Poster" class="poster-image">
                     </div>
                     <p class="poster-name">Flower Poster</p>
                 </div>
                 <div class="poster-showcase uijeongbu">
                     <div class="poster-frame">
-                        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="Uijeongbu" class="poster-image">
+                        <img src="https://hadomin91-design.github.io/hadomin_design/uijeongbu_nobg.png" alt="Uijeongbu" class="poster-image">
                     </div>
                     <p class="poster-name">의정부</p>
                 </div>
@@ -419,11 +420,11 @@
                 <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="Uijeongbu Project"><div class="work-overlay"><h4>Uijeongbu Project</h4><p>Poster Art</p></div></div>
                 <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/이즈니.png" alt="Isigny Project"><div class="work-overlay"><h4>Isigny Project</h4><p>Package Design</p></div></div>
                 <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/로고디자인.png" alt="Logo Design"><div class="work-overlay"><h4>Logo Package</h4><p>Brand Identity</p></div></div>
-                <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/문구작업2.png" alt="Calligraphy"><div class="work-overlay"><h4>Calligraphy</h4><p>Typography Art</p></div></div>
+                <div class="work-card back-to-position circle-layer to-left delay-4" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/문구작업2.png" alt="Calligraphy"><div class="work-overlay"><h4>Calligraphy</h4><p>Typography Art</p></div></div>
                 
-                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster"><div class="work-overlay"><h4>Fruit Poster</h4><p>Graphic Design</p></div></div>
-                <div class="work-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster"><div class="work-overlay"><h4>Flower Poster</h4><p>Graphic Design</p></div></div>
-                <div class="work-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="Uijeongbu Project"><div class="work-overlay"><h4>Uijeongbu Project</h4><p>Poster Art</p></div></div>
+                <div class="work-card nobg-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster_nobg.png" alt="Fruit Poster"><div class="work-overlay"><h4>Fruit Poster (Cutout)</h4><p>Graphic Design</p></div></div>
+                <div class="work-card nobg-card back-to-position to-up delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/flower_poster_nobg.png" alt="Flower Poster"><div class="work-overlay"><h4>Flower Poster (Cutout)</h4><p>Graphic Design</p></div></div>
+                <div class="work-card nobg-card back-to-position to-left delay-4" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/uijeongbu_nobg.png" alt="Uijeongbu Project"><div class="work-overlay"><h4>Uijeongbu Project (Cutout)</h4><p>Poster Art</p></div></div>
             </div>
         </div>
     </section>
@@ -453,7 +454,7 @@
     </div>
 
     <script>
-        // 1. 마우스 위치를 정밀 추적하여 부드러운 애니메이션 구현하는 커스텀 포인터 스크립트
+        // 1. 커스텀 마우스 포인터 인터랙션
         const dot = document.querySelector('.cursor-dot');
         const outline = document.querySelector('.cursor-outline');
 
@@ -476,7 +477,7 @@
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
 
-        // 2. 페이지 최초 로드 시 메인 visual 스태거 애니메이션 (GSAP)
+        // 2. 메인 visual 스태거 애니메이션 (GSAP)
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
             tl.to('.visual-title', { opacity: 1, x: 0, duration: 1.5, ease: "power3.out" });
@@ -486,7 +487,7 @@
         // 3. ScrollMagic 컨트롤러 선언
         const controller = new ScrollMagic.Controller();
 
-        // 4. 메인 비주얼 스크롤 시 흐려지며 사라지는 연동 효과
+        // 4. 메인 비주얼 스크롤 연동 페이드 아웃 효과
         const visualEl = document.querySelector('.visual');
         new ScrollMagic.Scene({
             triggerElement: visualEl,
@@ -496,7 +497,7 @@
         .setClassToggle(visualEl, 'fade-out-scroll')
         .addTo(controller);
 
-        // 5. 각 콘텐츠 섹션 스크롤 스파이 트리거 제어 
+        // 5. 각 콘텐츠 섹션 스크롤 스파이 트리거 제어 (★ 오타 수정 완료)
         const spyEls = document.querySelectorAll('section.scroll-spy');
         
         spyEls.forEach(function (spyEl) {
@@ -507,7 +508,7 @@
             .setClassToggle(spyEl, 'show') 
             .addTo(controller);
 
-            // 스킬 게이지 카운팅 및 리셋 인터랙션 연동
+            // 스킬 게이지 인터랙션 연동
             if (spyEl.id === 'skills') {
                 const progressBars = spyEl.querySelectorAll('.progress-bar');
                 const counters = spyEl.querySelectorAll('.count');
@@ -548,7 +549,7 @@
             }
         });
 
-        // 6. 스크롤 탑 컨트롤러
+        // 6. 스크롤 탑 제어
         const scrollTop = document.getElementById('scrollTop');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) scrollTop.classList.add('show');
