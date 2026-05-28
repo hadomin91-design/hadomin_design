@@ -7,7 +7,7 @@
         
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght=400;700&family=Noto+Sans+KR:wght=300;400;500;700&family=Poppins:wght=300;400;600;800&display=swap" rel="stylesheet">
         
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         
@@ -64,7 +64,7 @@
             to { transform: translate(80px, 80px) scale(1.1); }
         }
 
-        /* --- [맨 위 여백 감소] Main Visual Section 스타일 --- */
+        /* --- Main Visual Section --- */
         .visual {
             width: 100%;
             min-height: 90vh;
@@ -75,19 +75,15 @@
             align-items: center;
             justify-content: center;
             padding: 20px 40px 40px 40px;
-            /* ★ 스크롤 내릴 때 상단 헤드 전체가 부드럽게 Fade Out 되도록 트랜지션 추가 */
             transition: opacity 0.7s ease-out, transform 0.7s ease-out;
             opacity: 1;
             transform: scale(1);
         }
-
-        /* ★ 스크롤 내리면 상단 비주얼 영역 전체가 감쪽같이 사라짐 */
         .visual.fade-out-scroll {
             opacity: 0;
             transform: scale(0.96);
-            pointer-events: none; /* 사라졌을 때 클릭 방지 */
+            pointer-events: none;
         }
-
         .visual .inner {
             width: 100%;
             max-width: 1400px;
@@ -281,26 +277,30 @@
         .scroll-top { position: fixed; bottom: 50px; right: 50px; width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary-color), var(--rose)); color: white; border-radius: 25px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 1000; box-shadow: 0 15px 40px rgba(255, 122, 162, 0.3); border: 2px solid rgba(255, 255, 255, 0.3); font-size: 1.5rem; }
         .scroll-top.show { opacity: 1; visibility: visible; }
 
-        /* -------------------------------------------------- */
-        /* ★ Back to Position 애니메이션 (내리면 나타나고 위로 올리면 사라짐 완벽대응) */
+        /* ================================================== */
+        /* ✨ [핵심 수정] Back to Position 애니메이션 스타일 */
+        /* ================================================== */
+        
+        /* 1. 기본 대기 상태 (스크롤 전 상태 및 위로 올렸을 때 복귀 상태) */
         .back-to-position {
             opacity: 0;
-            /* 들어올 때와 나갈 때 모두 자연스럽도록 트랜지션 세팅 */
-            transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.9s ease-out;
+            /* 핵심: 클래스(.show)가 빠져서 위로 올라갈 때 부드럽게 되돌아가도록 여기에 transition 설정 */
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease-in-out;
         }
-        /* 각 방향별 대기 상태 */
-        .back-to-position.to-right { transform: translateX(-100px); }
-        .back-to-position.to-left  { transform: translateX(100px); }
-        .back-to-position.to-up    { transform: translateY(80px); }
 
-        /* .show가 붙으면 원래 위치 복귀 및 투명도 해제 */
+        /* 2. 각 방향별 대기 숨김 위치 지정 */
+        .back-to-position.to-right { transform: translateX(-120px); } /* 왼쪽 -> 오른쪽 등장용 */
+        .back-to-position.to-left  { transform: translateX(120px); }  /* 오른쪽 -> 왼쪽 등장용 */
+        .back-to-position.to-up    { transform: translateY(100px); }  /* 아래 -> 위 등장용 */
+
+        /* 3. 스크롤이 도달해 부모(.scroll-spy)에 .show가 붙었을 때 원래 자리 복귀 */
         .show .back-to-position {
             opacity: 1;
             transform: translate(0);
         }
 
-        /* 순차적 등장 딜레이 (.show 가 활성화되어 있을 때만 딜레이 부여) */
-        /* 위로 올릴 때는 딜레이 없이 동시에 슥 사라져서 답답하지 않고 기민하게 움직입니다. */
+        /* 4. 순차적 등장 딜레이 효과 (.show 가 활성화 상태일 때만 부여) */
+        /* 이렇게 적용하면 위로 스크롤을 올릴 때는 딜레이 없이 동시에 일사불란하게 숨겨집니다! */
         .show .back-to-position.delay-0 { transition-delay: 0s; }
         .show .back-to-position.delay-1 { transition-delay: 0.15s; }
         .show .back-to-position.delay-2 { transition-delay: 0.3s; }
@@ -308,7 +308,7 @@
         .show .back-to-position.delay-4 { transition-delay: 0.6s; }
         .show .back-to-position.delay-5 { transition-delay: 0.75s; }
 
-        /* -------------------------------------------------- */
+        /* ================================================== */
         @media (max-width: 1024px) {
             .visual .inner { flex-direction: column; gap: 40px; }
             .visual-left { text-align: center; }
@@ -458,7 +458,7 @@
     </div>
 
     <script>
-        // 1. 페이지 로드 시 메인 비주얼 최초 타이틀 애니메이션 (GSAP)
+        // 1. 페이지 최초 로드 시 메인 비주얼 타이틀 애니메이션 (GSAP)
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
             tl.to('.visual-title', { opacity: 1, x: 0, duration: 1.5, ease: "power3.out" });
@@ -468,36 +468,36 @@
         // 2. ScrollMagic 메인 컨트롤러 정의
         const controller = new ScrollMagic.Controller();
 
-        // 3. 메인 비주얼 영역 (.visual) 스크롤 시 Fade Out / 위로 올리면 다시 Fade In 연동
+        // 3. 메인 비주얼 영역 (.visual) 스크롤 시 Fade Out 연동
         const visualEl = document.querySelector('.visual');
         new ScrollMagic.Scene({
             triggerElement: visualEl,
-            triggerHook: 0,          // 화면 최상단에 고정 시점 시작
-            duration: '80%'          // 비주얼 영역의 80%만큼 내리는 동안 서서히 투명화
+            triggerHook: 0,
+            duration: '80%'
         })
         .setClassToggle(visualEl, 'fade-out-scroll')
         .addTo(controller);
 
-        // 4. 하단 모든 콘텐츠 섹션(.scroll-spy) 등장 및 완전 퇴장(역방향 스크롤 사라짐) 자동화
+        // 4. 하단 모든 콘텐츠 섹션(.scroll-spy) 등장 및 완전 퇴장 처리 자동화
         const spyEls = document.querySelectorAll('section.scroll-spy');
         
         spyEls.forEach(function (spyEl) {
             const scene = new ScrollMagic.Scene({
                 triggerElement: spyEl,
-                triggerHook: 0.75     // 감시선 위치 (화면 아래에서 25% 지점 통과 시 작동)
+                triggerHook: 0.75     // 화면 아래에서 25% 지점 통과 시 작동
             })
-            .setClassToggle(spyEl, 'show') // 닿으면 .show 추가, 위로 올려 감시선 밖으로 나가면 .show 삭제(사라짐 구현!)
+            .setClassToggle(spyEl, 'show') // 감시선 통과 시 .show 추가 / 위로 올리면 자동 삭제!
             .addTo(controller);
 
-            // ★ [특별 케이스] 스킬 바 세션 초기화 연동 제어
+            // [특별 케이스] 스킬 게이지 바 세션 초기화 및 재생성 연동
             if (spyEl.id === 'skills') {
                 const progressBars = spyEl.querySelectorAll('.progress-bar');
                 const counters = spyEl.querySelectorAll('.count');
-                let timers = []; // 진행 타이머 배열 관리
+                let timers = [];
 
-                // 스크롤 내려서 스킬 섹션에 들어왔을 때 (게이지 업)
+                // 스크롤 내려서 진입했을 때 (게이지 증가 애니메이션)
                 scene.on('enter', () => {
-                    timers.forEach(t => clearInterval(t)); // 기존 작동 중인 타이머가 있다면 초기화
+                    timers.forEach(t => clearInterval(t));
                     timers = [];
 
                     progressBars.forEach((bar, index) => {
@@ -519,20 +519,20 @@
                     });
                 });
 
-           
+                // 역스크롤로 화면에서 탈출했을 때 (바와 숫자 완벽히 0%로 리셋)
                 scene.on('leave', (event) => {
                     if (event.scrollDirection === "REVERSE") {
-                        timers.forEach(t => clearInterval(t)); // 작동 타이머 파괴
+                        timers.forEach(t => clearInterval(t));
                         progressBars.forEach((bar, index) => {
-                            bar.style.width = '0%'; // 바 상태 리셋
-                            counters[index].innerText = '0'; // 텍스트 리셋
+                            bar.style.width = '0%';
+                            counters[index].innerText = '0';
                         });
                     }
                 });
             }
         });
 
-        // 5. Scroll to top 버튼 컨트롤
+        // 5. Scroll to top 버튼 제어
         const scrollTop = document.getElementById('scrollTop');
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) scrollTop.classList.add('show');
@@ -540,7 +540,7 @@
         });
         scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // 6. 팝업 모달창 처리 로직
+        // 6. 팝업 모달창 제어
         const modal = document.getElementById('modal');
         const modalImg = document.getElementById('modalImg');
         function openModal(element) {
@@ -556,3 +556,4 @@
     </script>
 </body>
 </html>
+
