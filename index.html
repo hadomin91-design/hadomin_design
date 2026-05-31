@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadomin Design | Portfolio</title>
+    <title>Hadomin Design | Portfolio 🌸</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +31,8 @@
             --transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --rose: #f472b6;
             --purple: #a855f7;
+            --pastel-pink: rgba(255, 182, 193, 0.6);
+            --pastel-purple: rgba(221, 160, 221, 0.6);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,10 +43,49 @@
             color: var(--text-dark);
             background-color: #fff;
             overflow-x: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ff7aa2;stop-opacity:1" /><stop offset="100%" style="stop-color:%23f472b6;stop-opacity:0.3" /></radialGradient></defs><circle cx="20" cy="20" r="12" fill="url(%23grad1)" opacity="0.8"/><circle cx="20" cy="20" r="8" fill="%23ff7aa2" opacity="0.9"/><circle cx="20" cy="20" r="4" fill="%23ffffff" opacity="0.7"/></svg>') 20 20, auto;
+            cursor: none; /* 커스텀 파스텔 하트 커서 사용 */
         }
 
         h1, h2, h3, h4 { font-family: 'Gaegu', cursive; color: var(--primary-color); }
+
+        /* --- Pastel Heart Trail Cursor --- */
+        .cursor-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            width: 20px;
+            height: 20px;
+            background-color: currentColor;
+            transform: translate(-50%, -50%) rotate(45deg);
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+        .cursor-heart::before,
+        .cursor-heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: currentColor;
+            border-radius: 50%;
+        }
+        .cursor-heart::before { left: -10px; }
+        .cursor-heart::after { top: -10px; }
+
+        /* --- Sparkles & Decorations --- */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            animation: fall linear infinite;
+            opacity: 0.6;
+            filter: blur(0.5px);
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
 
         /* --- Background Decoration --- */
         .bg-decor {
@@ -72,17 +113,17 @@
             to { transform: translate(80px, 80px) scale(1.1); }
         }
 
-        /* --- Main Visual Section (Reduced Top Margin) --- */
+        /* --- Main Visual Section --- */
         .visual {
             width: 100%;
-            min-height: 85vh; /* 상단 여백을 줄이기 위해 최소 높이 조절 */
+            min-height: 85vh;
             background: transparent;
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px 40px; /* 상단 패딩 최소화 */
+            padding: 20px 40px;
         }
 
         .visual .inner {
@@ -207,13 +248,6 @@
             filter: drop-shadow(0 8px 20px rgba(255, 122, 162, 0.25));
         }
 
-        .section-subtitle { 
-            font-size: 1.4rem; 
-            color: var(--text-light); 
-            margin-bottom: 60px; 
-            font-weight: 300;
-        }
-
         /* --- About Section --- */
         .about-flex { 
             display: flex; 
@@ -242,7 +276,12 @@
             position: relative;
         }
 
-        .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-img-container img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: 50% 25%;
+        }
 
         .about-text h3 { 
             font-size: 2.8rem; 
@@ -262,7 +301,13 @@
         }
 
         /* --- Skills Section --- */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 40px; 
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
         .skill-item { background: white; padding: 45px; border-radius: 35px; transition: var(--transition); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); border: 2px solid rgba(255, 255, 255, 0.6); text-align: left; position: relative; overflow: hidden; }
         .skill-header { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
         .skill-header img { width: 45px; height: 45px; object-fit: contain; }
@@ -272,17 +317,15 @@
         .progress-text { font-size: 1.1rem; font-weight: 600; color: var(--primary-color); text-align: right; }
 
         /* --- Works Section --- */
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; width: 100%; }
         .work-card { position: relative; border-radius: 40px; overflow: hidden; aspect-ratio: 4/5; cursor: pointer; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); transition: var(--transition); border: 2px solid white; }
         .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
         .work-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(255, 122, 162, 0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; color: white; opacity: 0; transition: opacity 0.4s ease; }
         .work-card:hover .work-overlay { opacity: 1; }
-        .work-overlay h4 { font-size: 2.5rem; margin-bottom: 12px; color: white; font-weight: 800; }
+        .work-overlay h4 { font-size: 2.2rem; margin-bottom: 12px; color: white; font-weight: 800; }
 
         /* --- Contact Section --- */
         .contact-card { background: white; padding: 80px; border-radius: 45px; border: 2px solid rgba(255, 255, 255, 0.7); box-shadow: 0 40px 80px rgba(255, 122, 162, 0.15); max-width: 900px; margin: 0 auto; }
-        .contact-info p { font-size: 2rem; font-weight: 700; margin-bottom: 50px; color: var(--primary-color); }
-        .social-links { display: flex; justify-content: center; gap: 35px; }
         .social-btn { width: 85px; height: 85px; border-radius: 28px; background: #f9f9f9; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--primary-color); text-decoration: none; transition: var(--transition); }
         .social-btn:hover { background: var(--primary-color); color: white; transform: translateY(-15px) rotate(10deg); }
 
@@ -302,6 +345,7 @@
             .visual-title { font-size: 5rem; transform: translateX(0); }
             .visual-right { width: 100%; justify-content: center; height: auto; gap: 20px; }
             .poster-showcase { width: 180px !important; margin-bottom: 0 !important; transform: translateX(0); }
+            .skills-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -312,7 +356,7 @@
         <div class="blob blob-2"></div>
     </div>
 
-    <!-- Main Visual Section (No Header) -->
+    <!-- Main Visual Section -->
     <section class="visual">
         <div class="inner">
             <div class="visual-left">
@@ -320,15 +364,15 @@
             </div>
             <div class="visual-right">
                 <div class="poster-showcase fruit">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster" class="poster-image">
+                    <img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster_nobg.png" alt="Fruit Poster" class="poster-image">
                     <p class="poster-name">Fruit Poster</p>
                 </div>
                 <div class="poster-showcase flower">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster" class="poster-image">
+                    <img src="https://hadomin91-design.github.io/hadomin_design/flower_poster_nobg.png" alt="Flower Poster" class="poster-image">
                     <p class="poster-name">Flower Poster</p>
                 </div>
                 <div class="poster-showcase uijeongbu">
-                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="Uijeongbu" class="poster-image">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="의정부" class="poster-image">
                     <p class="poster-name">의정부</p>
                 </div>
             </div>
@@ -339,13 +383,12 @@
     <section id="about" class="scroll-spy">
         <div class="container">
             <h1 class="section-title back-to-position to-right delay-0">About Me</h1>
-            <p class="section-subtitle back-to-position to-right delay-1">디자인을 통해 세상을 더 아름답게 만듭니다.</p>
             <div class="about-flex">
                 <div class="profile-img-container back-to-position to-right delay-2">
-                    <img src="https://hadomin91-design.github.io/hadomin_design/프로필.jpg" alt="Profile">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/MwqbuULcWEGXcmch.webp" alt="Profile">
                 </div>
                 <div class="about-text back-to-position to-left delay-3">
-                    <h3>안녕하세요, 민하도입니다.</h3>
+                    <h3>안녕하세요, 민하도입니다. 🌸</h3>
                     <p>사용자의 마음을 움직이는 디자인을 추구합니다. 포토샵과 일러스트레이터를 활용한 그래픽 디자인부터, 웹 인터페이스까지 다양한 영역에서 활동하고 있습니다.</p>
                 </div>
             </div>
@@ -356,7 +399,6 @@
     <section id="skills" class="scroll-spy">
         <div class="container">
             <h1 class="section-title back-to-position to-left delay-0">My Skills</h1>
-            <p class="section-subtitle back-to-position to-left delay-1">제가 가진 도구들을 소개합니다.</p>
             <div class="skills-grid">
                 <div class="skill-item back-to-position to-right delay-2">
                     <div class="skill-header">
@@ -366,7 +408,7 @@
                     <div class="progress-container"><div class="progress-bar" data-width="95"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
-                <div class="skill-item back-to-position to-right delay-3">
+                <div class="skill-item back-to-position to-left delay-2">
                     <div class="skill-header">
                         <img src="https://hadomin91-design.github.io/hadomin_design/일러스트로고.png" alt="Illustrator">
                         <span>Illustrator</span>
@@ -374,7 +416,7 @@
                     <div class="progress-container"><div class="progress-bar" data-width="90"></div></div>
                     <div class="progress-text"><span class="count">0</span>%</div>
                 </div>
-                <div class="skill-item back-to-position to-left delay-2">
+                <div class="skill-item back-to-position to-right delay-3">
                     <div class="skill-header">
                         <img src="https://hadomin91-design.github.io/hadomin_design/프리미어로고.png" alt="Premiere Pro">
                         <span>Premiere Pro</span>
@@ -398,14 +440,15 @@
     <section id="works" class="scroll-spy">
         <div class="container">
             <h1 class="section-title back-to-position to-right delay-0">Recent Works</h1>
-            <p class="section-subtitle back-to-position to-right delay-1">최근에 진행한 프로젝트들입니다.</p>
             <div class="works-grid">
-                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/flower_poster.png" alt="Flower Poster"><div class="work-overlay"><h4>Flower Poster</h4></div></div>
-                <div class="work-card back-to-position to-right delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster.png" alt="Fruit Poster"><div class="work-overlay"><h4>Fruit Poster</h4></div></div>
-                <div class="work-card back-to-position to-left delay-2" onclick="openModal(this)"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="Uijeongbu Project"><div class="work-overlay"><h4>Uijeongbu Project</h4></div></div>
+                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/flower_poster_nobg.png" alt="Flower Poster"><div class="work-overlay"><h4>Flower Poster</h4></div></div>
+                <div class="work-card back-to-position to-right delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/fruit_poster_nobg.png" alt="Fruit Poster"><div class="work-overlay"><h4>Fruit Poster</h4></div></div>
+                <div class="work-card back-to-position to-left delay-2" onclick="openModal(this)"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663559784331/dhqBaDLUnZZtBueL.png" alt="의정부"><div class="work-overlay"><h4>의정부</h4></div></div>
                 <div class="work-card back-to-position to-left delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/이즈니.png" alt="Isigny Project"><div class="work-overlay"><h4>Isigny Project</h4></div></div>
-                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/로고디자인.png" alt="Logo Design"><div class="work-overlay"><h4>Logo Package</h4></div></div>
-                <div class="work-card back-to-position to-left delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/문구작업2.png" alt="Calligraphy"><div class="work-overlay"><h4>Calligraphy</h4></div></div>
+                <div class="work-card back-to-position to-right delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/travel_redesign_1.png" alt="Travel Redesign 1"><div class="work-overlay"><h4>Travel Redesign 1</h4></div></div>
+                <div class="work-card back-to-position to-left delay-2" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/travel_redesign_2.png" alt="Travel Redesign 2"><div class="work-overlay"><h4>Travel Redesign 2</h4></div></div>
+                <div class="work-card back-to-position to-right delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/로고디자인.png" alt="Logo Design"><div class="work-overlay"><h4>Logo Package</h4></div></div>
+                <div class="work-card back-to-position to-left delay-3" onclick="openModal(this)"><img src="https://hadomin91-design.github.io/hadomin_design/문구작업2.png" alt="Calligraphy"><div class="work-overlay"><h4>Calligraphy</h4></div></div>
             </div>
         </div>
     </section>
@@ -415,12 +458,9 @@
         <div class="container">
             <h1 class="section-title back-to-position to-left delay-0">Get In Touch</h1>
             <div class="contact-card back-to-position to-right delay-1">
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> hadomin91@gmail.com</p>
-                    <div class="social-links">
-                        <a href="https://github.com/hadomin91-design" class="social-btn" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-                    </div>
+                <div class="social-links" style="display: flex; justify-content: center; gap: 35px;">
+                    <a href="https://github.com/hadomin91-design" class="social-btn" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -434,6 +474,67 @@
     <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
 
     <script>
+        // --- Pastel Heart Trail Cursor Logic ---
+        document.addEventListener('mousemove', (e) => {
+            const heart = document.createElement('div');
+            heart.className = 'cursor-heart';
+            
+            // 파스텔 톤 색상 랜덤 선택
+            const colors = ['#ffb6c1', '#ffc0cb', '#dda0dd', '#ffdab9', '#e6e6fa'];
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            
+            const size = Math.random() * 15 + 8;
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            
+            // ::before, ::after 크기도 동일하게 조정
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .cursor-heart-${size}::before, .cursor-heart-${size}::after {
+                    width: ${size}px; height: ${size}px;
+                }
+                .cursor-heart-${size}::before { left: -${size/2}px; }
+                .cursor-heart-${size}::after { top: -${size/2}px; }
+            `;
+            document.head.appendChild(style);
+            heart.classList.add(`cursor-heart-${size}`);
+            
+            const rotate = Math.random() * 360;
+            heart.style.transform = `translate(-50%, -50%) rotate(${rotate}deg)`;
+            
+            document.body.appendChild(heart);
+            
+            gsap.to(heart, {
+                y: '-=80',
+                opacity: 0,
+                scale: 0.5,
+                duration: 1.2,
+                ease: "power1.out",
+                onComplete: () => {
+                    heart.remove();
+                    style.remove();
+                }
+            });
+        });
+
+        // --- Sparkle Creation Logic ---
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            const size = Math.random() * 15 + 5;
+            const symbols = ['✨', '⭐', '🌸', '🤍'];
+            sparkle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            sparkle.style.fontSize = size + 'px';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 6000);
+        }
+        setInterval(createSparkle, 250);
+
         // GSAP Initial Animation
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
@@ -444,21 +545,12 @@
         // ScrollMagic Controller
         const controller = new ScrollMagic.Controller();
         const spyEls = document.querySelectorAll('.scroll-spy');
-
         spyEls.forEach(function (spyEl) {
-            new ScrollMagic.Scene({
-                triggerElement: spyEl,
-                triggerHook: 0.8
-            })
-            .setClassToggle(spyEl, 'show')
-            .addTo(controller);
+            new ScrollMagic.Scene({ triggerElement: spyEl, triggerHook: 0.8 })
+            .setClassToggle(spyEl, 'show').addTo(controller);
 
-            // Special handling for skills section
             if(spyEl.id === 'skills') {
-                new ScrollMagic.Scene({
-                    triggerElement: spyEl,
-                    triggerHook: 0.8
-                })
+                new ScrollMagic.Scene({ triggerElement: spyEl, triggerHook: 0.8 })
                 .on('enter', function() {
                     const bars = spyEl.querySelectorAll('.progress-bar');
                     const counters = spyEl.querySelectorAll('.count');
@@ -473,8 +565,7 @@
                             if (count >= target) clearInterval(timer);
                         }, 1500 / target);
                     });
-                })
-                .addTo(controller);
+                }).addTo(controller);
             }
         });
 
