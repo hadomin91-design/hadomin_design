@@ -43,10 +43,110 @@
             color: var(--text-dark);
             background-color: #fff;
             overflow-x: hidden;
-            cursor: none; /* 커스텀 파스텔 하트 커서 사용 */
+            cursor: none;
         }
 
         h1, h2, h3, h4 { font-family: 'Gaegu', cursive; color: var(--primary-color); }
+
+        /* =============================================
+           ✨ INTRO TWINKLE OVERLAY
+        ============================================= */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* 인트로 배경 페이드 */
+        #intro-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, #fff0f6 0%, #fce4f5 40%, #ede9ff 100%);
+            opacity: 1;
+            transition: opacity 1.2s ease 2.5s;
+        }
+        #intro-bg.fade-out {
+            opacity: 0;
+        }
+
+        /* 인트로 중앙 로고 텍스트 */
+        #intro-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.6);
+            font-family: 'Gaegu', cursive;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            opacity: 0;
+            text-shadow: 0 10px 40px rgba(255, 122, 162, 0.35);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+        #intro-logo.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        #intro-logo.hide {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.15);
+            transition: opacity 0.6s ease 2s, transform 0.6s ease 2s;
+        }
+        #intro-logo span {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--rose);
+            margin-top: 6px;
+            letter-spacing: 4px;
+        }
+
+        /* 트윙클 파티클 */
+        .intro-particle {
+            position: absolute;
+            top: -60px;
+            pointer-events: none;
+            animation: intro-fall linear forwards;
+            will-change: transform, opacity;
+            user-select: none;
+            line-height: 1;
+        }
+
+        @keyframes intro-fall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(0.4);
+                opacity: 0;
+            }
+        }
+
+        /* 반짝임 글리터 효과 */
+        .intro-glitter {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: glitter-pop ease-out forwards;
+            will-change: transform, opacity;
+        }
+
+        @keyframes glitter-pop {
+            0% { transform: scale(0) translate(0, 0); opacity: 1; }
+            60% { opacity: 0.9; }
+            100% { transform: scale(1) translate(var(--tx), var(--ty)); opacity: 0; }
+        }
+
+        /* =============================================
+           기존 스타일 유지
+        ============================================= */
 
         /* --- Pastel Heart Trail Cursor --- */
         .cursor-heart {
@@ -351,6 +451,12 @@
 </head>
 <body>
 
+    <!-- ✨ INTRO TWINKLE OVERLAY -->
+    <div id="intro-overlay">
+        <div id="intro-bg"></div>
+        <div id="intro-logo">Hadomin<br>Design<span>✦ Portfolio ✦</span></div>
+    </div>
+
     <div class="bg-decor">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -474,122 +580,256 @@
     <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
 
     <script>
-        // --- Pastel Heart Trail Cursor Logic ---
-        document.addEventListener('mousemove', (e) => {
-            const heart = document.createElement('div');
-            heart.className = 'cursor-heart';
-            
-            // 파스텔 톤 색상 랜덤 선택
-            const colors = ['#ffb6c1', '#ffc0cb', '#dda0dd', '#ffdab9', '#e6e6fa'];
-            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-            
-            heart.style.left = e.clientX + 'px';
-            heart.style.top = e.clientY + 'px';
-            
-            const size = Math.random() * 15 + 8;
-            heart.style.width = size + 'px';
-            heart.style.height = size + 'px';
-            
-            // ::before, ::after 크기도 동일하게 조정
-            const style = document.createElement('style');
-            style.innerHTML = `
-                .cursor-heart-${size}::before, .cursor-heart-${size}::after {
-                    width: ${size}px; height: ${size}px;
-                }
-                .cursor-heart-${size}::before { left: -${size/2}px; }
-                .cursor-heart-${size}::after { top: -${size/2}px; }
+    /* =============================================
+       ✨ INTRO TWINKLE ANIMATION
+    ============================================= */
+    (function() {
+        const overlay   = document.getElementById('intro-overlay');
+        const introBg   = document.getElementById('intro-bg');
+        const introLogo = document.getElementById('intro-logo');
+
+        // 파티클 심볼 & 색상 풀
+        const SYMBOLS = ['✦','✧','★','☆','✿','❀','♡','♥','◈','◇','✺','✹','✸','✷','✶','✵','✴','✳','❋','✽','✼','✻'];
+        const COLORS  = [
+            '#ff9ec4','#ffb3d1','#ffd6e8','#ff7aa2','#f472b6',
+            '#c084fc','#e879f9','#d8b4fe','#a78bfa',
+            '#fbcfe8','#fde68a','#fef3c7','#fff0f6',
+            '#f9a8d4','#f0abfc','#e9d5ff'
+        ];
+
+        // 파티클 하나 생성
+        function spawnParticle(delay) {
+            const el = document.createElement('div');
+            el.className = 'intro-particle';
+
+            const sym  = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+            const size = Math.random() * 28 + 10;           // 10~38px
+            const x    = Math.random() * 110 - 5;           // -5 ~ 105vw
+            const dur  = Math.random() * 2.5 + 1.8;         // 1.8~4.3s
+            const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+            const blur  = Math.random() < 0.3 ? '0.8px' : '0';
+
+            el.textContent = sym;
+            el.style.cssText = `
+                left: ${x}vw;
+                font-size: ${size}px;
+                color: ${color};
+                filter: blur(${blur}) drop-shadow(0 0 6px ${color});
+                animation-duration: ${dur}s;
+                animation-delay: ${delay}s;
             `;
-            document.head.appendChild(style);
-            heart.classList.add(`cursor-heart-${size}`);
-            
-            const rotate = Math.random() * 360;
-            heart.style.transform = `translate(-50%, -50%) rotate(${rotate}deg)`;
-            
-            document.body.appendChild(heart);
-            
-            gsap.to(heart, {
-                y: '-=80',
-                opacity: 0,
-                scale: 0.5,
-                duration: 1.2,
-                ease: "power1.out",
-                onComplete: () => {
-                    heart.remove();
-                    style.remove();
-                }
-            });
-        });
 
-        // --- Sparkle Creation Logic ---
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            const size = Math.random() * 15 + 5;
-            const symbols = ['✨', '⭐', '🌸', '🤍'];
-            sparkle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            sparkle.style.fontSize = size + 'px';
-            sparkle.style.left = Math.random() * 100 + 'vw';
-            sparkle.style.animationDuration = (Math.random() * 4 + 3) + 's';
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 6000);
+            overlay.appendChild(el);
+
+            // 애니메이션 끝나면 제거
+            setTimeout(() => el.remove(), (dur + delay) * 1000 + 200);
         }
-        setInterval(createSparkle, 250);
 
-        // GSAP Initial Animation
-        window.addEventListener('load', () => {
+        // 글리터 버스트 (중앙 로고 주변)
+        function spawnGlitter(cx, cy) {
+            const count = 18;
+            for (let i = 0; i < count; i++) {
+                const g = document.createElement('div');
+                g.className = 'intro-glitter';
+                const size  = Math.random() * 10 + 4;
+                const angle = (i / count) * Math.PI * 2;
+                const dist  = Math.random() * 120 + 40;
+                const tx    = Math.cos(angle) * dist + 'px';
+                const ty    = Math.sin(angle) * dist + 'px';
+                const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+                const dur   = Math.random() * 0.6 + 0.5;
+
+                g.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${color};
+                    left: ${cx - size/2}px;
+                    top:  ${cy - size/2}px;
+                    --tx: ${tx};
+                    --ty: ${ty};
+                    animation-duration: ${dur}s;
+                    box-shadow: 0 0 8px ${color};
+                `;
+                overlay.appendChild(g);
+                setTimeout(() => g.remove(), dur * 1000 + 100);
+            }
+        }
+
+        // 인트로 실행
+        function runIntro() {
+            // 1) 파티클 웨이브 1 — 즉시 쏟아짐
+            for (let i = 0; i < 60; i++) {
+                spawnParticle(Math.random() * 0.6);
+            }
+
+            // 2) 로고 등장 (0.3s 후)
+            setTimeout(() => {
+                introLogo.classList.add('show');
+            }, 300);
+
+            // 3) 로고 등장 직후 글리터 버스트
+            setTimeout(() => {
+                const rect = introLogo.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top  + rect.height / 2;
+                spawnGlitter(cx, cy);
+            }, 900);
+
+            // 4) 파티클 웨이브 2 — 1초 후 추가 폭발
+            setTimeout(() => {
+                for (let i = 0; i < 50; i++) {
+                    spawnParticle(Math.random() * 0.8);
+                }
+            }, 1000);
+
+            // 5) 파티클 웨이브 3 — 1.6초 후 마지막 물결
+            setTimeout(() => {
+                for (let i = 0; i < 40; i++) {
+                    spawnParticle(Math.random() * 0.6);
+                }
+            }, 1600);
+
+            // 6) 로고 사라짐 + 배경 페이드 아웃 (2.4s 후)
+            setTimeout(() => {
+                introLogo.classList.add('hide');
+                introBg.classList.add('fade-out');
+            }, 2400);
+
+            // 7) 오버레이 완전 제거 (3.8s 후)
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 3800);
+        }
+
+        // 폰트 로드 후 실행
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(runIntro);
+        } else {
+            window.addEventListener('load', runIntro);
+        }
+    })();
+
+    /* =============================================
+       기존 스크립트
+    ============================================= */
+
+    // --- Pastel Heart Trail Cursor Logic ---
+    document.addEventListener('mousemove', (e) => {
+        const heart = document.createElement('div');
+        heart.className = 'cursor-heart';
+        
+        const colors = ['#ffb6c1', '#ffc0cb', '#dda0dd', '#ffdab9', '#e6e6fa'];
+        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        
+        const size = Math.random() * 15 + 8;
+        heart.style.width = size + 'px';
+        heart.style.height = size + 'px';
+        
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .cursor-heart-${size}::before, .cursor-heart-${size}::after {
+                width: ${size}px; height: ${size}px;
+            }
+            .cursor-heart-${size}::before { left: -${size/2}px; }
+            .cursor-heart-${size}::after { top: -${size/2}px; }
+        `;
+        document.head.appendChild(style);
+        heart.classList.add(`cursor-heart-${size}`);
+        
+        const rotate = Math.random() * 360;
+        heart.style.transform = `translate(-50%, -50%) rotate(${rotate}deg)`;
+        
+        document.body.appendChild(heart);
+        
+        gsap.to(heart, {
+            y: '-=80',
+            opacity: 0,
+            scale: 0.5,
+            duration: 1.2,
+            ease: "power1.out",
+            onComplete: () => {
+                heart.remove();
+                style.remove();
+            }
+        });
+    });
+
+    // --- Sparkle Creation Logic ---
+    function createSparkle() {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        const size = Math.random() * 15 + 5;
+        const symbols = ['✨', '⭐', '🌸', '🤍'];
+        sparkle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        sparkle.style.fontSize = size + 'px';
+        sparkle.style.left = Math.random() * 100 + 'vw';
+        sparkle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 6000);
+    }
+    setInterval(createSparkle, 250);
+
+    // GSAP Initial Animation
+    window.addEventListener('load', () => {
+        // 인트로 오버레이가 끝난 후 메인 애니메이션 실행
+        setTimeout(() => {
             const tl = gsap.timeline();
             tl.to('.visual-title', { opacity: 1, x: 0, duration: 1.5, ease: "power3.out" });
             tl.to('.poster-showcase', { opacity: 1, x: 0, duration: 1.2, stagger: 0.3, ease: "power2.out" }, "-=1");
-        });
+        }, 3200);
+    });
 
-        // ScrollMagic Controller
-        const controller = new ScrollMagic.Controller();
-        const spyEls = document.querySelectorAll('.scroll-spy');
-        spyEls.forEach(function (spyEl) {
+    // ScrollMagic Controller
+    const controller = new ScrollMagic.Controller();
+    const spyEls = document.querySelectorAll('.scroll-spy');
+    spyEls.forEach(function (spyEl) {
+        new ScrollMagic.Scene({ triggerElement: spyEl, triggerHook: 0.8 })
+        .setClassToggle(spyEl, 'show').addTo(controller);
+
+        if(spyEl.id === 'skills') {
             new ScrollMagic.Scene({ triggerElement: spyEl, triggerHook: 0.8 })
-            .setClassToggle(spyEl, 'show').addTo(controller);
-
-            if(spyEl.id === 'skills') {
-                new ScrollMagic.Scene({ triggerElement: spyEl, triggerHook: 0.8 })
-                .on('enter', function() {
-                    const bars = spyEl.querySelectorAll('.progress-bar');
-                    const counters = spyEl.querySelectorAll('.count');
-                    bars.forEach((bar, index) => {
-                        const width = bar.getAttribute('data-width');
-                        bar.style.width = width + '%';
-                        let count = 0;
-                        const target = parseInt(width);
-                        const timer = setInterval(() => {
-                            count++;
-                            counters[index].innerText = count;
-                            if (count >= target) clearInterval(timer);
-                        }, 1500 / target);
-                    });
-                }).addTo(controller);
-            }
-        });
-
-        // Modal Logic
-        const modal = document.getElementById('modal');
-        const modalImg = document.getElementById('modalImg');
-        function openModal(element) {
-            modal.classList.add('active');
-            modalImg.src = element.querySelector('img').src;
-            document.body.style.overflow = 'hidden';
+            .on('enter', function() {
+                const bars = spyEl.querySelectorAll('.progress-bar');
+                const counters = spyEl.querySelectorAll('.count');
+                bars.forEach((bar, index) => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                    let count = 0;
+                    const target = parseInt(width);
+                    const timer = setInterval(() => {
+                        count++;
+                        counters[index].innerText = count;
+                        if (count >= target) clearInterval(timer);
+                    }, 1500 / target);
+                });
+            }).addTo(controller);
         }
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    });
 
-        // Scroll to top
-        const scrollTop = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) scrollTop.classList.add('show');
-            else scrollTop.classList.remove('show');
-        });
-        scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    // Modal Logic
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    function openModal(element) {
+        modal.classList.add('active');
+        modalImg.src = element.querySelector('img').src;
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+    // Scroll to top
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) scrollTop.classList.add('show');
+        else scrollTop.classList.remove('show');
+    });
+    scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 </body>
 </html>
