@@ -224,6 +224,11 @@
             align-items: center;
             justify-content: center;
             padding: 20px 40px;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+        .visual.fadein {
+            opacity: 1;
         }
 
         .visual .inner {
@@ -774,9 +779,12 @@
 
     // GSAP Initial Animation
     window.addEventListener('load', () => {
-        // 인트로 오버레이가 끝난 후 메인 애니메이션 실행
+        // 인트로 오버레이가 끝난 후 메인 페이드인 + 애니메이션 실행
         setTimeout(() => {
-            const tl = gsap.timeline();
+            // 첫 페이지 페이드인
+            document.querySelector('.visual').classList.add('fadein');
+
+            const tl = gsap.timeline({ delay: 0.4 });
             tl.to('.visual-title', { opacity: 1, x: 0, duration: 1.5, ease: "power3.out" });
             tl.to('.poster-showcase', { opacity: 1, x: 0, duration: 1.2, stagger: 0.3, ease: "power2.out" }, "-=1");
         }, 3200);
