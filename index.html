@@ -44,27 +44,45 @@
             cursor: none;
         }
 
-        /* ─── CUSTOM CURSOR ─── */
+        /* ─── CUSTOM CURSOR (STAR) ─── */
         #cursor-dot {
             position: fixed;
-            width: 10px; height: 10px;
-            background: #ff7aa2;
-            border-radius: 50%;
+            width: 28px; height: 28px;
             pointer-events: none;
             z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s;
-            box-shadow: 0 0 12px #ff7aa2, 0 0 30px #ff7aa2;
+            transform: translate(-50%, -50%) rotate(0deg);
+            transition: transform 0.05s;
+            font-size: 28px;
+            line-height: 1;
+            text-align: center;
+            filter: drop-shadow(0 0 8px #ff7aa2) drop-shadow(0 0 18px #a855f7);
+            animation: star-spin 3s linear infinite;
+            user-select: none;
+        }
+        @keyframes star-spin {
+            from { filter: drop-shadow(0 0 8px #ff7aa2) drop-shadow(0 0 18px #a855f7); }
+            33%  { filter: drop-shadow(0 0 8px #a855f7) drop-shadow(0 0 18px #22d3ee); }
+            66%  { filter: drop-shadow(0 0 8px #22d3ee) drop-shadow(0 0 18px #fbbf24); }
+            to   { filter: drop-shadow(0 0 8px #ff7aa2) drop-shadow(0 0 18px #a855f7); }
         }
         #cursor-ring {
             position: fixed;
-            width: 40px; height: 40px;
-            border: 2px solid rgba(255,122,162,0.6);
-            border-radius: 50%;
+            width: 50px; height: 50px;
             pointer-events: none;
             z-index: 99998;
             transform: translate(-50%, -50%);
-            transition: all 0.15s ease;
+            transition: all 0.18s ease;
+            font-size: 50px;
+            line-height: 1;
+            text-align: center;
+            opacity: 0.35;
+            filter: drop-shadow(0 0 6px #a855f7);
+            user-select: none;
+            animation: ring-pulse 2s ease-in-out infinite;
+        }
+        @keyframes ring-pulse {
+            0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
+            50%       { opacity: 0.45; transform: translate(-50%, -50%) scale(1.15); }
         }
 
         /* ─── INTRO OVERLAY ─── */
@@ -999,9 +1017,9 @@
     <!-- Star Field Canvas -->
     <canvas id="starfield"></canvas>
 
-    <!-- Custom Cursor -->
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
+    <!-- Custom Cursor (Star) -->
+    <div id="cursor-dot">✦</div>
+    <div id="cursor-ring">✦</div>
 
     <!-- Navigation -->
     <nav id="navbar">
@@ -1379,26 +1397,30 @@
         requestAnimationFrame(animRing);
     })();
 
-    /* ─── HEART TRAIL ─── */
+    /* ─── STAR TRAIL ─── */
+    const TRAIL_STARS = ['✦','✧','★','✺','✹','✸','✷','✶','✵','✴','✳','❋','✽','✼','✻','⭐','💫','🌟'];
     document.addEventListener('mousemove', e => {
-        if (Math.random() > 0.35) return;
-        const heart = document.createElement('div');
-        heart.className = 'cursor-heart';
-        const colors = ['#ffb6c1','#ffc0cb','#dda0dd','#ffdab9','#e6e6fa','#c084fc','#22d3ee'];
+        if (Math.random() > 0.4) return;
+        const star = document.createElement('div');
+        star.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;user-select:none;line-height:1;';
+        const colors = ['#ff7aa2','#f472b6','#a855f7','#22d3ee','#fbbf24','#e879f9','#67e8f9'];
         const c = colors[Math.floor(Math.random() * colors.length)];
-        heart.style.color = c;
-        heart.style.left  = e.clientX + 'px';
-        heart.style.top   = e.clientY + 'px';
-        const size = Math.random() * 14 + 6;
-        heart.style.width  = size + 'px';
-        heart.style.height = size + 'px';
-        heart.style.filter = `drop-shadow(0 0 4px ${c})`;
-        document.body.appendChild(heart);
-        gsap.to(heart, {
-            y: '-=100', x: (Math.random()-0.5)*40,
-            opacity: 0, scale: 0.3,
-            duration: 1.4, ease: "power1.out",
-            onComplete: () => heart.remove()
+        const sym = TRAIL_STARS[Math.floor(Math.random() * TRAIL_STARS.length)];
+        const size = Math.random() * 18 + 8;
+        star.textContent = sym;
+        star.style.color = c;
+        star.style.fontSize = size + 'px';
+        star.style.left = e.clientX + 'px';
+        star.style.top  = e.clientY + 'px';
+        star.style.filter = `drop-shadow(0 0 6px ${c})`;
+        star.style.transform = 'translate(-50%,-50%)';
+        document.body.appendChild(star);
+        gsap.to(star, {
+            y: '-=90', x: (Math.random()-0.5)*50,
+            opacity: 0, scale: 0.2,
+            rotation: (Math.random()-0.5)*180,
+            duration: 1.2, ease: 'power1.out',
+            onComplete: () => star.remove()
         });
     });
 
