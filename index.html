@@ -1313,7 +1313,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 <span>Hadomin Design</span>. All rights reserved. ✦ Made with 💖</p>
+        <p>© 2025 <span>Hadomin Design</span>. All rights reserved. ✦ Made with 💖</p>
     </footer>
 
     <!-- Modal -->
@@ -1643,27 +1643,7 @@
         });
     }
 
-    /* ─── 3D PARALLAX: HERO POSTERS ─── */
-    const heroSection = document.querySelector('.hero');
-    const posters = document.querySelectorAll('.poster-wrap');
-    if (heroSection) {
-        heroSection.addEventListener('mousemove', e => {
-            const rect = heroSection.getBoundingClientRect();
-            const dx = (e.clientX - rect.left - rect.width/2) / (rect.width/2);
-            const dy = (e.clientY - rect.top - rect.height/2) / (rect.height/2);
-            posters.forEach((p, i) => {
-                const depth = [1.2, 1.9, 1.2][i] || 1;
-                p.style.transform = `perspective(900px) rotateX(${-dy*10*depth}deg) rotateY(${dx*10*depth}deg) translateZ(${depth*14}px)`;
-            });
-            const title = document.querySelector('.hero-title');
-            if (title) title.style.transform = `perspective(1000px) rotateX(${-dy*3}deg) rotateY(${dx*3}deg) translateX(0)`;
-        });
-        heroSection.addEventListener('mouseleave', () => {
-            posters.forEach(p => p.style.transform = '');
-            const title = document.querySelector('.hero-title');
-            if (title) title.style.transform = '';
-        });
-    }
+
 
     /* ─── 3D TILT: PROFILE IMAGE ─── */
     const profileImg = document.querySelector('.profile-img-container');
