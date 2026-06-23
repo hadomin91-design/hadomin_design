@@ -1057,31 +1057,30 @@
             .nav-links { display: none; }
         }
 
-        /* ─── LEAFLET / LOGO PACKAGE: 검은 박스 안 라운디드 네모 ─── */
-        .work-card--box {
-            /* 카드 자체는 기존 work-card 그대로 유지 */
-            background: transparent;
+        /* ─── Leaflet / Logo Package: 검은 라운디드 박스 + 이미지 라운드 ─── */
+        .work-card--inner {
+            background: #0a0010;
+            padding: 18px;
         }
-        .work-card-box {
-            width: calc(100% - 32px);
-            height: calc(100% - 32px);
+        .inner-box {
+            width: 100%;
+            height: 100%;
             background: #000;
-            border-radius: 28px;
+            border-radius: 48px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
         }
-        .work-card-box img {
+        .inner-box img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            padding: 20px;
+            object-fit: cover;
+            border-radius: 40px;
+            display: block;
             transition: transform 0.8s ease;
         }
-        .work-card--box:hover .work-card-box img {
+        .work-card--inner:hover .inner-box img {
             transform: scale(1.05);
         }
     </style>
@@ -1282,8 +1281,8 @@
                         <div class="work-view-btn"><i class="fas fa-expand"></i> View</div>
                     </div>
                 </div>
-                <div class="work-card work-card--box reveal from-left delay-3" onclick="openModal(this)">
-                    <div class="work-card-box">
+                <div class="work-card work-card--inner reveal from-left delay-3" onclick="openModal(this)">
+                    <div class="inner-box">
                         <img src="https://hadomin91-design.github.io/hadomin_design/로고디자인.png" alt="Logo Design">
                     </div>
                     <div class="work-overlay">
@@ -1292,8 +1291,8 @@
                         <div class="work-view-btn"><i class="fas fa-expand"></i> View</div>
                     </div>
                 </div>
-                <div class="work-card work-card--box reveal from-bottom delay-3" onclick="openModal(this)">
-                    <div class="work-card-box">
+                <div class="work-card work-card--inner reveal from-bottom delay-3" onclick="openModal(this)">
+                    <div class="inner-box">
                         <img src="https://hadomin91-design.github.io/hadomin_design/leaflet.png" alt="Leaflet">
                     </div>
                     <div class="work-overlay">
