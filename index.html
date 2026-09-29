@@ -82,6 +82,18 @@
 
 
 
+
+
+    /* ROUND INTRO + SQUARE WORKS CARDS */
+    .intro-enter{width:148px;height:148px;aspect-ratio:1;border-radius:50%;transform:none;box-shadow:0 0 0 14px rgba(255,255,255,.025),0 20px 55px rgba(0,0,0,.32),0 0 30px rgba(166,124,255,.16)}.intro-enter:before{inset:10px;border-radius:50%}.intro-enter:hover{transform:scale(1.06) rotate(-4deg);box-shadow:0 0 0 14px rgba(255,127,174,.08),0 0 55px rgba(255,127,174,.28)}.intro-enter small{bottom:33px}
+    .works-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}.work{min-height:0;aspect-ratio:1/1}.work img{height:100%;min-height:0;aspect-ratio:1/1;object-fit:cover}.work-info{inset:auto 12px 12px;padding:54px 16px 16px;min-height:0}.work-desc{color:rgba(255,255,255,.92);opacity:0;transform:translateY(8px);transition:opacity .28s ease,transform .28s ease}.work:hover .work-desc{opacity:1;transform:none}.work:hover .work-info{background:linear-gradient(180deg,transparent,rgba(6,4,12,.96) 24%)}
+    @media(hover:none){.work-desc{opacity:1;transform:none}.work-info{background:linear-gradient(180deg,transparent,rgba(6,4,12,.96) 24%)}}
+    @media(max-width:850px){.intro-enter{width:124px;height:124px}.intro-enter:before{inset:9px}.works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.work-info{inset:auto 10px 10px;padding:48px 13px 13px}}
+    @media(max-width:520px){.intro-enter{width:112px;height:112px}.intro-enter:before{inset:8px}.intro-enter small{bottom:27px}.works-grid{grid-template-columns:1fr}.work-info{inset:auto 9px 9px;padding:45px 13px 13px}}
+    /* SQUARE MOCKUP-STYLE INTRO CARD */
+    .intro-enter{width:min(220px,22vw);height:auto;aspect-ratio:1/1;border-radius:24px;transform:rotate(3deg);box-shadow:0 0 0 14px rgba(255,255,255,.025),0 24px 55px rgba(0,0,0,.35),0 0 30px rgba(166,124,255,.16)}.intro-enter:before{inset:11px;border-radius:15px;transform:none}.intro-enter:hover{transform:translateY(-7px) rotate(1deg);box-shadow:0 0 0 14px rgba(255,127,174,.08),0 30px 65px rgba(0,0,0,.42),0 0 45px rgba(255,127,174,.22)}.intro-enter-overlay{background:linear-gradient(145deg,rgba(26,12,41,.14),rgba(9,7,19,.7)),linear-gradient(0deg,rgba(166,124,255,.16),transparent 60%)}.intro-enter img{object-position:center 25%}.intro-enter b{letter-spacing:.2em}.intro-enter small{bottom:29px}
+    @media(max-width:850px){.intro-enter{width:170px;border-radius:20px}.intro-enter:before{border-radius:12px}}
+    @media(max-width:520px){.intro-enter{width:142px;border-radius:18px}.intro-enter:before{inset:9px;border-radius:10px}.intro-enter small{bottom:23px}}
     /* AIRY INTRO TYPOGRAPHY */
     .intro-title{letter-spacing:-.052em;line-height:.94;word-spacing:.08em;margin-left:-.02em}.intro-title span{letter-spacing:-.018em}.intro-kicker{letter-spacing:.34em;line-height:1.6}.intro-copy{letter-spacing:.045em;line-height:2.12;word-spacing:.08em;padding-left:18px}.intro-enter b{letter-spacing:.18em;line-height:1.45}.intro-enter small{letter-spacing:.12em}.intro-corner{letter-spacing:.25em;line-height:1.8}.screening-label{letter-spacing:.25em;line-height:1.7}.side-label{letter-spacing:.25em}.intro-ticker{letter-spacing:.3em;line-height:1.8}.intro-content{gap:76px}
     @media(max-width:850px){.intro-title{letter-spacing:-.045em;line-height:.98}.intro-copy{letter-spacing:.025em;line-height:2}.intro-content{gap:42px}.intro-kicker{letter-spacing:.27em}.screening-label{letter-spacing:.18em}}
