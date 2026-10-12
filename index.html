@@ -152,7 +152,7 @@
 
 
     /* WORKS ORBIT AROUND FRUIT POSTER */
-    .stage .intro-work-globe{right:-6%;top:-8%;width:min(92%,480px);z-index:1;opacity:.92}.stage .stage-card{z-index:3}.stage .float-tag{z-index:4}
+    .stage .intro-work-globe{right:-6%;top:-8%;width:min(92%,480px);z-index:4;opacity:.92}.stage .stage-card{z-index:3}.stage .float-tag{z-index:5}
     @media(max-width:850px){.stage .intro-work-globe{right:-8%;top:-2%;width:92%;opacity:.78}}
     @media(max-width:520px){.stage .intro-work-globe{right:-11%;top:0;width:105%;opacity:.58}}
     /* IMMERSIVE EXHIBITION SYSTEM */
@@ -176,10 +176,17 @@
 
 
     .preview-empty{position:relative;z-index:1;min-height:150px;display:flex;flex-direction:column;justify-content:center;gap:12px;color:var(--muted);border:1px dashed rgba(255,255,255,.18);border-radius:16px;padding:25px}.preview-empty b{color:rgba(255,255,255,.75);font-size:1.1rem;letter-spacing:.06em;line-height:1.3}.preview-empty span{font-size:.76rem;line-height:1.7}
+
+    /* SKILLS STAY IN PLACE / RIGHT PREVIEW ONLY */
+    .skill-work-preview.is-empty{background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));border-color:rgba(255,255,255,.1)}.skill-work-preview.is-empty:before{opacity:.3}.skill-work-preview.is-empty .preview-top,.skill-work-preview.is-empty .preview-copy,.skill-work-preview.is-empty .preview-hint{opacity:0;visibility:hidden}.skill-work-preview.is-empty .preview-grid{min-height:250px}
     /* SKILLS TO RELATED WORKS PANEL */
     .skills{grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:56px;align-items:stretch}.skill-work-preview{position:relative;min-height:390px;padding:28px;border:1px solid rgba(255,255,255,.18);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.025));box-shadow:inset 0 1px rgba(255,255,255,.16),0 25px 60px rgba(0,0,0,.25);overflow:hidden}.skill-work-preview:before{content:"";position:absolute;width:280px;height:280px;right:-90px;top:-100px;border-radius:50%;border:1px solid rgba(255,127,174,.28);box-shadow:0 0 80px rgba(166,124,255,.2)}.preview-top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:start;gap:20px}.preview-top h3{font-size:clamp(1.6rem,3vw,2.5rem);letter-spacing:.02em;color:rgba(255,255,255,.86);margin-top:4px}.preview-top .section-kicker{margin-bottom:0}.preview-top>span{color:var(--pink);font-size:.62rem;letter-spacing:.14em;padding-top:7px}.preview-copy{position:relative;z-index:1;max-width:380px;color:var(--muted);font-size:.84rem;line-height:1.8;margin:18px 0 22px}.preview-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.preview-card{min-width:0;padding:0;border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.045);color:#fff;text-align:left;cursor:pointer;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}.preview-card:hover{transform:translateY(-6px) rotate(-1deg);border-color:var(--pink);box-shadow:0 16px 30px rgba(0,0,0,.32),0 0 22px rgba(255,127,174,.18)}.preview-card img{display:block;width:100%;height:135px;object-fit:cover}.preview-card span{display:block;padding:10px 9px;color:rgba(255,255,255,.78);font-size:.68rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.preview-hint{position:absolute;z-index:1;left:28px;bottom:23px;color:rgba(255,255,255,.4);font-size:.56rem;letter-spacing:.15em}.skill-link.is-selected{box-shadow:inset 0 0 0 1px rgba(255,127,174,.18)}
     @media(max-width:850px){.skills{grid-template-columns:1fr;gap:35px}.skill-work-preview{min-height:350px}.preview-card img{height:115px}}
     @media(max-width:520px){.skill-work-preview{padding:22px;min-height:330px}.preview-grid{gap:8px}.preview-card img{height:92px}.preview-hint{left:22px;bottom:18px;font-size:.48rem}}
+
+    /* WHEEL-TO-CENTER WORKS FOCUS */
+    .globe-core{transition:opacity .25s}.globe-core small{display:block;margin-top:6px;color:rgba(255,255,255,.45);font-size:.34rem;letter-spacing:.08em}.orbit-work{transition:filter .25s,opacity .25s,box-shadow .25s,transform .32s cubic-bezier(.23,1,.32,1),left .32s cubic-bezier(.23,1,.32,1),top .32s cubic-bezier(.23,1,.32,1)}.orbit-work.is-front{left:50%!important;right:auto!important;top:50%!important;bottom:auto!important;z-index:8;opacity:1;transform:translate(-50%,-50%) scale(1.18)!important;border-color:rgba(255,127,174,.82);box-shadow:0 0 0 8px rgba(255,127,174,.08),0 18px 38px rgba(0,0,0,.45),0 0 30px rgba(255,127,174,.25)}.intro-work-globe[data-focus]{cursor:grab}.intro-work-globe.is-dragging .orbit-work.is-front{transition:none}.intro-work-globe:hover .globe-core{opacity:.42}
+    @media(max-width:520px){.globe-core small{font-size:.29rem}.orbit-work.is-front{transform:translate(-50%,-50%) scale(1.05)!important}}
     /* INTERACTIVE WORKS GLOBE + QUIETER TYPE */
     .hero-copy h1{font-size:clamp(2.9rem,5.8vw,5.35rem);letter-spacing:.012em;line-height:1.02;color:rgba(250,247,255,.78);font-weight:700}.hero-copy h1 .gradient{opacity:.78}.section-title{font-size:clamp(1.95rem,3.7vw,3.25rem);letter-spacing:.008em;line-height:1.08;color:rgba(250,247,255,.75);font-weight:700}.section-desc{letter-spacing:.035em}.about-copy h3{letter-spacing:.018em;font-weight:700}.contact h2{font-size:clamp(2.25rem,5.3vw,5rem);letter-spacing:.012em;line-height:1.05;color:rgba(250,247,255,.78)}
     .intro-title{font-size:clamp(3.2rem,7.3vw,6.7rem);letter-spacing:-.018em;line-height:.98;color:rgba(250,247,255,.8);font-weight:700}.intro-title span{-webkit-text-stroke:1px rgba(255,255,255,.38);opacity:.68}.intro-work-globe{pointer-events:auto;cursor:grab;user-select:none;touch-action:none}.intro-work-globe.is-dragging{cursor:grabbing}.intro-work-globe:hover .globe-track{animation-play-state:paused}.globe-track{will-change:transform}.orbit-work{transition:filter .25s,opacity .25s,transform .25s}.orbit-work:hover{opacity:1;filter:brightness(1.22) saturate(1.15);box-shadow:0 0 24px rgba(255,127,174,.35),0 12px 25px rgba(0,0,0,.4)}
@@ -203,7 +210,7 @@
   <main id="top">
     <section class="hero wrap">
       <div class="hero-copy reveal"><div class="eyebrow">Graphic & UI Designer</div><h1>Turn ideas<br><span class="gradient">visual.</span></h1><p>사용자의 마음을 움직이는 디자인을 추구합니다.<br>그래픽 디자인부터 UI까지, 감성을 담은 작업물을 만듭니다.</p><div class="actions"><a href="#works" class="primary">View my works <span>↘</span></a><a href="#about" class="ghost">More about me&nbsp; →</a></div><div class="hero-meta"><div><strong>09+</strong>Selected works</div><div><strong>05</strong>Design fields</div><div><strong>∞</strong>Curiosity</div></div></div>
-      <div class="stage reveal" data-tilt><div class="stage-card" data-tilt-card><img src="fruit_poster_nobg.png" alt="Fruit Poster" data-group="poster"></div><div class="intro-work-globe" aria-label="Selected works orbit"><div class="globe-core">WORKS<br><span>01—10</span></div><div class="globe-ring ring-x"></div><div class="globe-ring ring-y"></div><div class="globe-track"><img class="orbit-work orbit-a" src="flower_poster_nobg.png" alt="Flower Poster"><img class="orbit-work orbit-b" src="travel_redesign_1.png" alt="Travel Redesign"><img class="orbit-work orbit-c" src="이즈니.png" alt="Isigny Project"><img class="orbit-work orbit-d" src="leaflet.png" alt="Leaflet"><img class="orbit-work orbit-e" src="2501110066 민하도_목업.png" alt="Hadomin Mockup"></div></div>
+      <div class="stage reveal" data-tilt><div class="stage-card" data-tilt-card><img src="fruit_poster_nobg.png" alt="Fruit Poster" data-group="poster"></div><div class="intro-work-globe" aria-label="Selected works orbit"><div class="globe-core">WORKS<br><span>01—10</span><small>DRAG / WHEEL</small></div><div class="globe-ring ring-x"></div><div class="globe-ring ring-y"></div><div class="globe-track"><img class="orbit-work orbit-a" src="flower_poster_nobg.png" alt="Flower Poster"><img class="orbit-work orbit-b" src="travel_redesign_1.png" alt="Travel Redesign"><img class="orbit-work orbit-c" src="이즈니.png" alt="Isigny Project"><img class="orbit-work orbit-d" src="leaflet.png" alt="Leaflet"><img class="orbit-work orbit-e" src="2501110066 민하도_목업.png" alt="Hadomin Mockup"></div></div>
     <div class="intro-corner corner-top">VOL. 01 <span>/</span> 2026</div><div class="intro-corner corner-bottom">SEOUL <span>/</span> KOREA</div>
     <div class="intro-ticker" aria-hidden="true"><span>GRAPHIC DESIGN&nbsp;&nbsp;✦&nbsp;&nbsp; UI / UX&nbsp;&nbsp;✦&nbsp;&nbsp; MOTION&nbsp;&nbsp;✦&nbsp;&nbsp; BRANDING&nbsp;&nbsp;✦&nbsp;&nbsp;</span><span>GRAPHIC DESIGN&nbsp;&nbsp;✦&nbsp;&nbsp; UI / UX&nbsp;&nbsp;✦&nbsp;&nbsp; MOTION&nbsp;&nbsp;✦&nbsp;&nbsp; BRANDING&nbsp;&nbsp;✦&nbsp;&nbsp;</span></div><div class="float-tag tag-a">✦ Graphic Design</div><div class="float-tag tag-b">Creative soul ♡</div><div class="float-tag tag-c">UI / UX</div></div>
     </section>
@@ -239,18 +246,23 @@
     const skillLinks=document.querySelectorAll('.skill-link');
     function showWorkGroup(group){
       const target=document.querySelector(`.work-filter[data-filter="${group}"]`);
-      if(target){target.click();document.querySelector('#works').scrollIntoView({behavior:'smooth',block:'start'});}
+      if(target)target.click();
       skillLinks.forEach(skill=>skill.classList.toggle('is-selected',skill.dataset.workFilter===group));
+      document.querySelector('#skills')?.scrollIntoView({behavior:'smooth',block:'center'});
     }
     skillLinks.forEach(skill=>{skill.addEventListener('click',()=>showWorkGroup(skill.dataset.workFilter));skill.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showWorkGroup(skill.dataset.workFilter)}})});
     document.querySelectorAll('.work-filter').forEach(btn=>btn.addEventListener('click',()=>skillLinks.forEach(skill=>skill.classList.toggle('is-selected',skill.dataset.workFilter===btn.dataset.filter))));
 
-    const globe=document.querySelector('.stage .intro-work-globe'),globeTrack=globe&&globe.querySelector('.globe-track');
-    if(globe&&globeTrack){let dragging=false,startX=0,rotation=0;
+    const globe=document.querySelector('.stage .intro-work-globe'),globeTrack=globe&&globe.querySelector('.globe-track'),orbitWorks=globe?Array.from(globe.querySelectorAll('.orbit-work')):[];
+    if(globe&&globeTrack&&orbitWorks.length){let dragging=false,startX=0,rotation=0,activeIndex=0;
+      function setFocus(index){activeIndex=(index+orbitWorks.length)%orbitWorks.length;orbitWorks.forEach((item,i)=>item.classList.toggle('is-front',i===activeIndex));globe.dataset.focus=orbitWorks[activeIndex].alt;}
+      function paint(){globeTrack.style.transform=`rotateY(${rotation}deg) rotateZ(2deg)`;setFocus(Math.round(rotation/72));}
+      setFocus(0);
       globe.addEventListener('pointerdown',e=>{dragging=true;startX=e.clientX;globe.classList.add('is-dragging');globeTrack.style.animation='none';globe.setPointerCapture(e.pointerId)});
-      globe.addEventListener('pointermove',e=>{if(!dragging)return;rotation+=(e.clientX-startX)*.55;startX=e.clientX;globeTrack.style.transform=`rotateY(${rotation}deg) rotateZ(2deg)`});
-      const endDrag=e=>{if(!dragging)return;dragging=false;globe.classList.remove('is-dragging');try{globe.releasePointerCapture(e.pointerId)}catch(_){};};
+      globe.addEventListener('pointermove',e=>{if(!dragging)return;rotation+=(e.clientX-startX)*.55;startX=e.clientX;paint()});
+      const endDrag=e=>{if(!dragging)return;dragging=false;globe.classList.remove('is-dragging');rotation=Math.round(rotation/72)*72;paint();try{globe.releasePointerCapture(e.pointerId)}catch(_){};};
       globe.addEventListener('pointerup',endDrag);globe.addEventListener('pointercancel',endDrag);globe.addEventListener('pointerleave',e=>{if(e.buttons===0)endDrag(e)});
+      globe.addEventListener('wheel',e=>{e.preventDefault();rotation+=(e.deltaY>0?-72:72);paint()},{passive:false});
     }
 
     const previewTitle=document.getElementById('previewTitle'),previewStatus=document.getElementById('previewStatus'),previewCopy=document.getElementById('previewCopy'),previewGrid=document.getElementById('previewGrid');
@@ -261,7 +273,7 @@
       ui:{title:'After Effects',status:'BUILDING SKILLS',copy:'앞으로 포트폴리오에 모션 작업을 더해갈 예정입니다.',items:[]},
       mockup:{title:'Blender',status:'BEGINNER',copy:'3D와 공간 표현을 연습하며 새로운 작업을 준비하고 있습니다.',items:[]}
     };
-    function updateSkillPreview(group){const data=skillPreviewData[group]||skillPreviewData.poster;previewTitle.textContent=data.title;previewStatus.textContent=data.status;previewCopy.textContent=data.copy;previewGrid.innerHTML=data.items.length?data.items.map(item=>`<button class="preview-card" type="button" data-preview-title="${item[1]}"><img src="${item[0]}" alt="${item[1]}"><span>${item[1]}</span></button>`).join(''):'<div class="preview-empty"><b>MORE WORKS<br>COMING SOON</b><span>이 도구로 만든 새로운 작업을 준비하고 있어요.</span></div>';}
+    function updateSkillPreview(group){const data=skillPreviewData[group]||skillPreviewData.poster;const panel=document.getElementById('skillWorkPreview');const connected=data.items.length>0;panel.classList.toggle('is-empty',!connected);previewTitle.textContent=connected?data.title:'';previewStatus.textContent=connected?data.status:'';previewCopy.textContent=connected?data.copy:'';previewGrid.innerHTML=connected?data.items.map(item=>`<button class="preview-card" type="button" data-preview-title="${item[1]}"><img src="${item[0]}" alt="${item[1]}"><span>${item[1]}</span></button>`).join(''):'';}
     skillLinks.forEach(skill=>skill.addEventListener('click',()=>updateSkillPreview(skill.dataset.workFilter)));
     skillLinks.forEach(skill=>skill.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')updateSkillPreview(skill.dataset.workFilter)}));
     const modal=document.getElementById('workModal'),modalImg=document.getElementById('modalImg'),modalCategory=document.getElementById('modalCategory'),modalTitle=document.getElementById('modalTitle'),modalDesc=document.getElementById('modalDesc'),modalMeta=document.getElementById('modalMeta');
