@@ -228,6 +228,13 @@
 
     /* SINGLE-COLUMN SKILLS / NO EMPTY RIGHT PANEL */
     .skills{grid-template-columns:1fr!important}.skill-work-preview{display:none!important}
+
+    /* CLEAN WORK IMAGES / RESTORE RELATED WORKS */
+    .work-info,.work:after{display:none!important}
+    .work{cursor:pointer}
+    .skills{grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr)!important}
+    .skill-work-preview{display:block!important}
+    @media(max-width:850px){.skills{grid-template-columns:1fr!important}}
   </style>
 </head>
 <body>
