@@ -235,6 +235,47 @@
     .skills{grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr)!important}
     .skill-work-preview{display:block!important}
     @media(max-width:850px){.skills{grid-template-columns:1fr!important}}
+
+    /* QUIET EXHIBITION CLEANUP */
+    .stage .float-tag,.stage .intro-ticker{display:none!important}
+    .skill-action,.preview-hint{display:none!important}
+    .work-filters{margin-top:28px;gap:9px}.work-filter{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.12);transition:background .2s ease,border-color .2s ease,transform .2s ease}.work-filter:hover{transform:translateY(-2px);background:rgba(255,127,174,.08);border-color:rgba(255,127,174,.42)}
+    .skill{transition:transform .24s ease,background .24s ease,border-color .24s ease}.skill:hover,.skill:focus-visible{transform:translateX(5px);background:rgba(255,255,255,.045);border-color:rgba(255,127,174,.38);outline:none}.skill:active{transform:translateX(5px) scale(.99)}
+    .preview-card{background:rgba(255,255,255,.025);border-color:rgba(255,255,255,.11)}
+    .section-head{margin-bottom:42px}
+
+    /* EVERY WORK OPENS LARGE DETAIL VIEW */
+    .work{cursor:zoom-in}.work:active{transform:scale(.985)!important}.modal.open .modal-box{animation:workModalIn .24s cubic-bezier(.23,1,.32,1) both}@keyframes workModalIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+
+    /* TOOLS FOR IDEAS / CLICK TO ENLARGE */
+    .skill{position:relative;z-index:0;transform-origin:left center}.skill.is-expanded{z-index:2;transform:scale(1.045) translateX(8px);padding-left:12px;padding-right:12px;border-radius:16px;background:rgba(255,255,255,.065);border-bottom-color:rgba(255,127,174,.52);box-shadow:0 14px 34px rgba(0,0,0,.2),0 0 28px rgba(255,127,174,.1)}
+    .skill.is-expanded .bar{box-shadow:0 0 34px rgba(255,127,174,.28),inset 0 0 15px rgba(255,255,255,.08)}
+    .skill.is-expanded .skill-name{color:#fff}
+
+    /* CONNECTED PHOTOSHOP / ILLUSTRATOR WORKS — CLICK TO ENLARGE */
+    .skill-work-preview.is-connected-focus{border-color:rgba(255,127,174,.48);box-shadow:inset 0 1px rgba(255,255,255,.2),0 25px 60px rgba(0,0,0,.3),0 0 42px rgba(255,127,174,.1);transform:scale(1.018);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+    .skill-work-preview.is-connected-focus .preview-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+    .skill-work-preview.is-connected-focus .preview-card img{height:190px}
+    .skill-work-preview.is-connected-focus .preview-card{border-color:rgba(255,127,174,.28);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+    .skill-work-preview.is-connected-focus .preview-card:hover{transform:translateY(-8px) scale(1.025);border-color:var(--pink);box-shadow:0 20px 36px rgba(0,0,0,.35),0 0 26px rgba(255,127,174,.22)}
+    @media(max-width:520px){.skill-work-preview.is-connected-focus{transform:none}.skill-work-preview.is-connected-focus .preview-grid{grid-template-columns:1fr}.skill-work-preview.is-connected-focus .preview-card img{height:155px}}
+
+    /* ORBIT WORKS / CLICK TO OPEN LARGE DETAIL */
+    .orbit-work{cursor:zoom-in}.orbit-work.is-front{opacity:1;filter:brightness(1.18) saturate(1.12);box-shadow:0 0 30px rgba(255,127,174,.4),0 14px 28px rgba(0,0,0,.45)}
+
+    /* DIRECT ORBIT IMAGE CLICK TARGET */
+    .orbit-work{pointer-events:auto;cursor:zoom-in}.orbit-work:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+
+    /* CLICK TAKES PRIORITY OVER GLOBE DRAG */
+    .orbit-work.is-clicked{filter:brightness(1.35) saturate(1.2);box-shadow:0 0 38px rgba(255,127,174,.72),0 0 0 3px rgba(255,255,255,.35),0 16px 32px rgba(0,0,0,.5)}
+
+    /* LARGE CENTERED DETAIL MODAL / CENTERED CLOSE */
+    .modal{padding:20px}.modal-box{width:min(1180px,100%);max-height:94vh;border-radius:34px}.modal-image{min-height:650px;padding:44px}.modal-image img{max-width:100%;max-height:600px}.modal-close{left:50%;right:auto;top:14px;transform:translateX(-50%);width:44px;height:44px;font-size:1.45rem;background:rgba(10,7,20,.72);box-shadow:0 8px 24px rgba(0,0,0,.35);transition:background .2s ease,transform .2s ease}.modal-close:hover{transform:translateX(-50%) scale(1.08)}
+    @media(max-width:850px){.modal{padding:14px}.modal-box{max-height:94vh;grid-template-columns:1fr;overflow:auto}.modal-image{min-height:52vh;padding:52px 24px 24px}.modal-image img{max-height:52vh}.modal-copy{padding:32px 26px 38px}}
+
+    /* CLOSE BUTTON: TOP-RIGHT CIRCLE, CENTERED X GLYPH */
+    .modal-close{left:auto;right:18px;top:18px;display:grid;place-items:center;padding:0;line-height:1;transform:none;text-align:center}.modal-close:hover{transform:scale(1.08)}
+    @media(max-width:520px){.modal-close{right:14px;top:14px}}
   </style>
 </head>
 <body>
@@ -253,7 +294,7 @@
   <main id="top">
     <section class="hero wrap">
       <div class="hero-copy reveal"><div class="eyebrow">Graphic & UI Designer</div><h1>Turn ideas<br><span class="gradient">visual.</span></h1><p>사용자의 마음을 움직이는 디자인을 추구합니다.<br>그래픽 디자인부터 UI까지, 감성을 담은 작업물을 만듭니다.</p><div class="actions"><a href="#works" class="primary">View my works <span>↘</span></a><a href="#about" class="ghost">More about me&nbsp; →</a></div><div class="hero-meta"><div><strong>09+</strong>Selected works</div><div><strong>05</strong>Design fields</div><div><strong>∞</strong>Curiosity</div></div></div>
-      <div class="stage reveal" data-tilt><div class="stage-card" data-tilt-card><img src="fruit_poster_nobg.png" alt="Fruit Poster" data-group="poster"></div><div class="intro-work-globe" aria-label="Selected works orbit"><div class="globe-core">WORKS<br><span>01—10</span><small>DRAG / WHEEL</small></div><div class="globe-ring ring-x"></div><div class="globe-ring ring-y"></div><div class="globe-track"><img class="orbit-work orbit-a" src="flower_poster_nobg.png" alt="Flower Poster" data-desc="따뜻한 꽃의 리듬을 담은 포스터 디자인." role="button" tabindex="0"><img class="orbit-work orbit-b" src="travel_redesign_1.png" alt="Travel Redesign" data-desc="여행 정보를 더 직관적으로 재구성한 UI 리디자인." role="button" tabindex="0"><img class="orbit-work orbit-c" src="이즈니.png" alt="Isigny Project" data-desc="브랜드의 부드러운 이미지를 시각 언어로 정리한 프로젝트." role="button" tabindex="0"><img class="orbit-work orbit-d" src="leaflet.png" alt="Leaflet" data-desc="정보를 한 장에 읽히도록 구성한 프린트 디자인." role="button" tabindex="0"><img class="orbit-work orbit-e" src="2501110066 민하도_목업.png" alt="Hadomin Mockup" data-desc="작업물을 실제 화면에 적용해 본 목업 디자인." role="button" tabindex="0"></div><div class="globe-caption" aria-live="polite"><b>Flower Poster</b><small>따뜻한 꽃의 리듬을 담은 포스터 디자인.</small></div></div>
+      <div class="stage reveal" data-tilt><div class="stage-card" data-tilt-card><img src="fruit_poster_nobg.png" alt="Fruit Poster" data-group="poster"></div><div class="intro-work-globe" aria-label="Selected works orbit"><div class="globe-core">WORKS<br><span>01—10</span><small>DRAG / WHEEL</small></div><div class="globe-ring ring-x"></div><div class="globe-ring ring-y"></div><div class="globe-track"><img class="orbit-work orbit-a" src="flower_poster_nobg.png" alt="Flower Poster" data-desc="따뜻한 꽃의 리듬을 담은 포스터 디자인." role="button" tabindex="0"><img class="orbit-work orbit-b" src="travel_redesign_1.png" alt="Travel Redesign" data-desc="여행 정보를 더 직관적으로 재구성한 UI 리디자인." role="button" tabindex="0"><img class="orbit-work orbit-c" src="이즈니.png" alt="Isigny Project" data-desc="브랜드의 부드러운 이미지를 시각 언어로 정리한 프로젝트." role="button" tabindex="0"><img class="orbit-work orbit-d" src="leaflet.png" alt="Leaflet" data-desc="정보를 한 장에 읽히도록 구성한 프린트 디자인." role="button" tabindex="0"><img class="orbit-work orbit-e" src="2501110066 민하도_목업.png" alt="DUIT Pet Feeder" data-desc="반려동물의 식사를 더 편리하게 관리하는 스마트 급식기 DUIT 프로젝트." role="button" tabindex="0"></div><div class="globe-caption" aria-live="polite"><b>Flower Poster</b><small>따뜻한 꽃의 리듬을 담은 포스터 디자인.</small></div></div>
     <div class="intro-corner corner-top">VOL. 01 <span>/</span> 2026</div><div class="intro-corner corner-bottom">SEOUL <span>/</span> KOREA</div>
     <div class="intro-ticker" aria-hidden="true"><span>GRAPHIC DESIGN&nbsp;&nbsp;✦&nbsp;&nbsp; UI / UX&nbsp;&nbsp;✦&nbsp;&nbsp; MOTION&nbsp;&nbsp;✦&nbsp;&nbsp; BRANDING&nbsp;&nbsp;✦&nbsp;&nbsp;</span><span>GRAPHIC DESIGN&nbsp;&nbsp;✦&nbsp;&nbsp; UI / UX&nbsp;&nbsp;✦&nbsp;&nbsp; MOTION&nbsp;&nbsp;✦&nbsp;&nbsp; BRANDING&nbsp;&nbsp;✦&nbsp;&nbsp;</span></div><div class="float-tag tag-a">✦ Graphic Design</div><div class="float-tag tag-b">Creative soul ♡</div><div class="float-tag tag-c">UI / UX</div></div>
     </section>
@@ -270,7 +311,7 @@
       <article class="work reveal" data-tilt><img src="로고디자인.png" alt="Logo Package" data-group="brand"><div class="work-info"><small>BRAND IDENTITY</small><h3>Logo Package</h3><p class="work-desc">서로 다른 브랜드의 성격을 간결한 형태와 기억하기 쉬운 로고로 정리했습니다.</p><div class="work-meta"><em>Logo</em><em>Identity</em></div><span>↗</span></div></article>
       <article class="work reveal" data-tilt><img src="leaflet.png" alt="Leaflet" data-group="print"><div class="work-info"><small>PRINT DESIGN</small><h3>Leaflet</h3><p class="work-desc">정보의 우선순위를 정리하고 읽는 흐름을 고려해 인쇄물을 구성했습니다.</p><div class="work-meta"><em>Print</em><em>Layout</em></div><span>↗</span></div></article>
       <article class="work reveal" data-tilt><img src="company_ci.png" alt="Company CI" data-group="brand"><div class="work-info"><small>BRAND IDENTITY</small><h3>Company CI</h3><p class="work-desc">기업의 방향성과 신뢰감을 시각적으로 전달하는 CI 시스템을 제안했습니다.</p><div class="work-meta"><em>CI</em><em>System</em></div><span>↗</span></div></article>
-      <article class="work reveal" data-tilt><img src="2501110066 민하도_목업.png" alt="민하도 디자인 목업" data-group="mockup"><div class="work-info"><small>PORTFOLIO MOCKUP</small><h3>Hadomin Mockup</h3><p class="work-desc">작업물이 실제 공간과 화면 안에서 어떻게 살아나는지 보여주는 포트폴리오 목업입니다.</p><div class="work-meta"><em>Mockup</em><em>Visual</em></div><span>↗</span></div></article>
+      <article class="work reveal" data-tilt><img src="2501110066 민하도_목업.png" alt="DUIT Pet Feeder" data-group="mockup"><div class="work-info"><small>PRODUCT / UI DESIGN</small><h3>DUIT</h3><p class="work-desc">반려동물의 식사 시간을 편리하게 관리할 수 있도록 설계한 스마트 급식기 DUIT 프로젝트입니다.</p><div class="work-meta"><em>Pet Tech</em><em>Product UI</em></div><span>↗</span></div></article>
     </div></section>
     <section id="contact" class="wrap"><div class="contact reveal"><div class="section-kicker">04 / Let's connect</div><h2>Have an idea?<br><span class="gradient">Let's make it.</span></h2><p>디자인 협업이나 프로젝트 문의는 언제든지 환영합니다.<br>함께 멋진 작업을 만들어 나가요.</p><a class="mail" href="mailto:hadomin91-design@github.com">hadomin91-design@github.com ↗</a></div></section>
   </main>
@@ -290,11 +331,11 @@
     function showWorkGroup(group){
       const target=document.querySelector(`.work-filter[data-filter="${group}"]`);
       if(target)target.click();
-      skillLinks.forEach(skill=>skill.classList.toggle('is-selected',skill.dataset.workFilter===group));
+      skillLinks.forEach(skill=>{const active=skill.dataset.workFilter===group;skill.classList.toggle('is-selected',active);skill.classList.toggle('is-expanded',active);});
       document.querySelector('#skills')?.scrollIntoView({behavior:'smooth',block:'center'});
     }
     skillLinks.forEach(skill=>{skill.addEventListener('click',()=>showWorkGroup(skill.dataset.workFilter));skill.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showWorkGroup(skill.dataset.workFilter)}})});
-    document.querySelectorAll('.work-filter').forEach(btn=>btn.addEventListener('click',()=>skillLinks.forEach(skill=>skill.classList.toggle('is-selected',skill.dataset.workFilter===btn.dataset.filter))));
+    document.querySelectorAll('.work-filter').forEach(btn=>btn.addEventListener('click',()=>skillLinks.forEach(skill=>{const active=skill.dataset.workFilter===btn.dataset.filter;skill.classList.toggle('is-selected',active);skill.classList.toggle('is-expanded',active);})));
 
     const globe=document.querySelector('.stage .intro-work-globe'),globeTrack=globe&&globe.querySelector('.globe-track'),globeCaption=globe&&globe.querySelector('.globe-caption'),orbitWorks=globe?Array.from(globe.querySelectorAll('.orbit-work')):[];
     if(globe&&globeTrack&&orbitWorks.length){let dragging=false,startX=0,rotation=0,activeIndex=0;
@@ -302,8 +343,10 @@
       function paint(){globe.style.setProperty('--globe-rotation',`${rotation}deg`);globeTrack.style.transform=`rotateZ(${rotation}deg)`;setFocus(Math.round(rotation/72));}
       function snapTo(index){globeTrack.style.animation='none';globeTrack.style.transition='transform .45s cubic-bezier(.23,1,.32,1)';rotation=index*72;paint();}
       setFocus(0);
-      orbitWorks.forEach((item,index)=>item.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();snapTo(index)}}));globe.addEventListener('click',e=>{const item=e.target.closest('.orbit-work');if(!item)return;const index=orbitWorks.indexOf(item);if(index<0)return;e.stopPropagation();snapTo(index)});
-      globe.addEventListener('pointerdown',e=>{dragging=true;startX=e.clientX;globe.classList.add('is-dragging');globeTrack.style.animation='none';globeTrack.style.transition='none';globe.setPointerCapture(e.pointerId)});
+      function openOrbitWork(item,index){item.classList.add('is-clicked');setTimeout(()=>item.classList.remove('is-clicked'),520);snapTo(index);const linked=[...document.querySelectorAll('.work')].find(work=>work.querySelector('.work-info h3')?.textContent.trim()===item.alt);if(linked)linked.click();}
+      orbitWorks.forEach((item,index)=>{item.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openOrbitWork(item,index)}});item.addEventListener('click',e=>{e.stopPropagation();openOrbitWork(item,index)});});
+      globe.addEventListener('click',e=>{const item=e.target.closest('.orbit-work');if(!item)return;e.stopPropagation();openOrbitWork(item,orbitWorks.indexOf(item))});
+      globe.addEventListener('pointerdown',e=>{if(e.target.closest('.orbit-work'))return;dragging=true;startX=e.clientX;globe.classList.add('is-dragging');globeTrack.style.animation='none';globeTrack.style.transition='none';globe.setPointerCapture(e.pointerId)});
       globe.addEventListener('pointermove',e=>{if(!dragging)return;rotation+=(e.clientX-startX)*.55;startX=e.clientX;paint()});
       const endDrag=e=>{if(!dragging)return;dragging=false;globe.classList.remove('is-dragging');globeTrack.style.transition='transform .35s cubic-bezier(.23,1,.32,1)';rotation=Math.round(rotation/72)*72;paint();try{globe.releasePointerCapture(e.pointerId)}catch(_){};};
       globe.addEventListener('pointerup',endDrag);globe.addEventListener('pointercancel',endDrag);globe.addEventListener('pointerleave',e=>{if(e.buttons===0)endDrag(e)});
@@ -318,9 +361,10 @@
       ui:{title:'After Effects',status:'BUILDING SKILLS',copy:'앞으로 포트폴리오에 모션 작업을 더해갈 예정입니다.',items:[]},
       mockup:{title:'Blender',status:'BEGINNER',copy:'3D와 공간 표현을 연습하며 새로운 작업을 준비하고 있습니다.',items:[]}
     };
-    function updateSkillPreview(group){const data=skillPreviewData[group]||skillPreviewData.poster;const panel=document.getElementById('skillWorkPreview');const connected=data.items.length>0;panel.classList.toggle('is-empty',!connected);previewTitle.textContent=connected?data.title:'';previewStatus.textContent=connected?data.status:'';previewCopy.textContent=connected?data.copy:'';previewGrid.innerHTML=connected?data.items.map(item=>`<button class="preview-card" type="button" data-preview-title="${item[1]}"><img src="${item[0]}" alt="${item[1]}"><span>${item[1]}</span></button>`).join(''):'';}
+    function updateSkillPreview(group){const data=skillPreviewData[group]||skillPreviewData.poster;const panel=document.getElementById('skillWorkPreview');const connected=data.items.length>0;panel.classList.toggle('is-empty',!connected);panel.classList.toggle('is-connected-focus',connected);previewTitle.textContent=connected?data.title:'';previewStatus.textContent=connected?data.status:'';previewCopy.textContent=connected?data.copy:'';previewGrid.innerHTML=connected?data.items.map(item=>`<button class="preview-card" type="button" data-preview-title="${item[1]}"><img src="${item[0]}" alt="${item[1]}"><span>${item[1]}</span></button>`).join(''):'';}
     skillLinks.forEach(skill=>skill.addEventListener('click',()=>updateSkillPreview(skill.dataset.workFilter)));
     skillLinks.forEach(skill=>skill.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')updateSkillPreview(skill.dataset.workFilter)}));
+    previewGrid.addEventListener('click',e=>{const card=e.target.closest('.preview-card');if(!card)return;const work=[...document.querySelectorAll('.work')].find(item=>item.querySelector('.work-info h3')?.textContent.trim()===card.dataset.previewTitle);if(work)work.click();});
     const modal=document.getElementById('workModal'),modalImg=document.getElementById('modalImg'),modalCategory=document.getElementById('modalCategory'),modalTitle=document.getElementById('modalTitle'),modalDesc=document.getElementById('modalDesc'),modalMeta=document.getElementById('modalMeta');
     document.querySelectorAll('.work').forEach(work=>work.addEventListener('click',()=>{const img=work.querySelector('img'),info=work.querySelector('.work-info');modalImg.src=img.src;modalImg.alt=img.alt;modalCategory.textContent=info.querySelector('small').textContent;modalTitle.textContent=info.querySelector('h3').textContent;modalDesc.textContent=info.querySelector('.work-desc').textContent;modalMeta.innerHTML=info.querySelector('.work-meta').innerHTML;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}));
     function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}document.querySelector('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
