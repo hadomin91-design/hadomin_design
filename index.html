@@ -287,7 +287,16 @@
     /* ROUNDED CORNERS FOR EVERY SELECTED WORK */
     .works-grid .work{border-radius:34px!important;overflow:hidden;isolation:isolate}.works-grid .work img{border-radius:40px!important;clip-path:inset(0 round 40px)!important;-webkit-clip-path:inset(0 round 40px)!important;overflow:hidden}
   /* Cinema illustration beside the intro title: anchored to the title box so it never overlaps the text */ .intro-title{display:inline-block;position:relative} .intro-illust{position:absolute;right:100%;top:50%;transform:translateY(-50%);margin-right:clamp(12px,3vw,56px);width:min(24vw,340px);height:auto;z-index:4;pointer-events:none;filter:drop-shadow(0 22px 46px rgba(0,0,0,.45))} @media(max-width:850px){.intro-title{display:block}.intro-illust{position:static;transform:none;margin:22px 0 0;width:min(52vw,230px);display:block}} @media(max-width:520px){.intro-illust{width:min(60vw,210px)}}
-</style>
+/* Works: rounded tiles with a black caption under each image, always visible */
+.works-grid .work{aspect-ratio:auto!important;min-height:0!important;background:#000!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:26px!important;padding:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;box-shadow:0 18px 40px rgba(0,0,0,.45)!important}
+.works-grid .work>img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:1/1!important;object-fit:contain!important;background:#15101f!important;padding:9%!important;box-sizing:border-box!important;border-radius:0!important;clip-path:none!important;-webkit-clip-path:none!important}
+.works-grid .work .work-info{display:block!important;position:relative!important;inset:auto!important;transform:none!important;min-height:0!important;padding:16px 18px 18px!important;background:#000!important;color:#fff!important;border-radius:0!important;text-shadow:none!important}
+.works-grid .work .work-info>span{display:none!important}
+.works-grid .work .work-info small{color:#fff!important;opacity:.7!important;text-shadow:none!important}
+.works-grid .work h3{color:#fff!important;font-size:1rem!important;margin:4px 0 6px!important;padding-right:0!important;text-shadow:none!important}
+.works-grid .work .work-desc{color:#fff!important;opacity:1!important;transform:none!important;font-size:12px!important;min-height:0!important}
+.works-grid .work .work-meta{display:flex!important;gap:6px;flex-wrap:wrap;margin-top:8px}
+.works-grid .work .work-meta em{color:#fff!important;border-color:rgba(255,255,255,.5)!important;background:transparent!important}</style>
 </head>
 <body>
   <div class="intro" id="intro" aria-label="Hadomin Design portfolio intro">
