@@ -286,7 +286,8 @@
 
     /* ROUNDED CORNERS FOR EVERY SELECTED WORK */
     .works-grid .work{border-radius:34px!important;overflow:hidden;isolation:isolate}.works-grid .work img{border-radius:40px!important;clip-path:inset(0 round 40px)!important;-webkit-clip-path:inset(0 round 40px)!important;overflow:hidden}
-  </style>
+  /* Cinema illustration beside the intro title: anchored to the title box so it never overlaps the text */ .intro-title{display:inline-block;position:relative} .intro-illust{position:absolute;right:100%;top:50%;transform:translateY(-50%);margin-right:clamp(12px,3vw,56px);width:min(24vw,340px);height:auto;z-index:4;pointer-events:none;filter:drop-shadow(0 22px 46px rgba(0,0,0,.45))} @media(max-width:850px){.intro-title{display:block}.intro-illust{position:static;transform:none;margin:22px 0 0;width:min(52vw,230px);display:block}} @media(max-width:520px){.intro-illust{width:min(60vw,210px)}}
+</style>
 </head>
 <body>
   <div class="intro" id="intro" aria-label="Hadomin Design portfolio intro">
@@ -294,7 +295,7 @@
     <div class="intro-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="intro-spotlight" aria-hidden="true"></div>
     <div class="screening-label"><span class="live-dot"></span> NOW SHOWING <b>/</b> HADOMIN DESIGN</div><div class="side-label">EXHIBITION 01 <span>—</span> VISUAL ARCHIVE</div>
     <div class="intro-art" aria-hidden="true"><div class="art-glow"></div><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-card"><span>HD</span><small>VISUAL<br>ARCHIVE</small></div><div class="art-line"></div></div>
-      <div><div class="intro-kicker">MIN HADO / VISUAL DESIGNER</div><h1 class="intro-title">세상을<br><span>그리다</span></h1><p class="intro-copy">감정이 머무는 장면을 디자인합니다.<br>작업을 보기 전에, 잠깐 이 공간의 리듬을 느껴보세요.</p></div>
+      <div><div class="intro-kicker">MIN HADO / VISUAL DESIGNER</div><h1 class="intro-title">세상을<br><span>그리다</span><img class="intro-illust" src="assets/hadomin/cinema-illustration.png" alt="" aria-hidden="true"></h1><p class="intro-copy">감정이 머무는 장면을 디자인합니다.<br>작업을 보기 전에, 잠깐 이 공간의 리듬을 느껴보세요.</p></div>
       <button class="intro-enter" id="introEnter" type="button"><img src="KakaoTalk_20260531_154158562.jpg" alt="민하도 프로필"><span class="intro-enter-overlay"></span><b>ENTER<br>PORTFOLIO</b><small><span class="click-label">CLICK TO OPEN</span><span class="open-label">OPEN →</span></small></button>
     </div>
     <a class="intro-skip" href="#top" id="introSkip">Skip intro ↗</a>
