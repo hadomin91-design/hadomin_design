@@ -293,6 +293,30 @@
     /* HANDWRITTEN GOTHIC TYPE + EMBEDDED ARTWORK */
     body{font-family:'Gowun Dodum','Noto Sans KR',sans-serif}
     .hero-copy h1,.intro-title,.section-title,.contact h2,.preview-top h3,.work-info h3{font-family:'Gowun Dodum','Noto Sans KR',sans-serif;font-weight:700}
+
+    /* WORKS: CLEAN TOP-ALIGNED DESCRIPTIONS */
+    .works-grid .work-info{inset:14px 14px auto;padding:16px 16px 18px;min-height:0;border-radius:18px;background:linear-gradient(180deg,rgba(6,4,12,.94) 0%,rgba(6,4,12,.78) 66%,rgba(6,4,12,.05) 100%);backdrop-filter:blur(8px);transform:translateZ(45px)}
+    .works-grid .work-info small{display:block;font-size:.62rem;letter-spacing:.14em;color:#ff9fc1;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+    .works-grid .work-info h3{font-size:1.08rem;line-height:1.2;margin-top:6px;padding-right:30px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+    .works-grid .work-desc{max-width:34ch;color:rgba(255,255,255,.86);font-size:.72rem;line-height:1.55;margin-top:8px;padding-right:24px;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+    .works-grid .work-meta{margin-top:11px}
+    .works-grid .work-info>span{top:16px;right:16px;color:#fff;font-size:1.1rem}
+    .works-grid .work:after{top:auto;right:17px;bottom:17px;opacity:.86;transform:translateZ(35px);background:rgba(9,7,19,.62)}
+    .works-grid .work:hover .work-info{background:linear-gradient(180deg,rgba(6,4,12,.97) 0%,rgba(6,4,12,.8) 68%,rgba(6,4,12,.08) 100%)}
+    @media(max-width:850px){.works-grid .work-info{inset:10px 10px auto;padding:13px 13px 15px}.works-grid .work-desc{font-size:.68rem}.works-grid .work:after{right:13px;bottom:13px}}
+
+    /* INTRO CINEMA DOORS — INLINE SVG, NO BROKEN IMAGE PATHS */
+    .intro-cinema-nav{position:absolute;left:42px;bottom:54px;z-index:20;display:flex;gap:12px;align-items:stretch}
+    .intro-cinema-card{position:relative;width:142px;min-height:104px;padding:10px;border:1px solid rgba(255,255,255,.2);border-radius:18px;background:linear-gradient(145deg,rgba(20,16,39,.82),rgba(8,7,18,.64));color:#fff;text-align:left;cursor:pointer;overflow:hidden;box-shadow:0 16px 34px rgba(0,0,0,.28);backdrop-filter:blur(12px);transition:transform .22s cubic-bezier(.23,1,.32,1),border-color .22s,box-shadow .22s}
+    .intro-cinema-card:hover,.intro-cinema-card:focus-visible{transform:translateY(-7px) scale(1.025);border-color:rgba(255,127,174,.72);box-shadow:0 22px 42px rgba(0,0,0,.4),0 0 28px rgba(255,127,174,.16);outline:none}
+    .intro-cinema-card:active{transform:translateY(-2px) scale(.98)}
+    .intro-cinema-card svg{display:block;width:100%;height:52px;margin-bottom:7px;border-radius:10px;background:rgba(255,255,255,.05)}
+    .intro-cinema-card b{display:block;font:700 .67rem 'Gowun Dodum','Noto Sans KR',sans-serif;letter-spacing:.12em}
+    .intro-cinema-card small{display:block;margin-top:2px;color:rgba(255,255,255,.55);font:400 .58rem 'Gowun Dodum','Noto Sans KR',sans-serif}
+    .intro-cinema-card.popcorn-door{--door-accent:#ffd37a}.intro-cinema-card.movie-door{--door-accent:#70e9ff}
+    .intro-cinema-card .door-light{fill:var(--door-accent);filter:drop-shadow(0 0 5px var(--door-accent))}
+    @media(max-width:850px){.intro-cinema-nav{left:20px;bottom:28px;gap:8px}.intro-cinema-card{width:122px;min-height:92px}.intro-cinema-card svg{height:43px}}
+    @media(max-width:520px){.intro-cinema-nav{left:14px;bottom:18px}.intro-cinema-card{width:calc((100vw - 44px)/2);min-height:82px;padding:8px}.intro-cinema-card svg{height:35px;margin-bottom:5px}.intro-cinema-card b{font-size:.58rem}.intro-cinema-card small{font-size:.5rem}}
   </style>
 </head>
 <body>
@@ -303,6 +327,16 @@
     <div class="intro-art" aria-hidden="true"><div class="art-glow"></div><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-card"><span>HD</span><small>VISUAL<br>ARCHIVE</small></div><div class="art-line"></div></div>
       <div><div class="intro-kicker">MIN HADO / VISUAL DESIGNER</div><h1 class="intro-title">세상을<br><span>그리다</span></h1><p class="intro-copy">감정이 머무는 장면을 디자인합니다.<br>작업을 보기 전에, 잠깐 이 공간의 리듬을 느껴보세요.</p></div>
       <button class="intro-enter" id="introEnter" type="button"><img src="KakaoTalk_20260531_154158562.jpg" alt="민하도 프로필"><span class="intro-enter-overlay"></span><b>ENTER<br>PORTFOLIO</b><small><span class="click-label">CLICK TO OPEN</span><span class="open-label">OPEN →</span></small></button>
+    <div class="intro-cinema-nav" aria-label="Browse work collections">
+      <button class="intro-cinema-card popcorn-door" type="button" data-filter="popcorn" aria-label="팝콘 컬렉션 작품 보기">
+        <svg viewBox="0 0 160 58" role="img" aria-label="팝콘 일러스트" xmlns="http://www.w3.org/2000/svg"><path d="M42 20h76l-8 31H50z" fill="#e65f78" stroke="#fff" stroke-opacity=".65"/><path d="m54 21 8 30M75 21l3 30M98 21l-4 30M116 21l-8 30" stroke="#ffd37a" stroke-width="7" opacity=".9"/><path d="M48 21c-2-10 5-17 13-12 2-10 14-10 18-1 6-10 18-5 17 4 10-6 18 4 13 12" fill="#fff3d1" stroke="#ffd37a" stroke-width="2"/><circle class="door-light" cx="67" cy="10" r="2.5"/><circle class="door-light" cx="93" cy="8" r="2.5"/></svg>
+        <b>POPCORN</b><small>팝콘 컬렉션 보기</small>
+      </button>
+      <button class="intro-cinema-card movie-door" type="button" data-filter="movie" aria-label="무비 컬렉션 작품 보기">
+        <svg viewBox="0 0 160 58" role="img" aria-label="영화관 일러스트" xmlns="http://www.w3.org/2000/svg"><path d="M27 50V20l53-12 53 12v30" fill="#17132c" stroke="#70e9ff" stroke-width="2"/><path d="M20 20h120v8H20z" fill="#70e9ff" opacity=".82"/><path d="M29 29h102v21H29z" fill="#090713" stroke="#fff" stroke-opacity=".18"/><path d="M39 48V35h18v13M71 48V35h18v13M103 48V35h18v13" fill="#28204a" stroke="#70e9ff" stroke-opacity=".7"/><path d="M29 16h102" stroke="#ff7fae" stroke-width="3"/><circle class="door-light" cx="38" cy="20" r="2"/><circle class="door-light" cx="122" cy="20" r="2"/><path d="M76 31h8v7h-8z" fill="#fff" opacity=".8"/></svg>
+        <b>MOVIE</b><small>영화관 컬렉션 보기</small>
+      </button>
+    </div>
     </div>
     <a class="intro-skip" href="#top" id="introSkip">Skip intro ↗</a>
   </div>
@@ -337,11 +371,12 @@
   <footer class="footer wrap"><span>© 2026 Hadomin Design. All rights reserved.</span><span>Made with curiosity & care ✦</span></footer>
   <script>
     const intro=document.getElementById('intro'),introEnter=document.getElementById('introEnter'),introSkip=document.getElementById('introSkip');
-    function openPortfolio(e){if(e)e.preventDefault();intro.classList.add('hide');document.body.classList.add('intro-seen');setTimeout(()=>intro.remove(),900)}
+    function openPortfolio(e,group){if(e)e.preventDefault();intro.classList.add('hide');document.body.classList.add('intro-seen');setTimeout(()=>{intro.remove();if(group){const filter=document.querySelector(`.work-filter[data-filter="${group}"]`);if(filter)filter.click();document.querySelector('#works')?.scrollIntoView({behavior:'smooth',block:'start'})}},900)}
     introEnter.addEventListener('click',openPortfolio);introSkip.addEventListener('click',openPortfolio);
     const items=document.querySelectorAll('.reveal');const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});items.forEach(i=>observer.observe(i));
     const scoreObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const bar=entry.target,target=Number(bar.dataset.score),number=bar.querySelector('.score-number');let startTime=null;const duration=2400;function count(now){if(!startTime)startTime=now;const progress=Math.min((now-startTime)/duration,1);const eased=1-Math.pow(1-progress,3);number.textContent=Math.round(target*eased)+'%';if(progress<1)requestAnimationFrame(count)}requestAnimationFrame(count);scoreObserver.unobserve(bar)}),{threshold:.65});document.querySelectorAll('.skill .bar').forEach(bar=>scoreObserver.observe(bar));
     const workFilters=document.querySelectorAll('.work-filter'),workCards=document.querySelectorAll('.work'),worksGrid=document.querySelector('.works-grid');
+    document.querySelectorAll('.intro-cinema-card').forEach(card=>card.addEventListener('click',e=>openPortfolio(e,card.dataset.filter)));
     workFilters.forEach(filterButton=>filterButton.addEventListener('click',()=>{const filter=filterButton.dataset.filter;workFilters.forEach(btn=>{const active=btn===filterButton;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});worksGrid.classList.remove('filtering');void worksGrid.offsetWidth;workCards.forEach(card=>card.classList.toggle('is-filtered-out',filter!=='all'&&card.querySelector('img').dataset.group!==filter));worksGrid.classList.add('filtering')}));
 
 
