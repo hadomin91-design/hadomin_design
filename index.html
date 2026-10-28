@@ -317,6 +317,32 @@
     .intro-cinema-card .door-light{fill:var(--door-accent);filter:drop-shadow(0 0 5px var(--door-accent))}
     @media(max-width:850px){.intro-cinema-nav{left:20px;bottom:28px;gap:8px}.intro-cinema-card{width:122px;min-height:92px}.intro-cinema-card svg{height:43px}}
     @media(max-width:520px){.intro-cinema-nav{left:14px;bottom:18px}.intro-cinema-card{width:calc((100vw - 44px)/2);min-height:82px;padding:8px}.intro-cinema-card svg{height:35px;margin-bottom:5px}.intro-cinema-card b{font-size:.58rem}.intro-cinema-card small{font-size:.5rem}}
+
+    /* FIXED NAV BAR / INSET LOGO */
+    html{scrollbar-gutter:stable}
+    section[id]{scroll-margin-top:104px}
+    .nav{position:fixed!important;top:16px!important;left:50%!important;right:auto!important;width:min(calc(100% - 32px),1100px)!important;margin:0!important;transform:translate3d(-50%,0,0)!important;transition:none!important;will-change:auto!important;padding-left:32px!important}
+    .nav .logo{margin-left:4px;white-space:nowrap}
+    .nav a,.nav button{transform:none!important}
+    @media(max-width:520px){.nav{top:10px!important;width:calc(100% - 20px)!important;padding-left:22px!important;padding-right:14px!important;border-radius:20px}.nav .logo{margin-left:2px;font-size:.82rem}.navlinks{gap:11px;font-size:.64rem}.nav-cta{padding:7px 9px;font-size:.58rem}}
+
+    /* FLOATING POPCORN + MOVIE DOORS */
+    .intro-cinema-card{animation:cinema-door-float 5.8s ease-in-out infinite;will-change:transform}
+    .intro-cinema-card.movie-door{animation-delay:-2.35s;margin-top:12px}
+    .intro-cinema-card:hover,.intro-cinema-card:focus-visible{animation:none}
+    @keyframes cinema-door-float{0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}50%{transform:translate3d(0,-13px,0) rotate(1.2deg)}}
+    @media(prefers-reduced-motion:reduce){.intro-cinema-card,.intro-cinema-card.movie-door{animation:none;margin-top:0}}
+
+    /* CINEMA COLLECTION POPUP BESIDE THE LANDING TITLE */
+    .intro-cinema-nav{left:calc(50% + 155px);top:46%;bottom:auto;transform:translateY(-50%)}
+    .collection-modal{position:fixed;inset:0;z-index:140;display:grid;place-items:center;padding:28px;background:rgba(3,2,8,.76);backdrop-filter:blur(18px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+    .collection-modal.open{opacity:1;visibility:visible}
+    .collection-box{position:relative;width:min(1040px,100%);max-height:min(760px,88vh);overflow:auto;padding:34px;border:1px solid rgba(255,255,255,.24);border-radius:30px;background:linear-gradient(145deg,rgba(36,24,58,.97),rgba(10,7,20,.98));box-shadow:0 40px 120px rgba(0,0,0,.65),0 0 70px rgba(166,124,255,.2);transform:translateY(18px) scale(.96);transition:transform .35s cubic-bezier(.23,1,.32,1)}
+    .collection-modal.open .collection-box{transform:none}
+    .collection-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}.collection-head small{display:block;color:var(--pink);font:700 .65rem 'Gowun Dodum','Noto Sans KR',sans-serif;letter-spacing:.18em}.collection-head h2{margin-top:5px;color:#fff;font:700 clamp(1.8rem,4vw,3.3rem) 'Gowun Dodum','Noto Sans KR',sans-serif;letter-spacing:.02em}.collection-close{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border:1px solid rgba(255,255,255,.24);border-radius:50%;background:rgba(255,255,255,.06);color:#fff;cursor:pointer;font-size:1.3rem;line-height:1;transition:background .2s,transform .2s}.collection-close:hover,.collection-close:focus-visible{background:rgba(255,127,174,.22);transform:rotate(90deg);outline:none}
+    .collection-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.collection-card{display:block;width:100%;padding:0;border:1px solid rgba(255,255,255,.13);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.045);color:#fff;text-align:left;cursor:pointer;transition:transform .22s cubic-bezier(.23,1,.32,1),border-color .22s,box-shadow .22s}.collection-card:hover,.collection-card:focus-visible{transform:translateY(-6px);border-color:rgba(255,127,174,.72);box-shadow:0 16px 35px rgba(0,0,0,.35),0 0 24px rgba(255,127,174,.16);outline:none}.collection-card img{display:block;width:100%;height:220px;object-fit:contain;padding:10px;background:rgba(5,4,12,.72)}.collection-card span{display:block;padding:12px 13px;color:rgba(255,255,255,.86);font:700 .76rem 'Gowun Dodum','Noto Sans KR',sans-serif;letter-spacing:.04em}.collection-card small{display:block;padding:0 13px 12px;color:rgba(255,255,255,.48);font:.62rem 'Gowun Dodum','Noto Sans KR',sans-serif}
+    @media(max-width:850px){.intro-cinema-nav{left:auto;right:24px;top:52%;bottom:auto;transform:none}.collection-box{padding:25px}.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.collection-card img{height:180px}}
+    @media(max-width:520px){.intro-cinema-nav{left:50%;right:auto;top:64%;transform:translateX(-50%);gap:8px}.intro-cinema-card{width:calc((100vw - 44px)/2)}.collection-modal{padding:14px}.collection-box{padding:20px;border-radius:22px;max-height:90vh}.collection-head h2{font-size:1.7rem}.collection-grid{gap:9px}.collection-card img{height:130px;padding:7px}.collection-card span{padding:9px;font-size:.66rem}.collection-card small{padding:0 9px 9px;font-size:.55rem}}
   </style>
 </head>
 <body>
@@ -367,6 +393,7 @@
     </div></section>
     <section id="contact" class="wrap"><div class="contact reveal"><div class="section-kicker">04 / Let's connect</div><h2>Have an idea?<br><span class="gradient">Let's make it.</span></h2><p>디자인 협업이나 프로젝트 문의는 언제든지 환영합니다.<br>함께 멋진 작업을 만들어 나가요.</p><a class="mail" href="mailto:hadomin91-design@github.com">hadomin91-design@github.com ↗</a></div></section>
   </main>
+  <div class="collection-modal" id="collectionModal" aria-hidden="true"><div class="collection-box" role="dialog" aria-modal="true" aria-labelledby="collectionTitle"><div class="collection-head"><div><small id="collectionKicker">SELECTED WORKS</small><h2 id="collectionTitle">Collection</h2></div><button class="collection-close" id="collectionClose" type="button" aria-label="컬렉션 닫기">×</button></div><div class="collection-grid" id="collectionGrid"></div></div></div>
   <div class="modal" id="workModal" aria-hidden="true"><div class="modal-box"><button class="modal-close" aria-label="닫기">×</button><div class="modal-image"><img id="modalImg" src="" alt=""></div><div class="modal-copy"><small id="modalCategory"></small><h3 id="modalTitle"></h3><p id="modalDesc"></p><div class="work-meta" id="modalMeta"></div></div></div></div>
   <footer class="footer wrap"><span>© 2026 Hadomin Design. All rights reserved.</span><span>Made with curiosity & care ✦</span></footer>
   <script>
@@ -376,8 +403,11 @@
     const items=document.querySelectorAll('.reveal');const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.12});items.forEach(i=>observer.observe(i));
     const scoreObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const bar=entry.target,target=Number(bar.dataset.score),number=bar.querySelector('.score-number');let startTime=null;const duration=2400;function count(now){if(!startTime)startTime=now;const progress=Math.min((now-startTime)/duration,1);const eased=1-Math.pow(1-progress,3);number.textContent=Math.round(target*eased)+'%';if(progress<1)requestAnimationFrame(count)}requestAnimationFrame(count);scoreObserver.unobserve(bar)}),{threshold:.65});document.querySelectorAll('.skill .bar').forEach(bar=>scoreObserver.observe(bar));
     const workFilters=document.querySelectorAll('.work-filter'),workCards=document.querySelectorAll('.work'),worksGrid=document.querySelector('.works-grid');
-    document.querySelectorAll('.intro-cinema-card').forEach(card=>card.addEventListener('click',e=>openPortfolio(e,card.dataset.filter)));
-    workFilters.forEach(filterButton=>filterButton.addEventListener('click',()=>{const filter=filterButton.dataset.filter;workFilters.forEach(btn=>{const active=btn===filterButton;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});worksGrid.classList.remove('filtering');void worksGrid.offsetWidth;workCards.forEach(card=>card.classList.toggle('is-filtered-out',filter!=='all'&&card.querySelector('img').dataset.group!==filter));worksGrid.classList.add('filtering')}));
+    const collectionModal=document.getElementById('collectionModal'),collectionClose=document.getElementById('collectionClose'),collectionGrid=document.getElementById('collectionGrid'),collectionTitle=document.getElementById('collectionTitle'),collectionKicker=document.getElementById('collectionKicker');
+    function openCollection(e,group){e.preventDefault();e.stopPropagation();const isMovie=group==='movie';collectionKicker.textContent=isMovie?'MOVIE / SELECTED WORKS':'POPCORN / SELECTED WORKS';collectionTitle.textContent=isMovie?'Movie Collection':'Popcorn Collection';collectionGrid.innerHTML='';workCards.forEach(work=>{const img=work.querySelector('img');if(img.dataset.group!==group)return;const title=work.querySelector('.work-info h3')?.textContent.trim()||img.alt;const category=work.querySelector('.work-info small')?.textContent.trim()||'';const card=document.createElement('button');card.type='button';card.className='collection-card';card.innerHTML=`<img src="${img.src}" alt="${img.alt}"><span>${title}</span><small>${category}</small>`;card.addEventListener('click',()=>{collectionModal.classList.remove('open');collectionModal.setAttribute('aria-hidden','true');work.click()});collectionGrid.appendChild(card)});collectionModal.classList.add('open');collectionModal.setAttribute('aria-hidden','false');collectionClose.focus()}
+    document.querySelectorAll('.intro-cinema-card').forEach(card=>card.addEventListener('click',e=>openCollection(e,card.dataset.filter)));
+    collectionClose.addEventListener('click',()=>{collectionModal.classList.remove('open');collectionModal.setAttribute('aria-hidden','true')});collectionModal.addEventListener('click',e=>{if(e.target===collectionModal)collectionClose.click()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&collectionModal.classList.contains('open'))collectionClose.click()});
+    workFilters.forEach(filterButton=>filterButton.addEventListener('click',event=>{const filter=filterButton.dataset.filter;if(filter==='popcorn'||filter==='movie'){openCollection(event,filter);return}workFilters.forEach(btn=>{const active=btn===filterButton;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});worksGrid.classList.remove('filtering');void worksGrid.offsetWidth;workCards.forEach(card=>card.classList.toggle('is-filtered-out',filter!=='all'&&card.querySelector('img').dataset.group!==filter));worksGrid.classList.add('filtering')}));
 
 
     const skillLinks=document.querySelectorAll('.skill-link');
