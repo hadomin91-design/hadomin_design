@@ -357,6 +357,16 @@
     /* ABOUT CONTACT + CERTIFICATE */
     .about-details{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;margin-top:28px;align-items:stretch}.about-contact,.certificate{padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.045)}.about-contact{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center}.about-contact a{color:#fff;text-decoration:none;font:600 .78rem 'Gowun Dodum','Noto Sans KR',sans-serif;letter-spacing:.03em}.about-contact a:hover,.about-contact a:focus-visible{color:var(--pink);outline:none}.certificate{min-width:180px}.certificate small{display:block;color:var(--pink);font:700 .58rem 'Gowun Dodum','Noto Sans KR',sans-serif;letter-spacing:.16em}.certificate strong{display:block;margin-top:7px;color:#fff;font:700 .78rem 'Gowun Dodum','Noto Sans KR',sans-serif}
     @media(max-width:520px){.about-details{grid-template-columns:1fr}.certificate{min-width:0}}
+
+    /* WORK DESCRIPTIONS: CLEAN TOP PANELS */
+    .works-grid .work:before{background:none!important;opacity:0!important}
+    .works-grid .work-info{top:14px!important;right:14px!important;bottom:auto!important;left:14px!important;inset:14px 14px auto!important;min-height:0!important;padding:15px 48px 15px 16px!important;border:1px solid rgba(255,255,255,.16);border-radius:14px;background:rgba(9,7,19,.84)!important;background-image:none!important;backdrop-filter:blur(10px);transform:translateZ(45px);text-shadow:none}
+    .works-grid .work:hover .work-info{background:rgba(9,7,19,.9)!important;background-image:none!important}
+    .works-grid .work-info small{display:block;margin-bottom:5px;color:var(--pink);font-size:.62rem;letter-spacing:.14em}
+    .works-grid .work-info h3{margin:0;font-size:1rem;line-height:1.3}
+    .works-grid .work-desc{margin-top:6px;color:rgba(255,255,255,.78);font-size:.72rem;line-height:1.45}
+    .works-grid .work-info .work-meta{margin-top:9px}
+    .works-grid .work-info>span{top:50%;right:15px;transform:translateY(-50%);color:rgba(255,255,255,.62)}
   </style>
 </head>
 <body>
