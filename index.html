@@ -367,6 +367,10 @@
     .works-grid .work-desc{margin-top:6px;color:rgba(255,255,255,.78);font-size:.72rem;line-height:1.45}
     .works-grid .work-info .work-meta{margin-top:9px}
     .works-grid .work-info>span{top:50%;right:15px;transform:translateY(-50%);color:rgba(255,255,255,.62)}
+
+    /* WORK DESCRIPTION PANELS ARE CLICKABLE */
+    .works-grid .work-info{cursor:zoom-in;pointer-events:auto}
+    .works-grid .work-info:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
   </style>
 </head>
 <body>
@@ -475,7 +479,7 @@
     skillLinks.forEach(skill=>skill.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')updateSkillPreview(skill.dataset.workFilter)}));
     previewGrid.addEventListener('click',e=>{const card=e.target.closest('.preview-card');if(!card)return;const work=[...document.querySelectorAll('.work')].find(item=>item.querySelector('.work-info h3')?.textContent.trim()===card.dataset.previewTitle);if(work)work.click();});
     const modal=document.getElementById('workModal'),modalImg=document.getElementById('modalImg'),modalCategory=document.getElementById('modalCategory'),modalTitle=document.getElementById('modalTitle'),modalDesc=document.getElementById('modalDesc'),modalMeta=document.getElementById('modalMeta');
-    document.querySelectorAll('.work').forEach(work=>work.addEventListener('click',()=>{const img=work.querySelector('img'),info=work.querySelector('.work-info');modalImg.src=img.src;modalImg.alt=img.alt;modalCategory.textContent=info.querySelector('small').textContent;modalTitle.textContent=info.querySelector('h3').textContent;modalDesc.textContent=info.querySelector('.work-desc').textContent;modalMeta.innerHTML=info.querySelector('.work-meta').innerHTML;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}));
+    document.querySelectorAll('.work').forEach(work=>work.addEventListener('click',()=>{const img=work.querySelector('img'),info=work.querySelector('.work-info');modalImg.src=img.src;modalImg.alt=img.alt;modalCategory.textContent=info.querySelector('small').textContent;modalTitle.textContent=info.querySelector('h3').textContent;modalDesc.textContent=info.querySelector('.work-desc').textContent;modalMeta.innerHTML=info.querySelector('.work-meta').innerHTML;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}));document.querySelectorAll('.work-info').forEach(info=>{const work=info.closest('.work');info.setAttribute('role','button');info.setAttribute('tabindex','0');info.setAttribute('aria-label',`${info.querySelector('h3')?.textContent.trim()||'작품'} 상세 보기`);info.addEventListener('click',event=>{event.stopPropagation();work?.click()});info.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();work?.click()}})});
     function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}document.querySelector('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
     document.querySelectorAll('[data-tilt]').forEach(el=>{el.addEventListener('mouseenter',()=>el.classList.add('is-hovered'));el.addEventListener('mouseleave',()=>el.classList.remove('is-hovered'))});
   </script>
