@@ -448,6 +448,10 @@
     /* DEFINITIVE HOVER TITLE ELEMENT ABOVE EACH CARD */
     .works-grid .work-hover-title{position:absolute;top:50%;left:14px;right:14px;z-index:50;display:block;color:#fff;font:800 1.2rem/1.25 'Gowun Dodum','Noto Sans KR',sans-serif;letter-spacing:.06em;text-align:center;text-shadow:0 3px 18px rgba(0,0,0,.8);opacity:0;transform:translateY(12px) scale(.96);pointer-events:none;transition:opacity .22s ease,transform .22s cubic-bezier(.23,1,.32,1),color .2s ease,letter-spacing .2s ease}
     .works-grid .work:hover .work-hover-title,.works-grid .work:focus-within .work-hover-title,.works-grid .work.card-selected .work-hover-title{opacity:1;transform:translateY(-50%) scale(1);color:var(--pink);letter-spacing:.1em}
+    /* DARKEN THE CARD ON HOVER SO THE CENTER TITLE IS CLEAR */
+    .works-grid .work:before{transition:opacity .25s ease,background .25s ease}
+    .works-grid .work:hover:before,.works-grid .work:focus-within:before,.works-grid .work.card-selected:before{opacity:1;background:rgba(5,3,12,.62)}
+    .works-grid .work:hover .work-hover-title,.works-grid .work:focus-within .work-hover-title,.works-grid .work.card-selected .work-hover-title{color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.95),0 0 22px rgba(255,127,174,.45)}
     @media(hover:none){.works-grid .work-hover-title{opacity:1;transform:translateY(-50%);color:#fff;letter-spacing:.06em}}
   </style>
 </head>
